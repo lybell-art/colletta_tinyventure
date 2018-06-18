@@ -71,7 +71,7 @@ var game=function(d)
 		{
 			d.resourceBox.image.UI[i]=d.loadImage(d.urlData.UI[i],function(){this.count++;}.bind(this));
 		}
-		this.max=97;
+		this.max=91;
 	}
 	LOADING.prototype.execute=function()
 	{
