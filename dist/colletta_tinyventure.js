@@ -65,18 +65,17 @@ var game=function(d)
 	LOADING.prototype.loadData=function()
 	{
 		var imgBox=d.resourceBox.image;
-		var collettaURL=d.urlData.colletta;
 		imgBox.bg[0]=d.loadImage(d.urlData.background[0],function(){this.count++;}.bind(this));
-		imgBox.colletta.idle[0]=d.loadAnimation(collettaURL.idle[0],function(){this.count++;}.bind(this));
-		imgBox.colletta.idle[1]=d.loadAnimation(collettaURL.idle[1],function(){this.count++;}.bind(this));
-		imgBox.colletta.walk[0]=d.loadAnimation(collettaURL.walk[0],collettaURL.walk[1],function(){this.count++;}.bind(this));
-		imgBox.colletta.walk[1]=d.loadAnimation(collettaURL.walk[2],collettaURL.walk[3],function(){this.count++;}.bind(this));
-		imgBox.colletta.jump[0]=d.loadAnimation(collettaURL.jump[0],collettaURL.walk[1],function(){this.count++;}.bind(this));
-		imgBox.colletta.jump[1]=d.loadAnimation(collettaURL.jump[2],collettaURL.walk[3],function(){this.count++;}.bind(this));
-		imgBox.colletta.wall[0]=d.loadAnimation(collettaURL.wall[0],function(){this.count++;}.bind(this));
-		imgBox.colletta.wall[1]=d.loadAnimation(collettaURL.wall[1],function(){this.count++;}.bind(this));
-		imgBox.colletta.rope[0]=d.loadAnimation(collettaURL.rope[0],function(){this.count++;}.bind(this));
-		imgBox.colletta.rope[1]=d.loadAnimation(collettaURL.rope[1],function(){this.count++;}.bind(this));
+		imgBox.colletta.idle[0]=d.loadAnimation(d.urlData.colletta.idle[0],function(){this.count++;}.bind(this));
+		imgBox.colletta.idle[1]=d.loadAnimation(d.urlData.colletta.idle[1],function(){this.count++;}.bind(this));
+		imgBox.colletta.walk[0]=d.loadAnimation(d.urlData.colletta.walk[0],d.urlData.colletta.walk[1],function(){this.count++;}.bind(this));
+		imgBox.colletta.walk[1]=d.loadAnimation(d.urlData.colletta.walk[2],d.urlData.colletta.walk[3],function(){this.count++;}.bind(this));
+		imgBox.colletta.jump[0]=d.loadAnimation(d.urlData.colletta.jump[0],d.urlData.colletta.walk[1],function(){this.count++;}.bind(this));
+		imgBox.colletta.jump[1]=d.loadAnimation(d.urlData.colletta.jump[2],d.urlData.colletta.walk[3],function(){this.count++;}.bind(this));
+		imgBox.colletta.wall[0]=d.loadAnimation(d.urlData.colletta.wall[0],function(){this.count++;}.bind(this));
+		imgBox.colletta.wall[1]=d.loadAnimation(d.urlData.colletta.wall[1],function(){this.count++;}.bind(this));
+		imgBox.colletta.rope[0]=d.loadAnimation(d.urlData.colletta.rope[0],function(){this.count++;}.bind(this));
+		imgBox.colletta.rope[1]=d.loadAnimation(d.urlData.colletta.rope[1],function(){this.count++;}.bind(this));
 		for(var i in d.urlData.item)
 		{
 			imgBox.item[i]=d.loadImage(d.urlData.item[i],function(){this.count++;}.bind(this));
