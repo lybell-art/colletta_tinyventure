@@ -35,7 +35,7 @@
 				"resource/colletta/colletta_jump-0005.png",
 				"resource/colletta/colletta_jump-0006.png",
 				"resource/colletta/colletta_jump-0007.png",
-				"resource/colletta/colletta_jump-0008.png",
+				"resource/colletta/colletta_jump-0008.png"
 			],
 		"wall":
 			[
@@ -74,5 +74,35 @@
 			"resource/objects/switchDoor2-on.png",
 			"resource/objects/switchDoor2.png",
 			"resource/objects/urchin.png"
-		]
+		],
+	"platform":
+		[
+			"resource/platform/platform_world1-01.png",
+			"resource/platform/platform_world1-02.png",
+			"resource/platform/platform_world1-03.png",
+			"resource/platform/platform_world1-04.png",
+			"resource/platform/platform_world1-05.png",
+			"resource/platform/platform_world1-06.png",
+			"resource/platform/platform_world1-07.png",
+			"resource/platform/platform_world1-08.png",
+			"resource/platform/platform_world1-09.png",
+			"resource/platform/platform_world1-10.png",
+			"resource/platform/platform_world1-11.png",
+			"resource/platform/platform_world1-12.png",
+			"resource/platform/platform_world1-13.png",
+			"resource/platform/platform_world1-14.png",
+			"resource/platform/platform_world1-15.png",
+			"resource/platform/platform_world1-16.png",
+			"resource/platform/platform_world1-17.png",
+			"resource/platform/platform_world1-18.png",
+			"resource/platform/platform_world1-19.png",
+			"resource/platform/platform_world1-20.png",
+			"resource/platform/platform_world1-21.png",
+			"resource/platform/platform_world1-22.png",
+			"resource/platform/platform_world1-23.png",
+			"resource/platform/platform_world1-24.png",
+			"resource/platform/platform_world1-25.png",
+			"resource/platform/platform_world1-26.png",
+			"resource/platform/platform_world1-27.png"
+		],
 }
