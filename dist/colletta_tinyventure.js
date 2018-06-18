@@ -99,7 +99,7 @@ var game=function(d)
 		if(a.length==1) res=d.loadAnimation(a[0]);
 		else if(a.length==2) res=d.loadAnimation(a[0],a[1]);
 		if(typeof callback === 'function') {
-        	callback(c);
+        	callback();
         }
         return res;
 	}
