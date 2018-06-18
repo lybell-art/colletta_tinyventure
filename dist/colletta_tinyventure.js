@@ -37,7 +37,7 @@ var game=function(d)
 //			main-ui:[],
 			objects:[],
 			platform:[],
-			ui:[]
+			UI:[]
 		};
 	}
 	function LOADING()
