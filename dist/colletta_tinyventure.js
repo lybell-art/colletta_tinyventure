@@ -46,21 +46,21 @@ var game=function(d)
 	}
 	LOADING.prototype.loadData=function()
 	{
-		resourceBox.image.bg[0]=loadImage(d.urlData.background[0],function(){this.count++;}.bind(this));
+		d.resourceBox.image.bg[0]=loadImage(d.urlData.background[0],function(){this.count++;}.bind(this));
 		for(var key in d.urlData.colletta)
 		{
 			for(var i in d.urlData.colletta[key])
 			{
-				resourceBox.image.colletta[key][i]=loadImage(d.urlData.colletta[key][i],function(){this.count++;}.bind(this));
+				d.resourceBox.image.colletta[key][i]=loadImage(d.urlData.colletta[key][i],function(){this.count++;}.bind(this));
 			}
 		}
 		for(var i in d.urlData.item)
 		{
-			resourceBox.image.item[i]=loadImage(d.urlData.item[i],function(){this.count++;}.bind(this));
+			d.resourceBox.image.item[i]=loadImage(d.urlData.item[i],function(){this.count++;}.bind(this));
 		}
 		for(var i in d.urlData.item)
 		{
-			resourceBox.image.objects[i]=loadImage(d.urlData.objects[i],function(){this.count++;}.bind(this));
+			d.resourceBox.image.objects[i]=loadImage(d.urlData.objects[i],function(){this.count++;}.bind(this));
 		}
 		this.max=56;//97
 	}
