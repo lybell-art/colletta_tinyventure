@@ -2,6 +2,7 @@ var game=function(d)
 {
 	d.isPC=true;
 	d.sceneNo=-1;
+	d.ingame=new INGAME();
 	d.resourceBox=new RESOURCE_BOX();
 	d.loading=new LOADING();
 	d.urlData=null;
@@ -20,31 +21,43 @@ var game=function(d)
 		switch(d.sceneNo)
 		{
 			case -1:d.loading.execute(); break;
-			default:d.background(255);
-				var p=new PLAYER();
-				p.view();
+			case 0:d.ingame.setup(); break;
+			default:d.ingame.run();
 		}
 	};
 	d.windowResized=function()
 	{
 		d.resizeCanvas(window.innerWidth,window.innerHeight);
 	}
-	function PLAYER()
+	function INGAME()
 	{
-		this.x=d.width/2;
-		this.y=d.height/2;
-		this.sprite=d.createSprite(this.x,this.y,120,180);
-		var animeBox=d.resourceBox.image.colletta;
-		for(var action in animeBox)
+		var colletta=null;
+		function PLAYER()
 		{
-			this.sprite.addAnimation(action+1,animeBox[action][0]);
-			this.sprite.addAnimation(action+2,animeBox[action][1]);
+			this.x=d.width/2;
+			this.y=d.height/2;
+			this.sprite=d.createSprite(this.x,this.y,120,180);
+			var animeBox=d.resourceBox.image.colletta;
+			for(var action in animeBox)
+			{
+				this.sprite.addAnimation(action+1,animeBox[action][0]);
+				this.sprite.addAnimation(action+2,animeBox[action][1]);
+			}
+		}
+		PLAYER.prototype.view=function()
+		{
+			this.sprite.changeAnimation('walk2');
+			d.drawSprite(this.sprite);
 		}
 	}
-	PLAYER.prototype.view=function()
+	INGAME.prototype.setup=function()
 	{
-		this.sprite.changeAnimation('idle1');
-		d.drawSprite(this.sprite);
+		colletta=new PLAYER();
+		d.sceneNo++;
+	}
+	INGAME.prototype.run=function()
+	{
+		colletta.view();
 	}
 	function RESOURCE_BOX()
 	{
