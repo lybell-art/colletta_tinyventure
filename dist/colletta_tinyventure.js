@@ -12,6 +12,7 @@ var game=function(d)
 	}
 	d.setup=function()
 	{
+		d.createCanvas(window.innerWidth,window.innerHeight);
 		d.loading.loadData();
 	};
 	d.draw=function()
@@ -75,6 +76,7 @@ var game=function(d)
 		d.noStroke();
 		d.rect(0,0,d.map(this.count,0,this.max,0,d.width),50);
 		if(this.count==this.max) d.sceneNo=0;
+		console.log(this.count);
 	}
 };
 function PCCheck()
