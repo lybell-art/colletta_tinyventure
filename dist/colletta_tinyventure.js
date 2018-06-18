@@ -5,6 +5,7 @@ var game=function(d)
 	d.resourceBox=new RESOURCE_BOX();
 	d.loading=new LOADING();
 	d.urlData=null;
+	d.colletta=null;
 	d.preload=function()
 	{
 		d.isPC=PCCheck();
@@ -20,12 +21,26 @@ var game=function(d)
 		switch(d.sceneNo)
 		{
 			case -1:d.loading.execute(); break;
-			default:d.background(255);
+			case 0:d.colletta=new PLAYER(); d.sceneNo++; break;
+			default:
+				d.background(255);
+				d.colletta.view();
 		}
 	};
 	d.windowResized=function()
 	{
 		d.resizeCanvas(window.innerWidth,window.innerHeight);
+	}
+	function PLAYER()
+	{
+		this.x=d.width/2;
+		this.y=d.height/2;
+		this.sprite=d.createSprite(this.x,this.y,120,180);
+		this.sprite.addAnimation("idle",d.resourceBox.image.colletta.idle);
+	}
+	PLAYER.prototype.view=function()
+	{
+		d.drawSprite(this.sprite);
 	}
 	function RESOURCE_BOX()
 	{
