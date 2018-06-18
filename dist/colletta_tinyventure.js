@@ -67,6 +67,10 @@ var game=function(d)
 		{
 			d.resourceBox.image.platform[i]=d.loadImage(d.urlData.platform[i],function(){this.count++;}.bind(this));
 		}
+		for(var i in d.urlData.UI)
+		{
+			d.resourceBox.image.UI[i]=d.loadImage(d.urlData.UI[i],function(){this.count++;}.bind(this));
+		}
 		this.max=97;
 	}
 	LOADING.prototype.execute=function()
