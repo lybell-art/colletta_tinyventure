@@ -34,7 +34,7 @@ var game=function(d)
 			colletta:{idle:[],walk:[],jump:[],rope:[],wall:[]}, 
 			item:[],
 //			main-ui:[],
-			objects:[],
+			objects:[]
 //			platform:[],
 //			ui:[]
 		};
