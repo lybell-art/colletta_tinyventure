@@ -10,31 +10,15 @@
 		"walk":
 			[
 				"resource/colletta/colletta_walk-0001.png",
-				"resource/colletta/colletta_walk-0002.png",
-				"resource/colletta/colletta_walk-0003.png",
-				"resource/colletta/colletta_walk-0004.png",
-				"resource/colletta/colletta_walk-0005.png",
-				"resource/colletta/colletta_walk-0006.png",
-				"resource/colletta/colletta_walk-0007.png",
 				"resource/colletta/colletta_walk-0008.png",
 				"resource/colletta/colletta_walk-0009.png",
-				"resource/colletta/colletta_walk-0010.png",
-				"resource/colletta/colletta_walk-0011.png",
-				"resource/colletta/colletta_walk-0012.png",
-				"resource/colletta/colletta_walk-0013.png",
-				"resource/colletta/colletta_walk-0014.png",
-				"resource/colletta/colletta_walk-0015.png",
 				"resource/colletta/colletta_walk-0016.png"
 			],
 		"jump":
 			[
 				"resource/colletta/colletta_jump-0001.png",
-				"resource/colletta/colletta_jump-0002.png",
-				"resource/colletta/colletta_jump-0003.png",
 				"resource/colletta/colletta_jump-0004.png",
 				"resource/colletta/colletta_jump-0005.png",
-				"resource/colletta/colletta_jump-0006.png",
-				"resource/colletta/colletta_jump-0007.png",
 				"resource/colletta/colletta_jump-0008.png"
 			],
 		"wall":
