@@ -31,7 +31,16 @@ var game=function(d)
 	}
 	function INGAME()
 	{
-		var colletta=null;
+		this.colletta=null;
+		this.setup=function()
+		{
+			this.colletta=new PLAYER();
+			d.sceneNo++;
+		}
+		this.run=function()
+		{
+			this.colletta.view();
+		}
 		function PLAYER()
 		{
 			this.x=d.width/2;
@@ -49,15 +58,6 @@ var game=function(d)
 			this.sprite.changeAnimation('walk2');
 			d.drawSprite(this.sprite);
 		}
-	}
-	INGAME.prototype.setup=function()
-	{
-		colletta=new PLAYER();
-		d.sceneNo++;
-	}
-	INGAME.prototype.run=function()
-	{
-		colletta.view();
 	}
 	function RESOURCE_BOX()
 	{
