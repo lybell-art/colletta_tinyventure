@@ -21,6 +21,8 @@ var game=function(d)
 		{
 			case -1:d.loading.execute(); break;
 			default:d.background(255);
+				var p=new PLAYER();
+				p.view();
 		}
 	};
 	d.windowResized=function()
