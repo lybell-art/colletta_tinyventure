@@ -104,5 +104,20 @@
 			"resource/platform/platform_world1-25.png",
 			"resource/platform/platform_world1-26.png",
 			"resource/platform/platform_world1-27.png"
+		],
+	"UI":
+		[
+			"resource/UI/UI_ingame-HP01.png",
+			"resource/UI/UI_ingame-HP02.png",
+			"resource/UI/UI_ingame-jumpButton0.png",
+			"resource/UI/UI_ingame-jumpButton1.png",
+			"resource/UI/UI_ingame-leftButton0.png",
+			"resource/UI/UI_ingame-leftButton1.png",
+			"resource/UI/UI_ingame-rightButton0.png",
+			"resource/UI/UI_ingame-rightButton1.png",
+			"resource/UI/UI_ingame-scaleButton0.png",
+			"resource/UI/UI_ingame-scaleButton1.png",
+			"resource/UI/UI_ingame-pause.png",
+			"resource/UI/UI_ingame-toggleMap.png"
 		]
 }
