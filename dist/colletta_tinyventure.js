@@ -46,7 +46,7 @@ var game=function(d)
 	}
 	LOADING.prototype.loadData=function()
 	{
-		d.resourceBox.image.bg[0]=loadImage(d.urlData.background[0],function(){this.count++;}.bind(this));
+		d.resourceBox.image.bg[0]=d.loadImage(d.urlData.background[0],function(){this.count++;}.bind(this));
 		for(var key in d.urlData.colletta)
 		{
 			for(var i in d.urlData.colletta[key])
