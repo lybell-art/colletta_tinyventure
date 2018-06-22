@@ -20,7 +20,7 @@ var game=function(d)
 	};
 	d.draw=function()
 	{
-//		d.scale(d.ratio);
+		d.scale(d.ratio);
 		switch(d.sceneNo)
 		{
 			case -1:d.loading.execute(); break;
@@ -84,7 +84,7 @@ var game=function(d)
 		}
 		PLAYER.prototype.move=function(g)
 		{
-			this.sprite.velocity.y+=1;
+			this.sprite.velocity.y+=0.5;
 			if(this.sprite.collide(g.world.ground))
 			{
 				this.sprite.velocity.y=0;
@@ -103,7 +103,7 @@ var game=function(d)
 			else this.sprite.velocity.x=0;
 			if(d.jumpKey())
 			{
-				this.sprite.velocity.y=-15;
+				this.sprite.velocity.y=-20;
 				this.jumping=true;
 			}
 //			console.log(this.sprite.position, this.sprite.velocity);
