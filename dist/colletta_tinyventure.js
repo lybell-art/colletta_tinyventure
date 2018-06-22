@@ -72,13 +72,12 @@ var game=function(d)
 			}
 			this.sprite.setCollider("rectangle",0,45,d.tileSize,d.tileSize*1.5);
 			this.sprite.debug=true;
-			console.log(this.x,this.y,animeBox);
 		}
 		PLAYER.prototype.pose=function(g)
 		{
 			var P;
 			if(this.jumping) P='jump';
-			else if(this.sprite.velocity.x!=0) P='move';
+			else if(this.sprite.velocity.x!=0) P='walk';
 			else P='idle';
 			this.sprite.changeAnimation(P+this.heading);
 		}
@@ -106,7 +105,7 @@ var game=function(d)
 				this.sprite.velocity.y-=15;
 				this.jumping=true;
 			}
-			console.log(this.sprite.position, this.sprite.velocity);
+//			console.log(this.sprite.position, this.sprite.velocity);
 		}
 		function WORLD(g)
 		{
@@ -130,7 +129,6 @@ var game=function(d)
 		{
 			var a=d.createSprite((i+0.5)*d.tileSize,(j+0.5)*d.tileSize,d.tileSize,d.tileSize);
 			var tileNo=d.resourceBox.map[g.currentWorld].platform[i][j];
-			console.log(g,i,j,tileNo);
 			a.debug=true;
 			if(tileNo!=0) a.addImage(d.resourceBox.image.platform[tileNo-1]);
 			else a.remove();
@@ -141,15 +139,14 @@ var game=function(d)
 				case 25: case 27:
 				case 10:a.setCollider('rectangle',0,0,d.tileSize,d.tileSize); this.ground.add(a); break;
 				case 11: case 12: case 13:
-				case 14:console.log('b'); this.tree.add(a); break;
+				case 14:this.tree.add(a); break;
 				case 15: case 16:
-				case 17:console.log('c'); this.moving.add(a); break;
+				case 17:this.moving.add(a); break;
 				case 18: case 19: case 20:
-				case 21:console.log('d'); this.wood.add(a); break;
+				case 21:this.wood.add(a); break;
 				case 22: case 23:
-				case 24:console.log('e'); this.Vrope.add(a); break;
-				case 26:console.log('f'); this.Hrope.add(a); break;
-				default:console.log('z');
+				case 24:this.Vrope.add(a); break;
+				case 26:this.Hrope.add(a); break;
 			}
 		}
 	}
