@@ -32,6 +32,10 @@ var game=function(d)
 	{
 		d.resizeCanvas(window.innerWidth,window.innerHeight);
 	}
+	d.leftKey=function(){return d.keyDown(d.LEFT)};
+	d.rightKey=function(){return d.keyDown(d.RIGHT);}
+	d.jumpKey=function(){return d.keyWentDown(d.UP);}
+	d.scaleKey=function(){return d.keyWentDown('z');}
 	function INGAME()
 	{
 		this.currentWorld="world1";
@@ -46,13 +50,18 @@ var game=function(d)
 		this.run=function()
 		{
 			d.image(d.resourceBox.image.bg[0],0,0);
-			this.colletta.view();
+			d.camera.position.x=this.colletta.x;
+			d.camera.position.y=this.colletta.y;
+			this.colletta.move();
+			this.colletta.pose();
 			d.drawSprites();
 		}
 		function PLAYER(g)
 		{
 			this.x=d.resourceBox.map[g.currentWorld].playerSpawn[0]*d.tileSize+d.tileSize/2;
 			this.y=d.resourceBox.map[g.currentWorld].playerSpawn[1]*d.tileSize-15;
+			this.heading=RIGHT;
+			this.jumping=false;
 			this.sprite=d.createSprite(this.x,this.y,d.tileSize,d.tileSize*1.5);
 			var animeBox=d.resourceBox.image.colletta;
 			for(var action in animeBox)
@@ -64,11 +73,39 @@ var game=function(d)
 			this.sprite.debug=true;
 			console.log(this.x,this.y);
 		}
-		PLAYER.prototype.view=function()
+		PLAYER.prototype.pose=function()
 		{
-			this.sprite.changeAnimation('idle1');
-//			d.drawSprite(this.sprite);
-			
+			var P;
+			if(this.jumping) P='jump';
+			else if(this.sprite.velocity.x!=0) P='move';
+			else P='idle';
+			this.sprite.changeAnimation(P+this.heading);
+		}
+		PLAYER.prototype.move=function()
+		{
+			this.sprite.velocity.y+=1;
+			if(this.sprite.collide(g.world.ground))
+			{
+				this.sprite.velocity.y=0;
+				this.jumping=false;
+			}
+			if(d.leftKey())
+			{
+				this.sprite.velocity.x=-5;
+				this.heading=LEFT;
+			}
+			else if(d.rightKey())
+			{
+				this.sprite.velocity.x=5;
+				this.heading=RIGHT;
+			}
+			else d.velocity.x=0;
+			if(d.jumpKey())
+			{
+				this.sprite.velocity.y-=15;
+				this.jumping=true;
+			}
+			console.log(this.sprite.position, this.sprite.velocity);
 		}
 		function WORLD(g)
 		{
@@ -101,7 +138,7 @@ var game=function(d)
 				case 1: case 2: case 3: case 4: case 5:
 				case 6: case 7: case 8: case 9:
 				case 25: case 27:
-				case 10:console.log('a'); this.ground.add(a); break;
+				case 10:a.setCollider(0,0,d.tileSize,d.tileSize); this.ground.add(a); break;
 				case 11: case 12: case 13:
 				case 14:console.log('b'); this.tree.add(a); break;
 				case 15: case 16:
@@ -185,6 +222,7 @@ var game=function(d)
 		console.log(this.count);
 	}
 };
+const LEFT=2, RIGHT=1;
 function PCCheck()
 {
 	var filter = "win16|win32|win64|mac|macintel";
