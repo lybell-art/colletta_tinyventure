@@ -1,6 +1,6 @@
 var game=function(d)
 {
-	d.ratio=Math.min(window.innerWidth,window.innerHeight)/1080;
+	d.ratio=Math.min(Math.min(window.innerWidth,window.innerHeight)/1080,1);
 	d.tileSize=120;
 	d.isPC=true;
 	d.sceneNo=-1;
@@ -50,11 +50,12 @@ var game=function(d)
 		this.run=function()
 		{
 			d.image(d.resourceBox.image.bg[0],0,0);
-			d.camera.position.x=this.colletta.x;
-			d.camera.position.y=this.colletta.y;
+//			d.camera.position.x=this.colletta.x;
+//			d.camera.position.y=this.colletta.y;
 			this.colletta.move(this);
 			this.colletta.pose(this);
 			d.drawSprites();
+			console.log(d.frameRate());
 		}
 		function PLAYER(g)
 		{
