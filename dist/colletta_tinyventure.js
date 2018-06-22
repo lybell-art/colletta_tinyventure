@@ -96,8 +96,8 @@ var game=function(d)
 						case 18: case 19: case 20:
 						case 21:this.wood.add(a); break;
 						case 22: case 23:
-						case 24:this.Vlope.add(a); break;
-						case 26:this.Hlope.add(a); break;
+						case 24:this.Vrope.add(a); break;
+						case 26:this.Hrope.add(a); break;
 					}
 				}
 			}
