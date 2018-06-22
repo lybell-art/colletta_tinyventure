@@ -77,10 +77,18 @@ var game=function(d)
 		PLAYER.prototype.pose=function(g)
 		{
 			var P;
+			var v=this.sprite.velocity.y;
 			if(this.jumping) P='jump';
 			else if(this.sprite.velocity.x!=0) P='walk';
 			else P='idle';
 			this.sprite.changeAnimation(P+this.heading);
+			if(this.jumping)
+			{
+				if(v>1) this.sprite.animation.changeFrame(0);
+				else if(v>0) this.sprite.animation.changeFrame(1);
+				else if(v>-1) this.sprite.animation.changeFrame(2);
+				else this.sprite.animation.changeFrame(3);
+			}
 		}
 		PLAYER.prototype.move=function(g)
 		{
@@ -92,18 +100,18 @@ var game=function(d)
 			}
 			if(d.leftKey())
 			{
-				this.sprite.velocity.x=-10;
+				this.sprite.velocity.x=-12;
 				this.heading=LEFT;
 			}
 			else if(d.rightKey())
 			{
-				this.sprite.velocity.x=10;
+				this.sprite.velocity.x=12;
 				this.heading=RIGHT;
 			}
 			else this.sprite.velocity.x=0;
 			if(d.jumpKey())
 			{
-				this.sprite.velocity.y=-20;
+				this.sprite.velocity.y=-25;
 				this.jumping=true;
 			}
 			this.x=this.sprite.x;
