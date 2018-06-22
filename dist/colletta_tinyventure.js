@@ -32,9 +32,9 @@ var game=function(d)
 	{
 		d.resizeCanvas(window.innerWidth,window.innerHeight);
 	}
-	d.leftKey=function(){return d.keyDown(d.LEFT)};
-	d.rightKey=function(){return d.keyDown(d.RIGHT);}
-	d.jumpKey=function(){return d.keyWentDown(d.UP);}
+	d.leftKey=function(){return d.keyDown(d.LEFT_ARROW)};
+	d.rightKey=function(){return d.keyDown(d.RIGHT_ARROW);}
+	d.jumpKey=function(){return d.keyWentDown(d.UP_ARROW);}
 	d.scaleKey=function(){return d.keyWentDown('z');}
 	function INGAME()
 	{
@@ -103,7 +103,7 @@ var game=function(d)
 			else this.sprite.velocity.x=0;
 			if(d.jumpKey())
 			{
-				this.sprite.velocity.y-=15;
+				this.sprite.velocity.y=-15;
 				this.jumping=true;
 			}
 //			console.log(this.sprite.position, this.sprite.velocity);
