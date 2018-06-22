@@ -75,8 +75,8 @@ var game=function(d)
 			this.wood=new d.Group();
 			this.Vrope=new d.Group();
 			this.Hrope=new d.Group();
-			var mapWid=d.resourceBox.map[g.currentWorld].platform[0].length;
-			var mapHei=d.resourceBox.map[g.currentWorld].platform.length;
+			var mapWid=d.resourceBox.map[g.currentWorld].platform.length;
+			var mapHei=d.resourceBox.map[g.currentWorld].platform[0].length;
 			for(var i=0;i<mapWid;i++)
 			{
 				for(var j=0;j<mapHei;j++)
