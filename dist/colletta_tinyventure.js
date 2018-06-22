@@ -99,7 +99,7 @@ var game=function(d)
 				this.sprite.velocity.x=5;
 				this.heading=RIGHT;
 			}
-			else d.velocity.x=0;
+			else this.sprite.velocity.x=0;
 			if(d.jumpKey())
 			{
 				this.sprite.velocity.y-=15;
