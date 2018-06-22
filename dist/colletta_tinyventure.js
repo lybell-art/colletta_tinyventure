@@ -91,6 +91,7 @@ var game=function(d)
 			var tileNo=d.resourceBox.map[g.currentWorld].platform[i][j];
 			console.log(g,i,j,tileNo);
 			if(tileNo!=0) a.addImage(d.resourceBox.image.platform[tileNo-1]);
+			else a.remove();
 			switch(tileNo)	
 			{
 				case 1: case 2: case 3: case 4: case 5:
