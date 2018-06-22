@@ -63,7 +63,7 @@ var game=function(d)
 		}
 		PLAYER.prototype.view=function()
 		{
-			this.sprite.changeAnimation('walk2');
+			this.sprite.changeAnimation('idle1');
 //			d.drawSprite(this.sprite);
 			
 		}
@@ -90,6 +90,7 @@ var game=function(d)
 			var a=d.createSprite(i*d.tileSize,j*d.tileSize,d.tileSize,d.tileSize);
 			var tileNo=d.resourceBox.map[g.currentWorld].platform[i][j];
 			console.log(g,i,j,tileNo);
+			a.debug=true;
 			if(tileNo!=0) a.addImage(d.resourceBox.image.platform[tileNo-1]);
 			else a.remove();
 			switch(tileNo)	
