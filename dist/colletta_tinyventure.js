@@ -1,5 +1,6 @@
 var game=function(d)
 {
+	d.tileSize=120;
 	d.isPC=true;
 	d.sceneNo=-1;
 	d.ingame=new INGAME();
@@ -39,13 +40,15 @@ var game=function(d)
 		}
 		this.run=function()
 		{
+			d.background(0);
 			this.colletta.view();
+			d.drawSprites();
 		}
 		function PLAYER()
 		{
-			this.x=d.width/2;
-			this.y=d.height/2;
-			this.sprite=d.createSprite(this.x,this.y,120,180);
+			this.x=d.resourceBox.map.playerSpawn[0]*d.tileSize;
+			this.y=d.resourceBox.map.playerSpawn[1]*d.tileSize;
+			this.sprite=d.createSprite(this.x,this.y,d.tileSize,d.tileSize*1.5);
 			var animeBox=d.resourceBox.image.colletta;
 			for(var action in animeBox)
 			{
@@ -56,12 +59,48 @@ var game=function(d)
 		PLAYER.prototype.view=function()
 		{
 			this.sprite.changeAnimation('walk2');
-			d.drawSprite(this.sprite);
+//			d.drawSprite(this.sprite);
+			
+		}
+		function WORLD()
+		{
+			this.ground=new d.Group();
+			this.tree=new d.Group();
+			this.mover=new d.Group();
+			this.wood=new d.Group();
+			this.Vrope=new d.Group();
+			this.Hrope=new d.Group();
+			var mapWid=d.resourceBox.map.platform[0].length;
+			var mapHei=d.resourceBox.map.platform.length;
+			for(var i=0;i<mapWid;i++)
+			{
+				for(var j=0;j<mapHei;j++)
+				{
+					var a=createSprite(i*d.tileSize,j*d.tileSize,d.tileSize,d.tileSize);
+					a.addImage(d.resourceBox.map.platform[j][i]);
+					switch(tileNo)	
+					{
+						case 1: case 2: case 3: case 4: case 5:
+						case 6: case 7: case 8: case 9:
+						case 25: case 27:
+						case 10:this.ground.add(a); break;
+						case 11: case 12: case 13:
+						case 14:this.tree.add(a); break;
+						case 15: case 16:
+						case 17:this.moving.add(a); break;
+						case 18: case 19: case 20:
+						case 21:this.wood.add(a); break;
+						case 22: case 23:
+						case 24:this.Vlope.add(a); break;
+						case 26:this.Hlope.add(a); break;
+					}
+				}
+			}
 		}
 	}
 	function RESOURCE_BOX()
 	{
-		this.map=[];
+		this.map={};
 		this.image={
 			bg:[], 
 			colletta:{idle:[],walk:[],jump:[],rope:[],wall:[]}, 
@@ -80,6 +119,7 @@ var game=function(d)
 	LOADING.prototype.loadData=function()
 	{
 		var imgBox=d.resourceBox.image;
+		d.resourceBox.map=d.loadJSON("map/mapData.json",function(){this.count++;}.bind(this));
 		imgBox.bg[0]=d.loadImage(d.urlData.background[0],function(){this.count++;}.bind(this));
 		imgBox.colletta.idle[0]=this.loadAnimData([d.urlData.colletta.idle[0]],function(){this.count++;}.bind(this));
 		imgBox.colletta.idle[1]=this.loadAnimData([d.urlData.colletta.idle[1]],function(){this.count++;}.bind(this));
