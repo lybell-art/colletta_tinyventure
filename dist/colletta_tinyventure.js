@@ -92,7 +92,7 @@ var game=function(d)
 		}
 		PLAYER.prototype.move=function(g)
 		{
-			this.sprite.velocity.y+=1;
+			this.sprite.velocity.y+=0.9;
 			if(this.sprite.collide(g.world.ground))
 			{
 				this.sprite.velocity.y=0;
@@ -111,7 +111,7 @@ var game=function(d)
 			else this.sprite.velocity.x=0;
 			if(d.jumpKey())
 			{
-				this.sprite.velocity.y=-25;
+				this.sprite.velocity.y=-24;
 				this.jumping=true;
 			}
 			this.x=this.sprite.x;
