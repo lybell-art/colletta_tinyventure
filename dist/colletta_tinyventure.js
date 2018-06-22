@@ -30,25 +30,25 @@ var game=function(d)
 	{
 		d.resizeCanvas(window.innerWidth,window.innerHeight);
 	}
-	function INGAME(g)
+	function INGAME()
 	{
-		g.currentWorld="world1";
-		g.colletta=null;
-		g.world=null;
-		g.setup=function()
+		this.currentWorld="world1";
+		this.colletta=null;
+		this.world=null;
+		this.setup=function()
 		{
 			console.log(d.resourceBox.map);
-			g.colletta=new PLAYER();
-			g.world=new WORLD();
+			this.colletta=new PLAYER(this);
+			this.world=new WORLD(this);
 			d.sceneNo++;
 		}
-		g.run=function()
+		this.run=function()
 		{
 			d.background(0);
-			g.colletta.view();
+			this.colletta.view();
 			d.drawSprites();
 		}
-		function PLAYER()
+		function PLAYER(g)
 		{
 			this.x=d.resourceBox.map[g.currentWorld].playerSpawn[0]*d.tileSize;
 			this.y=d.resourceBox.map[g.currentWorld].playerSpawn[1]*d.tileSize;
@@ -66,7 +66,7 @@ var game=function(d)
 //			d.drawSprite(this.sprite);
 			
 		}
-		function WORLD()
+		function WORLD(g)
 		{
 			this.ground=new d.Group();
 			this.tree=new d.Group();
