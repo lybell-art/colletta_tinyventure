@@ -72,7 +72,7 @@ var game=function(d)
 			}
 			this.sprite.setCollider("rectangle",0,45,d.tileSize,d.tileSize*1.5);
 			this.sprite.debug=true;
-			console.log(this.x,this.y);
+			console.log(this.x,this.y,animeBox);
 		}
 		PLAYER.prototype.pose=function(g)
 		{
