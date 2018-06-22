@@ -89,7 +89,7 @@ var game=function(d)
 		}
 		WORLD.prototype.makeSpriteSet=function(g,i,j)
 		{
-			var a=d.createSprite(i*d.tileSize,j*d.tileSize,d.tileSize,d.tileSize);
+			var a=d.createSprite((i+0.5)*d.tileSize,(j+0.5)*d.tileSize,d.tileSize,d.tileSize);
 			var tileNo=d.resourceBox.map[g.currentWorld].platform[i][j];
 			console.log(g,i,j,tileNo);
 			a.debug=true;
