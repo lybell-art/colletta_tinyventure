@@ -92,18 +92,18 @@ var game=function(d)
 			}
 			if(d.leftKey())
 			{
-				this.sprite.velocity.x=-7;
+				this.sprite.velocity.x=-15;
 				this.heading=LEFT;
 			}
 			else if(d.rightKey())
 			{
-				this.sprite.velocity.x=7;
+				this.sprite.velocity.x=15;
 				this.heading=RIGHT;
 			}
 			else this.sprite.velocity.x=0;
 			if(d.jumpKey())
 			{
-				this.sprite.velocity.y=-25;
+				this.sprite.velocity.y=-30;
 				this.jumping=true;
 			}
 //			console.log(this.sprite.position, this.sprite.velocity);
