@@ -111,7 +111,7 @@ var game=function(d)
 			else this.sprite.velocity.x=0;
 			if(d.jumpKey())
 			{
-				this.sprite.velocity.y=-24;
+				this.sprite.velocity.y=-27;
 				this.jumping=true;
 			}
 			this.x=this.sprite.x;
