@@ -89,7 +89,7 @@ var game=function(d)
 		{
 			var a=d.createSprite(i*d.tileSize,j*d.tileSize,d.tileSize,d.tileSize);
 			var tileNo=d.resourceBox.map[g.currentWorld].platform[i][j];
-			console.log(tileNo);
+			console.log(g,i,j,tileNo);
 			if(tileNo!=0) a.addImage(d.resourceBox.image.platform[tileNo-1]);
 			switch(tileNo)	
 			{
