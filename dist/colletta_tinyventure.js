@@ -1,6 +1,6 @@
 var game=function(d)
 {
-	d.ratio=min(window.innerWidth,window.innerHeight)/1080;
+	d.ratio=Math.min(window.innerWidth,window.innerHeight)/1080;
 	d.tileSize=120;
 	d.isPC=true;
 	d.sceneNo=-1;
