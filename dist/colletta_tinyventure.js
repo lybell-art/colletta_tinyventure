@@ -1,5 +1,6 @@
 var game=function(d)
 {
+	d.ratio=min(window.innerWidth,window.innerHeight)/1080;
 	d.tileSize=120;
 	d.isPC=true;
 	d.sceneNo=-1;
@@ -19,6 +20,7 @@ var game=function(d)
 	};
 	d.draw=function()
 	{
+		d.scale(d.ratio);
 		switch(d.sceneNo)
 		{
 			case -1:d.loading.execute(); break;
