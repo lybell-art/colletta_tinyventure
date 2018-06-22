@@ -30,28 +30,28 @@ var game=function(d)
 	{
 		d.resizeCanvas(window.innerWidth,window.innerHeight);
 	}
-	function INGAME()
+	function INGAME(g)
 	{
-		this.currentWorld="world1";
-		this.colletta=null;
-		this.world=null;
-		this.setup=function()
+		g.currentWorld="world1";
+		g.colletta=null;
+		g.world=null;
+		g.setup=function()
 		{
 			console.log(d.resourceBox.map);
-			this.colletta=new PLAYER();
-			this.world=new WORLD();
+			g.colletta=new PLAYER();
+			g.world=new WORLD();
 			d.sceneNo++;
 		}
-		this.run=function()
+		g.run=function()
 		{
 			d.background(0);
-			this.colletta.view();
+			g.colletta.view();
 			d.drawSprites();
 		}
 		function PLAYER()
 		{
-			this.x=d.resourceBox.map[this.currentWorld].playerSpawn[0]*d.tileSize;
-			this.y=d.resourceBox.map[this.currentWorld].playerSpawn[1]*d.tileSize;
+			this.x=d.resourceBox.map[g.currentWorld].playerSpawn[0]*d.tileSize;
+			this.y=d.resourceBox.map[g.currentWorld].playerSpawn[1]*d.tileSize;
 			this.sprite=d.createSprite(this.x,this.y,d.tileSize,d.tileSize*1.5);
 			var animeBox=d.resourceBox.image.colletta;
 			for(var action in animeBox)
@@ -74,14 +74,15 @@ var game=function(d)
 			this.wood=new d.Group();
 			this.Vrope=new d.Group();
 			this.Hrope=new d.Group();
-			var mapWid=d.resourceBox.map[this.currentWorld].platform[0].length;
-			var mapHei=d.resourceBox.map[this.currentWorld].platform.length;
+			var mapWid=d.resourceBox.map[g.currentWorld].platform[0].length;
+			var mapHei=d.resourceBox.map[g.currentWorld].platform.length;
 			for(var i=0;i<mapWid;i++)
 			{
 				for(var j=0;j<mapHei;j++)
 				{
 					var a=createSprite(i*d.tileSize,j*d.tileSize,d.tileSize,d.tileSize);
-					a.addImage(d.resourceBox.map[this.currentWorld].platform[j][i]);
+					var tileNo=d.resourceBox.map[g.currentWorld].platform[j][i];
+					a.addImage(d.resourceBox.image.platform[tileNo]);
 					switch(tileNo)	
 					{
 						case 1: case 2: case 3: case 4: case 5:
