@@ -51,7 +51,7 @@ var game=function(d)
 		}
 		function PLAYER(g)
 		{
-			this.x=d.resourceBox.map[g.currentWorld].playerSpawn[0]*d.tileSize;
+			this.x=d.resourceBox.map[g.currentWorld].playerSpawn[0]*d.tileSize+d.tileSize/2;
 			this.y=d.resourceBox.map[g.currentWorld].playerSpawn[1]*d.tileSize;
 			this.sprite=d.createSprite(this.x,this.y,d.tileSize,d.tileSize*1.5);
 			var animeBox=d.resourceBox.image.colletta;
