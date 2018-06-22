@@ -33,9 +33,11 @@ var game=function(d)
 	function INGAME()
 	{
 		this.colletta=null;
+		this.world=null;
 		this.setup=function()
 		{
 			this.colletta=new PLAYER();
+			this.world=new WORLD();
 			d.sceneNo++;
 		}
 		this.run=function()
