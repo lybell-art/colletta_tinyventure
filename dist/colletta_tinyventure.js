@@ -52,8 +52,8 @@ var game=function(d)
 			d.image(d.resourceBox.image.bg[0],0,0);
 			d.camera.position.x=this.colletta.x;
 			d.camera.position.y=this.colletta.y;
-			this.colletta.move();
-			this.colletta.pose();
+			this.colletta.move(this);
+			this.colletta.pose(this);
 			d.drawSprites();
 		}
 		function PLAYER(g)
@@ -73,7 +73,7 @@ var game=function(d)
 			this.sprite.debug=true;
 			console.log(this.x,this.y);
 		}
-		PLAYER.prototype.pose=function()
+		PLAYER.prototype.pose=function(g)
 		{
 			var P;
 			if(this.jumping) P='jump';
@@ -81,7 +81,7 @@ var game=function(d)
 			else P='idle';
 			this.sprite.changeAnimation(P+this.heading);
 		}
-		PLAYER.prototype.move=function()
+		PLAYER.prototype.move=function(g)
 		{
 			this.sprite.velocity.y+=1;
 			if(this.sprite.collide(g.world.ground))
