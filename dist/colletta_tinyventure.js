@@ -147,7 +147,7 @@ var game=function(d)
 		{
 			imgBox.UI[i]=d.loadImage(d.urlData.UI[i],function(){this.count++;}.bind(this));
 		}
-		this.max=71;
+		this.max=72;
 	}
 	LOADING.prototype.loadAnimData=function(a, callback)
 	{
