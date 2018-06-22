@@ -51,12 +51,12 @@ var game=function(d)
 		{
 			d.background(255);
 			d.image(d.resourceBox.image.bg[0],0,0);
-			d.camera.position.x=this.colletta.x;
-			d.camera.position.y=this.colletta.y;
 			this.colletta.move(this);
 			this.colletta.pose(this);
+			d.camera.position.x=this.colletta.x;
+			d.camera.position.y=this.colletta.y;
 			d.drawSprites();
-			console.log(d.frameRate());
+			console.log(this, d.camera);
 		}
 		function PLAYER(g)
 		{
@@ -92,18 +92,18 @@ var game=function(d)
 			}
 			if(d.leftKey())
 			{
-				this.sprite.velocity.x=-15;
+				this.sprite.velocity.x=-10;
 				this.heading=LEFT;
 			}
 			else if(d.rightKey())
 			{
-				this.sprite.velocity.x=15;
+				this.sprite.velocity.x=10;
 				this.heading=RIGHT;
 			}
 			else this.sprite.velocity.x=0;
 			if(d.jumpKey())
 			{
-				this.sprite.velocity.y=-30;
+				this.sprite.velocity.y=-20;
 				this.jumping=true;
 			}
 			this.x=this.sprite.x;
