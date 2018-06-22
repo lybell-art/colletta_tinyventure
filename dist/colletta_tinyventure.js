@@ -55,8 +55,7 @@ var game=function(d)
 //			d.camera.position.y=this.colletta.y;
 			this.colletta.move(this);
 			this.colletta.pose(this);
-			d.drawSprite(this.colletta.sprite);
-//			d.drawSprites();
+			d.drawSprites();
 			console.log(d.frameRate());
 		}
 		function PLAYER(g)
@@ -85,12 +84,12 @@ var game=function(d)
 		}
 		PLAYER.prototype.move=function(g)
 		{
-			this.sprite.velocity.y+=1;
-			if(this.sprite.collide(g.world.ground))
+//			this.sprite.velocity.y+=1;
+/*			if(this.sprite.collide(g.world.ground))
 			{
 				this.sprite.velocity.y=0;
 				this.jumping=false;
-			}
+			}*/
 			if(d.leftKey())
 			{
 				this.sprite.velocity.x=-5;
