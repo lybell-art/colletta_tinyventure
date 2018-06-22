@@ -106,6 +106,8 @@ var game=function(d)
 				this.sprite.velocity.y=-30;
 				this.jumping=true;
 			}
+			this.x=this.sprite.x;
+			this.y=this.sprite.y;
 //			console.log(this.sprite.position, this.sprite.velocity);
 		}
 		function WORLD(g)
