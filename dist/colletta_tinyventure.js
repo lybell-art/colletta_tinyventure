@@ -25,8 +25,7 @@ var game=function(d)
 		{
 			case -1:d.loading.execute(); break;
 			case 0:d.ingame.setup(); break;
-//			default:d.ingame.run();
-			default:console.log(d.frameRate());
+			default:d.ingame.run();
 		}
 	};
 	d.windowResized=function()
@@ -54,8 +53,8 @@ var game=function(d)
 //			d.image(d.resourceBox.image.bg[0],0,0);
 //			d.camera.position.x=this.colletta.x;
 //			d.camera.position.y=this.colletta.y;
-			this.colletta.move(this);
-			this.colletta.pose(this);
+//			this.colletta.move(this);
+//			this.colletta.pose(this);
 			d.drawSprites();
 			console.log(d.frameRate());
 		}
