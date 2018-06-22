@@ -79,28 +79,32 @@ var game=function(d)
 			{
 				for(var j=0;j<mapHei;j++)
 				{
-					var a=d.createSprite(i*d.tileSize,j*d.tileSize,d.tileSize,d.tileSize);
-					var tileNo=d.resourceBox.map[g.currentWorld].platform[j][i];
-					console.log(tileNo);
-					if(tileNo!=0) a.addImage(d.resourceBox.image.platform[tileNo-1]);
-					switch(tileNo)	
-					{
-						case 1: case 2: case 3: case 4: case 5:
-						case 6: case 7: case 8: case 9:
-						case 25: case 27:
-						case 10:console.log('a'); this.ground.add(a); break;
-						case 11: case 12: case 13:
-						case 14:console.log('b'); this.tree.add(a); break;
-						case 15: case 16:
-						case 17:console.log('c'); this.moving.add(a); break;
-						case 18: case 19: case 20:
-						case 21:console.log('d'); this.wood.add(a); break;
-						case 22: case 23:
-						case 24:console.log('e'); this.Vrope.add(a); break;
-						case 26:console.log('f'); this.Hrope.add(a); break;
-						default:console.log('z');
-					}
+					this.makeSpriteSet();
 				}
+			}
+		}
+		WORLD.prototype.makeSpriteSet=function()
+		{
+			var a=d.createSprite(i*d.tileSize,j*d.tileSize,d.tileSize,d.tileSize);
+			var tileNo=d.resourceBox.map[g.currentWorld].platform[j][i];
+			console.log(tileNo);
+			if(tileNo!=0) a.addImage(d.resourceBox.image.platform[tileNo-1]);
+			switch(tileNo)	
+			{
+				case 1: case 2: case 3: case 4: case 5:
+				case 6: case 7: case 8: case 9:
+				case 25: case 27:
+				case 10:console.log('a'); this.ground.add(a); break;
+				case 11: case 12: case 13:
+				case 14:console.log('b'); this.tree.add(a); break;
+				case 15: case 16:
+				case 17:console.log('c'); this.moving.add(a); break;
+				case 18: case 19: case 20:
+				case 21:console.log('d'); this.wood.add(a); break;
+				case 22: case 23:
+				case 24:console.log('e'); this.Vrope.add(a); break;
+				case 26:console.log('f'); this.Hrope.add(a); break;
+				default:console.log('z');
 			}
 		}
 	}
