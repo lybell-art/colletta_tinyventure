@@ -84,7 +84,7 @@ var game=function(d)
 		}
 		PLAYER.prototype.move=function(g)
 		{
-			this.sprite.velocity.y+=0.5;
+			this.sprite.velocity.y+=0.8;
 			if(this.sprite.collide(g.world.ground))
 			{
 				this.sprite.velocity.y=0;
@@ -92,12 +92,12 @@ var game=function(d)
 			}
 			if(d.leftKey())
 			{
-				this.sprite.velocity.x=-5;
+				this.sprite.velocity.x=-6;
 				this.heading=LEFT;
 			}
 			else if(d.rightKey())
 			{
-				this.sprite.velocity.x=5;
+				this.sprite.velocity.x=6;
 				this.heading=RIGHT;
 			}
 			else this.sprite.velocity.x=0;
