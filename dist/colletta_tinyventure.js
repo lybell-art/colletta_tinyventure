@@ -81,7 +81,7 @@ var game=function(d)
 			{
 				for(var j=0;j<mapHei;j++)
 				{
-					this.makeSpriteSet(i,j);
+					this.makeSpriteSet(g,i,j);
 				}
 			}
 		}
