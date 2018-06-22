@@ -72,7 +72,7 @@ var game=function(d)
 				this.sprite.addAnimation(action+2,animeBox[action][1]);
 			}
 			this.sprite.setCollider("rectangle",0,45,d.tileSize,d.tileSize*1.5);
-			this.sprite.debug=true;
+//			this.sprite.debug=true;
 		}
 		PLAYER.prototype.pose=function(g)
 		{
@@ -84,12 +84,12 @@ var game=function(d)
 		}
 		PLAYER.prototype.move=function(g)
 		{
-//			this.sprite.velocity.y+=1;
-/*			if(this.sprite.collide(g.world.ground))
+			this.sprite.velocity.y+=1;
+			if(this.sprite.collide(g.world.ground))
 			{
 				this.sprite.velocity.y=0;
 				this.jumping=false;
-			}*/
+			}
 			if(d.leftKey())
 			{
 				this.sprite.velocity.x=-5;
@@ -130,7 +130,7 @@ var game=function(d)
 		{
 			var a=d.createSprite((i+0.5)*d.tileSize,(j+0.5)*d.tileSize,d.tileSize,d.tileSize);
 			var tileNo=d.resourceBox.map[g.currentWorld].platform[i][j];
-			a.debug=true;
+//			a.debug=true;
 			if(tileNo!=0) a.addImage(d.resourceBox.image.platform[tileNo-1]);
 			else a.remove();
 			switch(tileNo)	
