@@ -45,7 +45,7 @@ var game=function(d)
 		}
 		this.run=function()
 		{
-			d.background(0);
+			d.image(d.resourceBox.image.bg[0],0,0);
 			this.colletta.view();
 			d.drawSprites();
 		}
