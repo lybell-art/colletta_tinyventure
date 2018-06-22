@@ -62,6 +62,7 @@ var game=function(d)
 			}
 			this.sprite.setCollider("rectangle",0,0,d.tileSize,d.tileSize*1.5);
 			this.sprite.debug=true;
+			console.log(this.x,this.y);
 		}
 		PLAYER.prototype.view=function()
 		{
