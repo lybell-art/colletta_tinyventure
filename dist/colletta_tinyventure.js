@@ -60,7 +60,7 @@ var game=function(d)
 				this.sprite.addAnimation(action+1,animeBox[action][0]);
 				this.sprite.addAnimation(action+2,animeBox[action][1]);
 			}
-			this.sprite.setCollider("rectangle",0,0,d.tileSize,d.tileSize*1.5);
+			this.sprite.setCollider("rectangle",0,45,d.tileSize,d.tileSize*1.5);
 			this.sprite.debug=true;
 			console.log(this.x,this.y);
 		}
