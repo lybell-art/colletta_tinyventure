@@ -79,11 +79,11 @@ var game=function(d)
 			{
 				for(var j=0;j<mapHei;j++)
 				{
-					this.makeSpriteSet();
+					this.makeSpriteSet(i,j);
 				}
 			}
 		}
-		WORLD.prototype.makeSpriteSet=function()
+		WORLD.prototype.makeSpriteSet=function(i,j)
 		{
 			var a=d.createSprite(i*d.tileSize,j*d.tileSize,d.tileSize,d.tileSize);
 			var tileNo=d.resourceBox.map[g.currentWorld].platform[j][i];
