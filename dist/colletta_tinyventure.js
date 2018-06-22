@@ -55,7 +55,7 @@ var game=function(d)
 //			d.camera.position.y=this.colletta.y;
 			this.colletta.move(this);
 			this.colletta.pose(this);
-			d.drawSprite(this.colletta);
+			d.drawSprite(this.colletta.sprite);
 //			d.drawSprites();
 			console.log(d.frameRate());
 		}
