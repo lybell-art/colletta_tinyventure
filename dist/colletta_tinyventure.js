@@ -93,19 +93,19 @@ var game=function(d)
 		imgBox.colletta.rope[1]=this.loadAnimData([d.urlData.colletta.rope[1]],function(){this.count++;}.bind(this));
 		for(var i in d.urlData.item)
 		{
-			imgBox.item.push(d.loadImage(d.urlData.item[i],function(){this.count++;}.bind(this)));
+			imgBox.item.push(d.loadImage(i,function(){this.count++;}.bind(this)));
 		}
 		for(var i in d.urlData.objects)
 		{
-			imgBox.objects.push(d.loadImage(d.urlData.objects[i],function(){this.count++;}.bind(this)));
+			imgBox.objects.push(d.loadImage(i,function(){this.count++;}.bind(this)));
 		}
 		for(var i in d.urlData.platform)
 		{
-			imgBox.platform.push(d.loadImage(d.urlData.platform[i],function(){this.count++;}.bind(this)));
+			imgBox.platform.push(d.loadImage(i,function(){this.count++;}.bind(this)));
 		}
 		for(var i in d.urlData.UI)
 		{
-			imgBox.UI.push(d.loadImage(d.urlData.UI[i],function(){this.count++;}.bind(this)));
+			imgBox.UI.push(d.loadImage(i,function(){this.count++;}.bind(this)));
 		}
 		this.max=71;
 	}
