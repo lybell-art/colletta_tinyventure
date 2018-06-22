@@ -32,6 +32,7 @@ var game=function(d)
 	}
 	function INGAME()
 	{
+		this.currentWorld="world1";
 		this.colletta=null;
 		this.world=null;
 		this.setup=function()
@@ -49,8 +50,8 @@ var game=function(d)
 		}
 		function PLAYER()
 		{
-			this.x=d.resourceBox.map.playerSpawn[0]*d.tileSize;
-			this.y=d.resourceBox.map.playerSpawn[1]*d.tileSize;
+			this.x=d.resourceBox.map[this.currentWorld].playerSpawn[0]*d.tileSize;
+			this.y=d.resourceBox.map[this.currentWorld].playerSpawn[1]*d.tileSize;
 			this.sprite=d.createSprite(this.x,this.y,d.tileSize,d.tileSize*1.5);
 			var animeBox=d.resourceBox.image.colletta;
 			for(var action in animeBox)
@@ -73,14 +74,14 @@ var game=function(d)
 			this.wood=new d.Group();
 			this.Vrope=new d.Group();
 			this.Hrope=new d.Group();
-			var mapWid=d.resourceBox.map.platform[0].length;
-			var mapHei=d.resourceBox.map.platform.length;
+			var mapWid=d.resourceBox.map[this.currentWorld].platform[0].length;
+			var mapHei=d.resourceBox.map[this.currentWorld].platform.length;
 			for(var i=0;i<mapWid;i++)
 			{
 				for(var j=0;j<mapHei;j++)
 				{
 					var a=createSprite(i*d.tileSize,j*d.tileSize,d.tileSize,d.tileSize);
-					a.addImage(d.resourceBox.map.platform[j][i]);
+					a.addImage(d.resourceBox.map[this.currentWorld].platform[j][i]);
 					switch(tileNo)	
 					{
 						case 1: case 2: case 3: case 4: case 5:
