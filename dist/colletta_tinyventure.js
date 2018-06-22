@@ -75,13 +75,13 @@ var game=function(d)
 			this.Hrope=new d.Group();
 			var mapWid=d.resourceBox.map[g.currentWorld].platform[0].length;
 			var mapHei=d.resourceBox.map[g.currentWorld].platform.length;
-			console.log(g,mapWid,mapHei);
 			for(var i=0;i<mapWid;i++)
 			{
 				for(var j=0;j<mapHei;j++)
 				{
 					var a=d.createSprite(i*d.tileSize,j*d.tileSize,d.tileSize,d.tileSize);
 					var tileNo=d.resourceBox.map[g.currentWorld].platform[j][i];
+					console.log(tileNo);
 					a.addImage(d.resourceBox.image.platform[tileNo]);
 					switch(tileNo)	
 					{
