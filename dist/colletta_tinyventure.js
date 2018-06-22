@@ -50,12 +50,12 @@ var game=function(d)
 		this.run=function()
 		{
 			d.background(255);
-//			d.image(d.resourceBox.image.bg[0],0,0);
+			d.image(d.resourceBox.image.bg[0],0,0);
 //			d.camera.position.x=this.colletta.x;
 //			d.camera.position.y=this.colletta.y;
-//			this.colletta.move(this);
-//			this.colletta.pose(this);
-			d.drawSprites();
+			this.colletta.move(this);
+			this.colletta.pose(this);
+//			d.drawSprites();
 			console.log(d.frameRate());
 		}
 		function PLAYER(g)
