@@ -36,6 +36,7 @@ var game=function(d)
 		this.world=null;
 		this.setup=function()
 		{
+			console.log(d.resourceBox.map);
 			this.colletta=new PLAYER();
 			this.world=new WORLD();
 			d.sceneNo++;
