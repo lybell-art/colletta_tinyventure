@@ -110,29 +110,29 @@ var game=function(d)
 		}
 		PLAYER.prototype.move=function(g)
 		{
-			this.sprite.velocity.y+=this.walling?0.5:0.9;
+			var onGround=this.wallCollider.overlap(g.world.ground);
+			var onWall=this.floorCollider.overlap(g.world.ground);
+			var onCeil=this.ceilCollider.overlap(g.world.ground);
+			this.sprite.velocity.y+=this.walling?0.3:0.9;
+			if(onWall)
+			{
+				if(!this.walling&&!onGround) this.jumpCount++;
+				this.walling=true;
+			}
+			else this.walling=false;
+			if(onGround)
+			{
+				this.jumping=false;
+				this.jumpCount=1;
+			}
+			else this.jumping=true;
 			if(this.sprite.collide(g.world.ground))
 			{
-				if(this.wallCollider.overlap(g.world.ground))
-				{
-					if(!this.walling&&!this.floorCollider.overlap(g.world.ground)) this.jumpCount++;
-					this.walling=true;
-				}
-			   	else
-				{
-					this.sprite.velocity.y=0;
-					this.walling=false;
-					if(this.floorCollider.overlap(g.world.ground))
-					{
-						this.jumping=false;
-						this.jumpCount=1;
-					}
-				}
+				if(!onWall) this.sprite.velocity.y=0;
 			}
 			if(this.sprite.velocity.y>0&&this.sprite.collide(g.world.wood))
 			{
 				this.sprite.velocity.y=0;
-				this.jumping=false;
 				this.walling=false;
 			}
 			if(d.leftKey())
@@ -149,7 +149,6 @@ var game=function(d)
 			if(d.jumpKey()&&this.jumpCount>0)
 			{
 				this.sprite.velocity.y=-27;
-				this.jumping=true;
 				this.jumpCount--;
 			}
 			this.x=this.sprite.x;
