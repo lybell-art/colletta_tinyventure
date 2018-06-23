@@ -110,6 +110,7 @@ var game=function(d)
 		}
 		PLAYER.prototype.move=function(g)
 		{
+			var colid=this.sprite.collide(g.world.ground);
 			var onGround=this.floorCollider.overlap(g.world.ground);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
@@ -126,7 +127,7 @@ var game=function(d)
 				this.jumpCount=1;
 			}
 			else this.jumping=true;
-			if(this.sprite.collide(g.world.ground))
+			if(colid)
 			{
 				if(!onWall) this.sprite.velocity.y=0;
 			}
