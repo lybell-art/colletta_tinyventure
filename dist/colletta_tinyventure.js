@@ -72,12 +72,16 @@ var game=function(d)
 			}
 			this.sprite.setCollider("rectangle",0,45,d.tileSize,d.tileSize*1.5);
 			this.sprite.debug=true;
+			//ceil/floor/wall checker
 			this.ceilCollider=d.createSprite(this.x,this.y-this.sprite.height/2+5,this.sprite.width-10,10);
 			this.floorCollider=d.createSprite(this.x,this.y+this.sprite.height/2-5,this.sprite.width-10,10);
 			this.wallCollider=d.createSprite(this.x,this.y,this.sprite.width,this.sprite.height-20);
 			this.ceilCollider.position=this.sprite.position;
 			this.floorCollider.position=this.sprite.position;
 			this.wallCollider.position=this.sprite.position;
+			this.ceilCollider.visible=false;
+			this.floorCollider.visible=false;
+			this.wallCollider.visible=false;
 			this.ceilCollider.debug=true;
 			this.floorCollider.debug=true;
 			this.wallCollider.debug=true;
