@@ -167,7 +167,7 @@ var game=function(d)
 			}
 			this.x=this.sprite.x;
 			this.y=this.sprite.y;
-			console.log(this.sprite.position, this.sprite.velocity);
+//			console.log(this.sprite.position, this.sprite.velocity);
 		}
 		function WORLD(g)
 		{
