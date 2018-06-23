@@ -114,7 +114,7 @@ var game=function(d)
 			var onGround=this.floorCollider.overlap(g.world.ground);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
-			this.sprite.velocity.y+=(this.walling&&this.sprite.velocity.y<0)?0.3:0.9;
+			this.sprite.velocity.y+=(this.walling&&this.sprite.velocity.y>0)?0.3:0.9;
 			if(onWall)
 			{
 				if(!onGround)
@@ -122,6 +122,7 @@ var game=function(d)
 					if(!this.walling) this.jumpCount++;
 					this.walling=true;
 				}
+				else this.walling=false;
 			}
 			else this.walling=false;
 			if(onGround)
