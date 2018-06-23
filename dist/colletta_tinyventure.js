@@ -92,6 +92,7 @@ var game=function(d)
 		PLAYER.prototype.move=function(g)
 		{
 			this.sprite.velocity.y+=0.9;
+			console.log(this.sprite.collide(g.world.ground));
 			if(this.sprite.collide(g.world.ground))
 			{
 				this.sprite.velocity.y=0;
