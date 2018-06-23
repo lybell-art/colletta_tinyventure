@@ -73,9 +73,9 @@ var game=function(d)
 			this.sprite.setCollider("rectangle",0,45,d.tileSize,d.tileSize*1.5);
 			this.sprite.debug=true;
 			//ceil/floor/wall checker
-			this.ceilCollider=d.createSprite(this.x,this.y);
-			this.floorCollider=d.createSprite(this.x,this.y);
-			this.wallCollider=d.createSprite(this.x,this.y);
+			this.ceilCollider=d.createSprite(this.x,this.y,1,1);
+			this.floorCollider=d.createSprite(this.x,this.y,1,1);
+			this.wallCollider=d.createSprite(this.x,this.y,1,1);
 			this.ceilCollider.position=this.sprite.position;
 			this.floorCollider.position=this.sprite.position;
 			this.wallCollider.position=this.sprite.position;
@@ -108,7 +108,7 @@ var game=function(d)
 		PLAYER.prototype.move=function(g)
 		{
 			this.sprite.velocity.y+=0.9;
-			if(this.sprite.collide(g.world.ground))
+			if(!this.wallCollider.overlap(g.world.ground)&&this.sprite.collide(g.world.ground))
 			{
 				this.sprite.velocity.y=0;
 				this.jumping=false;
