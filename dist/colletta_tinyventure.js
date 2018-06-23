@@ -110,8 +110,8 @@ var game=function(d)
 		}
 		PLAYER.prototype.move=function(g)
 		{
-			var onGround=this.wallCollider.overlap(g.world.ground);
-			var onWall=this.floorCollider.overlap(g.world.ground);
+			var onGround=this.floorCollider.overlap(g.world.ground);
+			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
 			this.sprite.velocity.y+=this.walling?0.3:0.9;
 			if(onWall)
