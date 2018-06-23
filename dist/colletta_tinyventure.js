@@ -97,7 +97,7 @@ var game=function(d)
 				this.sprite.velocity.y=0;
 				this.jumping=false;
 			}
-			if(this.sprite.velocity.y>0||this.sprite.collide(g.world.wood))
+			if(this.sprite.velocity.y>0&&this.sprite.collide(g.world.wood))
 			{
 				this.sprite.velocity.y=0;
 				this.jumping=false;
