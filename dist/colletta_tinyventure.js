@@ -108,7 +108,7 @@ var game=function(d)
 		PLAYER.prototype.move=function(g)
 		{
 			this.sprite.velocity.y+=0.9;
-			if(!this.wallCollider.overlap(g.world.ground)&&this.sprite.collide(g.world.ground))
+			if(this.sprite.collide(g.world.ground)&&!this.wallCollider.overlap(g.world.ground))
 			{
 				this.sprite.velocity.y=0;
 				this.jumping=false;
