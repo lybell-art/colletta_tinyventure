@@ -134,6 +134,7 @@ var game=function(d)
 				this.jumping=false;
 				this.walling=false;
 				this.jumpCount=1;
+				this.sprite.velocity.y=0;
 			}
 			else this.jumping=true;
 			if(colid)
@@ -158,7 +159,7 @@ var game=function(d)
 			else this.sprite.velocity.x=0;
 			if(d.jumpKey()&&this.jumpCount>0)
 			{
-				console.log(onWall, this.heaing, d.leftKey(), d.rightKey(), d.jumpKey());
+				console.log(onWall, this.heading, d.leftKey(), d.rightKey(), d.jumpKey());
 				if(!onWall||((this.heading==LEFT&&d.rightKey())||(this.heading==RIGHT&&d.leftKey())))
 				{
 					this.sprite.velocity.y=-27;
