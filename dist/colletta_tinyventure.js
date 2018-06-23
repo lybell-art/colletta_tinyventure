@@ -122,7 +122,11 @@ var game=function(d)
 					if(!this.walling) this.jumpCount++;
 					this.walling=true;
 				}
-				else this.walling=false;
+				else
+				{
+					this.walling=false;
+					this.heading=(this.heading==LEFT)?RIGHT:LEFT;
+				}
 			}
 			else this.walling=false;
 			if(onGround)
@@ -152,7 +156,7 @@ var game=function(d)
 				this.heading=RIGHT;
 			}
 			else this.sprite.velocity.x=0;
-			if(d.jumpKey()&&this.jumpCount>0)
+			if(d.jumpKey()&&this.jumpCount>0&&!onWall)
 			{
 				this.sprite.velocity.y=-27;
 				this.jumpCount--;
