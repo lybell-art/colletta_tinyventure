@@ -102,10 +102,10 @@ var game=function(d)
 			this.sprite.changeAnimation(P+this.heading);
 			if(this.jumping)
 			{
-				if(v>1) this.sprite.animation.changeFrame(0);
-				else if(v>0) this.sprite.animation.changeFrame(1);
-				else if(v>-1) this.sprite.animation.changeFrame(2);
-				else this.sprite.animation.changeFrame(3);
+				if(v>1) this.sprite.animation.changeFrame(3);
+				else if(v>0) this.sprite.animation.changeFrame(2);
+				else if(v>-1) this.sprite.animation.changeFrame(1);
+				else this.sprite.animation.changeFrame(0);
 			}
 		}
 		PLAYER.prototype.move=function(g)
@@ -114,11 +114,14 @@ var game=function(d)
 			var onGround=this.floorCollider.overlap(g.world.ground);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
-			this.sprite.velocity.y+=this.walling?0.3:0.9;
+			this.sprite.velocity.y+=(this.walling&&this.sprite.velocity.y<0)?0.3:0.9;
 			if(onWall)
 			{
-				if(!this.walling&&!onGround) this.jumpCount++;
-				this.walling=true;
+				if(!onGround)
+				{
+					if(!this.walling) this.jumpCount++;
+					this.walling=true;
+				}
 			}
 			else this.walling=false;
 			if(onGround)
