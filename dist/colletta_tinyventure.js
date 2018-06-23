@@ -172,7 +172,7 @@ var game=function(d)
 		PLAYER.prototype.chkOnGround=function(g)
 		{
 			this.floorCollider.overlap(g.world.ground);
-			console.log(typeof g.world.ground);
+			console.log(g.world.ground.prototype);
 		}
 		function WORLD(g)
 		{
