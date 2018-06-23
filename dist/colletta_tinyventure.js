@@ -63,6 +63,8 @@ var game=function(d)
 			this.y=d.resourceBox.map[g.currentWorld].playerSpawn[1]*d.tileSize-15;
 			this.heading=RIGHT;
 			this.jumping=false;
+			this.walling=false;
+			this.jumpCounter=1;
 			this.sprite=d.createSprite(this.x,this.y,d.tileSize,d.tileSize*1.5);
 			var animeBox=d.resourceBox.image.colletta;
 			for(var action in animeBox)
@@ -93,7 +95,8 @@ var game=function(d)
 		{
 			var P;
 			var v=this.sprite.velocity.y;
-			if(this.jumping) P='jump';
+			if(this.walling) P='wall';
+			else if(this.jumping) P='jump';
 			else if(this.sprite.velocity.x!=0) P='walk';
 			else P='idle';
 			this.sprite.changeAnimation(P+this.heading);
@@ -107,16 +110,30 @@ var game=function(d)
 		}
 		PLAYER.prototype.move=function(g)
 		{
-			this.sprite.velocity.y+=0.9;
-			if(this.sprite.collide(g.world.ground)&&!this.wallCollider.overlap(g.world.ground))
+			this.sprite.velocity.y+=this.walling?0.5:0.9;
+			if(this.sprite.collide(g.world.ground))
 			{
-				this.sprite.velocity.y=0;
-				this.jumping=false;
+				if(this.wallCollider.overlap(g.world.ground))
+				{
+					if(!this.walling&&!this.floorCollider.overlap(g.world.ground)) this.jumpCounter++;
+					this.walling=true;
+				}
+			   	else
+				{
+					this.sprite.velocity.y=0;
+					this.walling=false;
+					if(this.floorCollider.overlap(g.world.ground))
+					{
+						this.jumping=false;
+						this.jumpCounter=1;
+					}
+				}
 			}
 			if(this.sprite.velocity.y>0&&this.sprite.collide(g.world.wood))
 			{
 				this.sprite.velocity.y=0;
 				this.jumping=false;
+				this.walling=false;
 			}
 			if(d.leftKey())
 			{
@@ -129,10 +146,11 @@ var game=function(d)
 				this.heading=RIGHT;
 			}
 			else this.sprite.velocity.x=0;
-			if(d.jumpKey())
+			if(d.jumpKey()&&this.jumpCount>0)
 			{
 				this.sprite.velocity.y=-27;
 				this.jumping=true;
+				this.jumpCount--;
 			}
 			this.x=this.sprite.x;
 			this.y=this.sprite.y;
