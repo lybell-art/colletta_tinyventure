@@ -124,8 +124,8 @@ var game=function(d)
 				}
 				else
 				{
+					if(this.walling) this.heading=(this.heading==LEFT)?RIGHT:LEFT;
 					this.walling=false;
-					this.heading=(this.heading==LEFT)?RIGHT:LEFT;
 				}
 			}
 			else this.walling=false;
@@ -156,10 +156,13 @@ var game=function(d)
 				this.heading=RIGHT;
 			}
 			else this.sprite.velocity.x=0;
-			if(d.jumpKey()&&this.jumpCount>0&&!onWall)
+			if(d.jumpKey()&&this.jumpCount>0)
 			{
-				this.sprite.velocity.y=-27;
-				this.jumpCount--;
+				if(!onWall||((this.heading==LEFT&&d.rightKey())||(this.heading==RIGHT&&d.leftKey())))
+				{
+					this.sprite.velocity.y=-27;
+					this.jumpCount--;
+				}
 			}
 			this.x=this.sprite.x;
 			this.y=this.sprite.y;
