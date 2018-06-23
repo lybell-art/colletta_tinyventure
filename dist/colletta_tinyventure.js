@@ -154,11 +154,11 @@ var game=function(d)
 				case 25: case 27:
 				case 10:a.setCollider('rectangle',0,0,d.tileSize,d.tileSize); this.ground.add(a); break;
 				case 11: case 12: case 13:
-				case 14:a.setCollider('rectangle',0,0,d.tileSize,d.tileSize/2); this.tree.add(a); break;
+				case 14:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2); this.tree.add(a); break;
 				case 15: case 16:
-				case 17:a.setCollider('rectangle',0,0,d.tileSize,d.tileSize/2); this.moving.add(a); break;
+				case 17:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2); this.moving.add(a); break;
 				case 18: case 19: case 20:
-				case 21:a.setCollider('rectangle',0,0,d.tileSize,d.tileSize/2); this.wood.add(a); break;
+				case 21:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2); this.wood.add(a); break;
 				case 22: case 23:
 				case 24:this.Vrope.add(a); break;
 				case 26:this.Hrope.add(a); break;
