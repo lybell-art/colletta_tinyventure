@@ -127,6 +127,7 @@ var game=function(d)
 			if(onGround)
 			{
 				this.jumping=false;
+				this.walling=false;
 				this.jumpCount=1;
 			}
 			else this.jumping=true;
@@ -157,7 +158,7 @@ var game=function(d)
 			}
 			this.x=this.sprite.x;
 			this.y=this.sprite.y;
-//			console.log(this.sprite.position, this.sprite.velocity);
+			console.log(this.sprite.position, this.sprite.velocity);
 		}
 		function WORLD(g)
 		{
