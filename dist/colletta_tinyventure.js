@@ -111,7 +111,7 @@ var game=function(d)
 		PLAYER.prototype.move=function(g)
 		{
 			var colid=this.sprite.collide(g.world.ground);
-			var onGround=this.floorCollider.overlap(g.world.ground);
+			var onGround=this.chkOnGround(g);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
 			this.sprite.velocity.y+=(this.walling&&this.sprite.velocity.y>0)?0.3:0.9;
@@ -168,6 +168,11 @@ var game=function(d)
 			this.x=this.sprite.x;
 			this.y=this.sprite.y;
 //			console.log(this.sprite.position, this.sprite.velocity);
+		}
+		PLAYER.prototype.chkOnGround=function(g)
+		{
+			this.floorCollider.overlap(g.world.ground);
+			console.log(typeof g.world.ground);
 		}
 		function WORLD(g)
 		{
