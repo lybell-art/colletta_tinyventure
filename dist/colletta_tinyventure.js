@@ -159,7 +159,6 @@ var game=function(d)
 			else this.sprite.velocity.x=0;
 			if(d.jumpKey()&&this.jumpCount>0)
 			{
-				console.log(onWall, this.heading, d.leftKey(), d.rightKey(), d.jumpKey());
 				if(!this.walling||((this.heading==LEFT&&d.leftKey())||(this.heading==RIGHT&&d.rightKey())))
 				{
 					this.sprite.velocity.y=-27;
