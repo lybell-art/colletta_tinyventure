@@ -64,7 +64,7 @@ var game=function(d)
 			this.heading=RIGHT;
 			this.jumping=false;
 			this.walling=false;
-			this.jumpCounter=1;
+			this.jumpCount=1;
 			this.sprite=d.createSprite(this.x,this.y,d.tileSize,d.tileSize*1.5);
 			var animeBox=d.resourceBox.image.colletta;
 			for(var action in animeBox)
@@ -115,7 +115,7 @@ var game=function(d)
 			{
 				if(this.wallCollider.overlap(g.world.ground))
 				{
-					if(!this.walling&&!this.floorCollider.overlap(g.world.ground)) this.jumpCounter++;
+					if(!this.walling&&!this.floorCollider.overlap(g.world.ground)) this.jumpCount++;
 					this.walling=true;
 				}
 			   	else
@@ -125,7 +125,7 @@ var game=function(d)
 					if(this.floorCollider.overlap(g.world.ground))
 					{
 						this.jumping=false;
-						this.jumpCounter=1;
+						this.jumpCount=1;
 					}
 				}
 			}
@@ -228,8 +228,8 @@ var game=function(d)
 		imgBox.colletta.walk[1]=this.loadAnimData([d.urlData.colletta.walk[2],d.urlData.colletta.walk[3]],function(){this.count++;}.bind(this));
 		imgBox.colletta.jump[0]=this.loadAnimData([d.urlData.colletta.jump[0],d.urlData.colletta.walk[1]],function(){this.count++;}.bind(this));
 		imgBox.colletta.jump[1]=this.loadAnimData([d.urlData.colletta.jump[2],d.urlData.colletta.walk[3]],function(){this.count++;}.bind(this));
-		imgBox.colletta.wall[0]=this.loadAnimData([d.urlData.colletta.wall[0]],function(){this.count++;}.bind(this));
-		imgBox.colletta.wall[1]=this.loadAnimData([d.urlData.colletta.wall[1]],function(){this.count++;}.bind(this));
+		imgBox.colletta.wall[0]=this.loadAnimData([d.urlData.colletta.wall[1]],function(){this.count++;}.bind(this));
+		imgBox.colletta.wall[1]=this.loadAnimData([d.urlData.colletta.wall[0]],function(){this.count++;}.bind(this));
 		imgBox.colletta.rope[0]=this.loadAnimData([d.urlData.colletta.rope[0]],function(){this.count++;}.bind(this));
 		imgBox.colletta.rope[1]=this.loadAnimData([d.urlData.colletta.rope[1]],function(){this.count++;}.bind(this));
 		for(var i in d.urlData.item)
