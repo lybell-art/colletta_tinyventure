@@ -413,7 +413,7 @@ var game=function(d)
 				var y=40*d.ratio;
 				var r=10*d.ratio;
 				var Xpos=Math.floor(this.pos.x/120);
-				var Ypos=Math.floor(this.pos.y+45/120);
+				var Ypos=Math.floor((this.pos.y+45)/120);
 				d.noStroke();
 				d.fill(0,50);
 				d.rect(x,y,25*r,25*r);
