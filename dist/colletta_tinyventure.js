@@ -56,7 +56,7 @@ var game=function(d)
 			d.camera.position.x=window.innerWidth/2;
 			d.camera.position.y=window.innerHeight/2;
 			d.camera.zoom=1;
-			d.image(d.resourceBox.image.bg[0]);
+			d.image(d.resourceBox.image.bg[0],0,0);
 			this.world.run(this.colletta);
 			this.colletta.physic(this);
 			this.colletta.move(this);
