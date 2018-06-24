@@ -116,8 +116,8 @@ var game=function(d)
 				if(typeof a==="object"&&typeof b==="object")
 				{
 					if(d.frameCount%20==0) console.log(a.position, b.position);
-					var p=a.position.copy().add(0,a.position.height/2);
-					var q=b.position.copy().add(0,-b.position.height/2);
+					var p=a.position.copy().add(0,a.height/2);
+					var q=b.position.copy().add(0,-b.height/2);
 					var r=p5.Vector.sub(p,q);
 					if(d.frameCount%20==0) console.log(p,q,r,r.heading());
 					return r.heading()<0;
