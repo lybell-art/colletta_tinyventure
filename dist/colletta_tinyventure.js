@@ -67,7 +67,9 @@ var game=function(d)
 			this.heading=RIGHT;
 			this.jumping=false;
 			this.walling=false;
-			this.jumpCount=1;
+			this.roping=false;
+			this.maxJump=1;
+			this.jumpCount=this.maxJump;
 			this.sprite=d.createSprite(this.x,this.y,d.tileSize,d.tileSize*1.5);
 			var animeBox=d.resourceBox.image.colletta;
 			for(var action in animeBox)
@@ -98,16 +100,17 @@ var game=function(d)
 		{
 			var P;
 			var v=this.sprite.velocity.y;
-			if(this.walling) P='wall';
-			else if(this.jumping) P='jump';
+			if(this.jumping) P='jump';
+			else if(this.roping) P='rope';
+			else if(this.walling) P='wall';
 			else if(this.sprite.velocity.x!=0) P='walk';
 			else P='idle';
 			this.sprite.changeAnimation(P+this.heading);
 			if(this.jumping)
 			{
-				if(v>1) this.sprite.animation.changeFrame(3);
+				if(v>2) this.sprite.animation.changeFrame(3);
 				else if(v>0) this.sprite.animation.changeFrame(2);
-				else if(v>-1) this.sprite.animation.changeFrame(1);
+				else if(v>-2) this.sprite.animation.changeFrame(1);
 				else this.sprite.animation.changeFrame(0);
 			}
 		}
@@ -125,37 +128,51 @@ var game=function(d)
 				}
 				else return false;
 			});
+			var onRope=this.sprite.overlap(g.world.Vrope);
 			var onGround=this.floorCollider.overlap(g.world.allPlatform);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
-			if(onWall)
+			if(onRope)
 			{
-				if(!onGround)
-				{
-					if(!this.walling) this.jumpCount++;
-					this.walling=true;
-				}
-				else
-				{
-					if(this.walling) this.heading=(this.heading==LEFT)?RIGHT:LEFT;
-					this.walling=false;
-				}
+				this.jumping=false;
+				this.walling=false;
+				this.roping=true;
+				this.jumpCount=this.maxJump;
+				this.sprite.velocity.y=0;
 			}
-			else this.walling=false;
+			else
+			{
+				this.roping=false;
+				if(onWall)
+				{
+					if(!onGround)
+					{
+						if(!this.walling) this.jumpCount++;
+						this.walling=true;
+					}
+					else
+					{
+						if(this.walling) this.heading=(this.heading==LEFT)?RIGHT:LEFT;
+						this.walling=false;
+					}
+				}
+				else this.walling=false;
+			}
 			if(onGround)
 			{
 				if(!onewayOverlap||onewayColid)
 				{
 					this.jumping=false;
 					this.walling=false;
-					this.jumpCount=1;
+					this.roping=false;
+					this.jumpCount=this.maxJump;
 					this.sprite.velocity.y=0;
 				}
 			}
 			else
 			{
-				this.jumping=true;
-				this.sprite.velocity.y+=(this.walling&&this.sprite.velocity.y>0)?0.3:0.9;
+				if(!this.roping) this.jumping=true;
+				this.sprite.velocity.y+=(this.roping||(this.walling&&this.sprite.velocity.y>0))?0.3:0.9;
 			}
 			if(colid)
 			{
