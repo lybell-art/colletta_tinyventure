@@ -416,6 +416,7 @@ var game=function(d)
 				this.button.func=function(){
 					this.visible=!this.visible;
 					this.button.enable=false;
+					console.log(this);
 				}.bind();
 			}
 			MINIMAP.prototype.draw=function()
