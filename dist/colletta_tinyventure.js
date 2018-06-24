@@ -384,9 +384,15 @@ var game=function(d)
 		function UI(g)
 		{
 			this.minimap=new MINIMAP();
+			this.minimapButton=new BUTTON();
+			this.run=function()
+			{
+				
+			}
 			this.draw=function()
 			{
 				d.camera.off();
+				this.minimap.button.mousePress();
 				this.minimap.draw();
 			}
 			function MINIMAP()
@@ -406,6 +412,11 @@ var game=function(d)
 						else this.data[i][j]=0;
 					}
 				}
+				this.button=new BUTTON(40,40,250,250);
+				this.button.func=function(){
+					this.visible=!this.visible;
+					this.button.enable=false;
+				}.bind();
 			}
 			MINIMAP.prototype.draw=function()
 			{
@@ -430,10 +441,13 @@ var game=function(d)
 				d.fill("#f398a5");
 				d.rect(x+12*r,y+12*r,r,r);
 			}
-			function BUTTON(_x,_y)
+			function BUTTON(_x,_y,_w,_h)
 			{
 				this.x=_x; this.y=_y;
-				this.width=100; this.height=100;
+				if(_w!==undefined) this.width=_w;
+				else this.width=100;
+				if(_h!==undefined) this.height=_h;
+				else this.height=100;
 				this.enable=true;
 				this.img=null;
 				this.func=null;
@@ -450,6 +464,13 @@ var game=function(d)
 			BUTTON.prototype.mousePress=function()
 			{
 				if(d.mouseWentUp(LEFT)&&this.onMouse) this.func();
+			}
+			BUTTON.prototype.draw=function()
+			{
+				if(this.img!=null)
+				{
+					d.image(this.img,this.x*d.ratio,this.y*d.ratio,this.width*d.ratio,this.height*d.ratio);
+				}
 			}
 		}
 	}
