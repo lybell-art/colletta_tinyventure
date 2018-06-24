@@ -142,7 +142,6 @@ var game=function(d)
 			else this.walling=false;
 			if(onGround)
 			{
-				console.log(onewayColid);
 				if(!onewayOverlap||onewayColid)
 				{
 					this.jumping=false;
@@ -253,7 +252,6 @@ var game=function(d)
 				}
 			}
 		}
-		console.log(res);
 		return res;
 	}
 	function RESOURCE_BOX()
