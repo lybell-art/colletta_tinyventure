@@ -111,7 +111,7 @@ var game=function(d)
 		PLAYER.prototype.move=function(g)
 		{
 			var colid=this.sprite.collide(g.world.ground);
-			var onGround=this.sprite.overlap(g.world.allPlatform);
+			var onGround=this.floorCollider.overlap(g.world.allPlatform);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
 			this.sprite.velocity.y+=(this.walling&&this.sprite.velocity.y>0)?0.3:0.9;
@@ -216,7 +216,7 @@ var game=function(d)
 				case 24:this.Vrope.add(a); break;
 				case 26:this.Hrope.add(a); this.onewayPlatform.add(a); break;
 			}
-			if(tileNo<22||tileNo>24) this.allPlatform.add(a);
+			if(tileNo!=0&&(tileNo<22||tileNo>24)) this.allPlatform.add(a);
 		}
 	}
 	function RESOURCE_BOX()
