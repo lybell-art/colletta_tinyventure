@@ -512,9 +512,9 @@ var game=function(d)
 				switch(this.dir)
 				{
 					case 1:x=this.x, y=this.y; break;
-					case 2:x=window.innerWidth-this.x, y=this.y; break;
-					case 3:x=window.innerWidth-this.x, y=window.innerHeight-this.y; break;
-					case 4:x=this.x, y=window.innerHeight-this.y; break;
+					case 2:x=window.innerWidth-this.x-this.width, y=this.y; break;
+					case 3:x=window.innerWidth-this.x-this.width, y=window.innerHeight-this.y-this.height; break;
+					case 4:x=this.x, y=window.innerHeight-this.y-this.height; break;
 				}
 				return [x,y];
 			}
