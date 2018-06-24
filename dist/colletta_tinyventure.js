@@ -134,7 +134,7 @@ var game=function(d)
 			else this.walling=false;
 			if(onGround)
 			{
-				if(!(onewayOverlap&&onewayWall)||this.sprite.velocity.y>0)
+				if(!onewayOverlap||this.sprite.velocity.y>0||!onewayWall)
 				{
 					this.jumping=false;
 					this.walling=false;
