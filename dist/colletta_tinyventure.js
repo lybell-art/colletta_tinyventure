@@ -413,11 +413,13 @@ var game=function(d)
 					}
 				}
 				this.button=new BUTTON(40*d.ratio,40*d.ratio,250*d.ratio,250*d.ratio);
+				var my=this;
+				var myBut=this.button;
 				this.button.func=function(){
-//					this.visible=!this.visible;
-//					this.button.enable=false;
-					console.log(this);
-				}.bind();
+					my.visible=!my.visible;
+					myBut.enable=false;
+					console.log(my,myBut);
+				};
 			}
 			MINIMAP.prototype.draw=function()
 			{
