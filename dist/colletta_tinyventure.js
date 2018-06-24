@@ -66,6 +66,8 @@ var game=function(d)
 		{
 			this.x=d.resourceBox.map[g.currentWorld].playerSpawn[0]*d.tileSize+d.tileSize/2;
 			this.y=d.resourceBox.map[g.currentWorld].playerSpawn[1]*d.tileSize-15;
+			this.scale=false;
+			this.curScale=10;
 			this.heading=RIGHT;
 			this.jumping=false;
 			this.walling=false;
@@ -239,9 +241,26 @@ var game=function(d)
 				this.heading=RIGHT;
 			}
 			else this.sprite.velocity.x=0;
+			if(d.scaleKey())
+			{
+				this.scale=!this.scale;
+				this.scaleTween();
+			}
 			this.x=this.sprite.position.x;
 			this.y=this.sprite.position.y;
 //			console.log(this.sprite.position, this.sprite.velocity);
+		}
+		PLAYER.prototype.scaleTween=function()
+		{
+			if(this.scale)
+			{
+				if(this.curScale<20) this.curScale++;
+			}
+			else
+			{
+				if(this.curScale>10) this.curScale--;
+			}
+			this.sprite.scale=1/(this.curScale/10);
 		}
 		function WORLD(g)
 		{
@@ -346,7 +365,6 @@ var game=function(d)
 	d.conditionalCollide=function(my, other, condition)
 	{
 		var res=false;
-		var real=[];
 		if(other instanceof d.Sprite)
 		{
 			res=condition(my, other)&&my.collide(other);
@@ -357,9 +375,7 @@ var game=function(d)
 			{
 				if(condition(my, other[i]))
 				{
-//					my.position.y+=1;
 					res=my.collide(other[i])||res;
-//					my.position.y-=1;
 				}
 			}
 		}
