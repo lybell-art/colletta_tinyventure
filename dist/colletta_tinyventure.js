@@ -265,8 +265,8 @@ var game=function(d)
 			realScale=1/(this.curScale/10);
 			for(var i=0;i<4;i++)
 			{
-				myObj[i].scale=1/((this.curScale+V)/10);
-				myObj[i].collider.offset=offsets[i].mult(realScale);
+				myObj[i].scale=realScale;
+				myObj[i].collider.offset=offsets[i].mult(1/((this.curScale-V)/10));
 				if(this.curScale!=10&&this.curScale!=20)
 				{
 				console.log(myObj[i].collider.extents.x,myObj[i].collider.extents.y);
