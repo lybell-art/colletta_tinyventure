@@ -282,7 +282,7 @@ var game=function(d)
 				case 21:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
 					a.depth=10;
 					this.wood.add(a);
-					this.weighPlatform.add({sprite:a,weigh:0,isWeigh:false,respawnTime:100});
+					this.weighPlatform.push({sprite:a,weigh:0,isWeigh:false,respawnTime:100});
 					this.onewayPlatform.add(a); break;
 				case 22: case 23:
 				case 24:a.setCollider('rectangle',0,0,d.tileSize/2,d.tileSize);
@@ -292,7 +292,7 @@ var game=function(d)
 					a.depth=10;
 					a.weigh=0; a.isWeigh=false;
 					this.Hrope.add(a);
-					this.weighPlatform.add({sprite:a,weigh:0,isWeigh:false});
+					this.weighPlatform.push({sprite:a,weigh:0,isWeigh:false});
 					this.onewayPlatform.add(a); break;
 			}
 			if(tileNo!=0&&(tileNo<22||tileNo>24)) this.allPlatform.add(a);
