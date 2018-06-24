@@ -113,6 +113,7 @@ var game=function(d)
 			var colid=this.sprite.collide(g.world.ground);
 			var onewayOverlap=this.sprite.overlap(g.world.onewayPlatform);
 			var onewayColid=d.conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
+				console.log(a,b);
 				if(typeof a==="object"&&typeof b==="object")
 				{
 					var p=a.position.copy().add(0,a.position.height/2);
@@ -243,10 +244,9 @@ var game=function(d)
 		}
 		else if(other instanceof Array)
 		{
-			for(var obj in other)
+			for(var i in other.length)
 			{
-				console.log(obj, condition(my,obj));
-				if(condition(my, obj)) res=res||my.collide(other[obj]);
+				if(condition(my, other[i])) res=res||my.collide(other[i]);
 			}
 		}
 		return res;
