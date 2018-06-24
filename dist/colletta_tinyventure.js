@@ -68,7 +68,7 @@ var game=function(d)
 			d.camera.position=p.position;
 			d.camera.zoom=d.ratio/p.scale;
 			d.drawSprites();
-			this.ui.draw();
+			this.ui.run();
 		}
 		this.pause=function()
 		{
@@ -383,19 +383,26 @@ var game=function(d)
 		}
 		function UI(g)
 		{
-			this.minimap=new MINIMAP();
-			this.minimapButton=new BUTTON();
-			this.run=function()
+			var my=this;
+			this.minimap=new MINIMAP(my);
+			this.minimapButton=new BUTTON(0,0);
+			this.minimapButton.setImg(d.resourceBox.image.UI[11]);
+			this.minimapButton.width*=d.ratio;
+			this.minimapButton.height*=d.ratio;
+			this.minimapButton.func=function()
 			{
-				
+				my.minimap.visible=true;
+				my.minimap.button.enable=true;
+				my.minimapButton.enable=false;
 			}
-			this.draw=function()
+			this.run=function()
 			{
 				d.camera.off();
 				this.minimap.button.mousePress();
+				this.minimapButton.mousePress();
 				if(this.minimap.visible) this.minimap.draw();
 			}
-			function MINIMAP()
+			function MINIMAP(h)
 			{
 				var rawdata=d.resourceBox.map[g.currentWorld].platform;
 				this.data=[];
@@ -416,8 +423,9 @@ var game=function(d)
 				var my=this;
 				var myBut=this.button;
 				this.button.func=function(){
-					my.visible=!my.visible;
+					my.visible=false;
 					myBut.enable=false;
+					h.minimapButton.enable=true;
 				};
 			}
 			MINIMAP.prototype.draw=function()
