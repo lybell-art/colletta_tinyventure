@@ -104,7 +104,7 @@ var game=function(d)
 		{
 			var P;
 			var v=this.sprite.velocity.y;
-			if(this.walling&&this.sprite.velocity.x!=0) P='wall';
+			if(this.walling) P='wall';
 			else if(this.jumping) P='jump';
 			else if(this.roping) P='rope';
 			else if(this.sprite.velocity.x!=0) P='walk';
