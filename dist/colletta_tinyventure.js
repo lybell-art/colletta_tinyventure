@@ -416,8 +416,10 @@ var game=function(d)
 			{
 				d.camera.off();
 				this.minimap.button.mousePress()||this.minimapButton.mousePress();
+				this.pauseButton.mousePress();
 				if(this.minimap.visible) this.minimap.draw();
 				if(this.minimapButton.enable) this.minimapButton.draw();
+				this.pauseButton.draw();
 			}
 			function MINIMAP(h)
 			{
