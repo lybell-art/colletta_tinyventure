@@ -65,8 +65,7 @@ var game=function(d)
 			this.colletta.move(this);
 			this.colletta.pose(this);
 			var p=this.colletta.sprite;
-			d.camera.position.x=d.constrain(p.position.x,960,this.world.width-960);
-			d.camera.position.y=d.constrain(p.position.y,540,this.world.height-540);
+			d.camera.position=p.position;
 			d.camera.zoom=d.ratio/p.scale;
 			d.drawSprites();
 			this.ui.draw();
@@ -419,13 +418,13 @@ var game=function(d)
 				d.fill(0,50);
 				d.rect(x,y,25*r,25*r);
 				d.fill(0,128);
-				for(var i=Xpos-12; i<Xpos+13; i++)
+				for(var i=0; i<26; i++)
 				{
-					if(this.data[i]===undefined) continue;
-					for(var j=Ypos-12; j<Ypos+13; j++)
+					if(this.data[Xpos-12+i]===undefined) continue;
+					for(var j=0; j<26; j++)
 					{
-						if(this.data[i][j]===undefined) continue;
-						if(this.data[i][j]==1) d.rect(x+i*r,y+j*r,r,r);
+						if(this.data[Xpos-12+i][Ypos-12+j]===undefined) continue;
+						if(this.data[Xpos-12+i][Ypos-12+j]==1) d.rect(x+i*r,y+j*r,r,r);
 					}
 				}
 				d.fill("#f398a5");
