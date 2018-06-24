@@ -36,7 +36,6 @@ var game=function(d)
 	d.rightKey=function(){return d.keyDown(d.RIGHT_ARROW);}
 	d.jumpKey=function(){return d.keyWentDown(d.UP_ARROW);}
 	d.wallJumpKey=function(dir){
-		console.log(d.keyDown(d.UP_ARROW),dir,d.keyDown(d.LEFT_ARROW),d.keyDown(d.RIGHT_ARROW));
 		return d.keyDown(d.UP_ARROW)&&d.keyDown(dir==LEFT?d.RIGHT_ARROW:d.LEFT_ARROW);
 	}
 	d.scaleKey=function(){return d.keyWentDown('z');}
