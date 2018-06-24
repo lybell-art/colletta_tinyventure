@@ -142,6 +142,7 @@ var game=function(d)
 			else this.walling=false;
 			if(onGround)
 			{
+				console.log(onewayColid);
 				if(!onewayColid)
 				{
 					this.jumping=false;
@@ -245,14 +246,7 @@ var game=function(d)
 		{
 			for(var i=0; i<other.length; i++)
 			{
-				var p=condition(my, other[i]);
-				var q;
-				if(p)
-				{
-					q=my.collide(other[i]);
-					res=q||res;
-				}
-				console.log(i,p,q);
+				if(condition(my, other[i])) res=my.collide(other[i])||res;
 			}
 		}
 		console.log(res);
