@@ -172,6 +172,7 @@ var game=function(d)
 				}
 				else this.walling=false;
 			}
+			console.log(onGround, this.dropping, this.jumping);
 			if(onGround&&!this.dropping)
 			{
 				if(!onewayOverlap||onewayColid)
@@ -194,6 +195,7 @@ var game=function(d)
 				else this.gravity=0.9;
 				this.sprite.velocity.y+=this.gravity;
 			}
+			console.log(onGround, this.dropping, this.jumping);
 			if(colid)
 			{
 				if(!onWall)
