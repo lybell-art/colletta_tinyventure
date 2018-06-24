@@ -462,12 +462,12 @@ var game=function(d)
 			BUTTON.prototype.onMouse=function()
 			{
 				var mx=d.mouseX, my=d.mouseY, x=this.x, y=this.y, w=this.w, h=this.h;
-				return this.enable && mx>x && mx<x+ w && my>y && my<y+h;
+				return this.enable && mx>x && mx<x+w && my>y && my<y+h;
 			}
 			BUTTON.prototype.mousePress=function()
 			{
-				console.log(d.mouseWentUp(LEFT), this.onMouse());
-				if(d.mouseWentUp(LEFT)&&this.onMouse()) this.func();
+				console.log(d.mouseWentUp(d.LEFT), this.onMouse(), d.mouseX,d.mouseY);
+				if(d.mouseWentUp(d.LEFT)&&this.onMouse()) this.func();
 			}
 			BUTTON.prototype.draw=function()
 			{
