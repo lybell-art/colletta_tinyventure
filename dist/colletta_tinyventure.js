@@ -242,6 +242,7 @@ var game=function(d)
 	d.conditionalCollide=function(my, other, condition)
 	{
 		var res=false;
+		var real=[];
 		if(other instanceof d.Sprite)
 		{
 			res=condition(my, other)&&my.collide(other);
@@ -251,8 +252,12 @@ var game=function(d)
 			for(var i=0; i<other.length; i++)
 			{
 				var p=condition(my, other[i]);
-				var q=my.collide(other[i]);
-				if(p) res=res||q;
+				var q;
+				if(p)
+				{
+					q=my.collide(other[i]);
+					res=q||res;
+				}
 				if(d.frameCount%20==0) console.log(p,q,res);
 			}
 		}
