@@ -50,6 +50,7 @@ var game=function(d)
 			this.colletta=new PLAYER(this);
 			this.colletta.setImagineCollider();
 			this.world=new WORLD(this);
+			this.colletta.sprite.depth=1000;
 			d.sceneNo++;
 		}
 		this.run=function()
@@ -82,7 +83,6 @@ var game=function(d)
 			}
 			this.sprite.setCollider("rectangle",0,45,d.tileSize,d.tileSize*1.5);
 			this.sprite.debug=true;
-			this.sprite.depth=100;
 			//ceil/floor/wall checker
 			this.ceilCollider=d.createSprite(this.x,this.y,1,1);
 			this.floorCollider=d.createSprite(this.x,this.y,1,1);
