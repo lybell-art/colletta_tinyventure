@@ -172,20 +172,6 @@ var game=function(d)
 				}
 				else this.walling=false;
 			}
-			if(colid)
-			{
-				if(!onWall)
-				{
-					this.sprite.velocity.y=0;
-					this.dropping=false;
-				}
-			}
-			if(onewayColid)
-			{
-				this.sprite.velocity.y=0;
-				this.walling=false;
-				this.dropping=false;
-			}
 			if(onGround&&!this.dropping)
 			{
 				if(!onewayOverlap||onewayColid)
@@ -207,6 +193,20 @@ var game=function(d)
 				}
 				else this.gravity=0.9;
 				this.sprite.velocity.y+=this.gravity;
+			}
+			if(colid)
+			{
+				if(!onWall)
+				{
+					this.sprite.velocity.y=0;
+					this.dropping=false;
+				}
+			}
+			if(onewayColid)
+			{
+				this.sprite.velocity.y=0;
+				this.walling=false;
+				this.dropping=false;
 			}
 		}
 		PLAYER.prototype.move=function(g)
@@ -312,7 +312,7 @@ var game=function(d)
 			var pp=false, qq=false;
 			for(var i in this.weighPlatform)
 			{
-				pp=player.sprite.overlap(this.weighPlatform[i].sprite);
+				pp=player.floorCollider.overlap(this.weighPlatform[i].sprite);
 				qq=qq||pp;
 				this.weighPlatform[i].isWeigh=pp;
 				if(this.weighPlatform[i].isWeigh) this.weighPlatform[i].weigh++;
