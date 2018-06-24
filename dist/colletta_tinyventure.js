@@ -133,7 +133,7 @@ var game=function(d)
 				onewayColid=d.conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
 					if(typeof a==="object"&&typeof b==="object")
 					{
-						console.log(g.curScale);
+						console.log(g.colletta.curScale,this);
 						if(!b.visible) return false;
 						if(g.curScale!=10&&g.curScale!=20) return true;
 						var p=a.previousPosition.copy().add(0,a.height/2);
