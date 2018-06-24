@@ -245,7 +245,7 @@ var game=function(d)
 		else if(other instanceof Array)
 		{
 			console.log(my, other[0], other.length);
-			for(var i in other.length)
+			for(var i=0; i<other.length; i++)
 			{
 				console.log(my, i, other[i],condition(my.other[i]));
 				if(condition(my, other[i])) res=res||my.collide(other[i]);
