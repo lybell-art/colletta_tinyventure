@@ -53,8 +53,8 @@ var game=function(d)
 			d.image(d.resourceBox.image.bg[0],0,0);
 			this.colletta.move(this);
 			this.colletta.pose(this);
-			d.camera.position.x=this.colletta.x-960;
-			d.camera.position.y=this.colletta.y-540;
+//			d.camera.position.x=this.colletta.x;
+//			d.camera.position.y=this.colletta.y;
 			d.drawSprites();
 		}
 		function PLAYER(g)
