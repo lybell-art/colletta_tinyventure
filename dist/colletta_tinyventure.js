@@ -73,6 +73,11 @@ var game=function(d)
 		}
 		this.pause=function()
 		{
+			background(0);
+			if(d.mouseWentUp(d.LEFT))
+			{
+				d.sceneNo=11;
+			}
 		}
 		function PLAYER(g)
 		{
@@ -386,11 +391,12 @@ var game=function(d)
 		{
 			this.minimap=null;
 			this.minimapButton=null;
+			this.pauseButton=null;
 			this.setting=function()
 			{
 				var my=this;
 				this.minimap=new MINIMAP(my);
-				this.minimapButton=new BUTTON(0,0,216*d.ratio,216*d.ratio);
+				this.minimapButton=new BUTTON(0,0,216*d.ratio,216*d.ratio,1);
 				this.minimapButton.setImg(d.resourceBox.image.UI[11]);
 				this.minimapButton.enable=false;
 				this.minimapButton.func=function()
@@ -398,6 +404,12 @@ var game=function(d)
 					my.minimap.visible=true;
 					my.minimap.button.enable=true;
 					my.minimapButton.enable=false;
+				}
+				this.pauseButton=new BUTTON(40*d.ratio,40*d.ratio,80*d.ratio,80*d.ratio,2);
+				this.pauseButton.setImg(d.resourceBox.image.UI[10]);
+				this.pauseButton.func=function()
+				{
+					d.sceneNo=12;
 				}
 			}
 			this.run=function()
@@ -424,7 +436,7 @@ var game=function(d)
 						else this.data[i][j]=0;
 					}
 				}
-				this.button=new BUTTON(40*d.ratio,40*d.ratio,250*d.ratio,250*d.ratio);
+				this.button=new BUTTON(40*d.ratio,40*d.ratio,250*d.ratio,250*d.ratio,1);
 				var my=this;
 				var myBut=this.button;
 				this.button.func=function(){
@@ -457,9 +469,10 @@ var game=function(d)
 				d.rect(x+12*r,y+12*r,r,r);
 				this.button.draw();
 			}
-			function BUTTON(_x,_y,_w,_h)
+			function BUTTON(_x,_y,_w,_h,_dir)
 			{
 				this.x=_x; this.y=_y;
+				this.dir=_dir;
 				if(_w!==undefined) this.width=_w;
 				else this.width=100;
 				if(_h!==undefined) this.height=_h;
@@ -474,7 +487,8 @@ var game=function(d)
 			}
 			BUTTON.prototype.onMouse=function()
 			{
-				var mx=d.mouseX, my=d.mouseY, x=this.x, y=this.y, w=this.width, h=this.height;
+				var mx=d.mouseX, my=d.mouseY, w=this.width, h=this.height;
+				var x=this.pin()[0],y=this.pin()[1];
 				return this.enable && mx>x && mx<x+w && my>y && my<y+h;
 			}
 			BUTTON.prototype.mousePress=function()
@@ -487,11 +501,20 @@ var game=function(d)
 			{
 				if(this.img!=null)
 				{
-					d.image(this.img,this.x,this.y,this.width,this.height);
+					d.image(this.img,this.pin()[0],this.pin()[1],this.width,this.height);
 				}
-				d.noFill();
-				d.stroke("#00ffff");
-				d.rect(this.x,this.y,this.width,this.height);
+			}
+			BUTTON.prototype.pin=function()
+			{
+				var x,y;
+				switch(this.dir)
+				{
+					case 1:x=this.x, y=this.y; break;
+					case 2:x=window.innerWidth-this.x, y=this.y; break;
+					case 3:x=window.innerWidth-this.x, y=window.innerHeight-this.y; break;
+					case 4:x=this.x, y=window.innerHeight-this.y; break;
+				}
+				return [x,y];
 			}
 		}
 	}
