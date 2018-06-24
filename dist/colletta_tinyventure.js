@@ -212,7 +212,6 @@ var game=function(d)
 					this.jumpCount--;
 					this.jumping=true;
 				}
-				console.log(this.walling, this.jumping, d.jumpKey, this.sprite.velocity);
 			}
 			if(d.leftKey())
 			{
