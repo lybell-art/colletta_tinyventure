@@ -125,6 +125,7 @@ var game=function(d)
 		}
 		PLAYER.prototype.physic=function(g)
 		{
+			var isTwinning=this.curScale!=10&&this.curScale!=20;
 			var colid=this.sprite.collide(g.world.ground);
 			var onewayOverlap=this.sprite.overlap(g.world.onewayPlatform);
 			var onewayColid;
@@ -133,9 +134,9 @@ var game=function(d)
 				onewayColid=d.conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
 					if(typeof a==="object"&&typeof b==="object")
 					{
-						console.log(colid);
+						console.log(isTwinning);
 						if(!b.visible) return false;
-						if(g.curScale!=10&&g.curScale!=20) return true;
+						if(isTwinning) return true;
 						var p=a.previousPosition.copy().add(0,a.height/2);
 						var q=b.position.copy().add(0,-b.height/2);
 						var r=p5.Vector.sub(p,q);
