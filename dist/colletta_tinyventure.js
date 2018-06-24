@@ -266,11 +266,11 @@ var game=function(d)
 			realScale=1/(this.curScale/10);
 			for(var i=0;i<4;i++)
 			{
-				myObj[i].scale=realScale;
+				myObj[i].scale=1/((this.curScale+1)/10);
 				myObj[i].collider.offset=offsets[i].mult(realScale);
 				if(this.curScale!=10&&this.curScale!=20)
 				{
-				console.log(myObj[i].width,myObj[i].height,myObj[i].collider.extents.x,myObj[i].collider.extents.y);
+				console.log(myObj[i].collider.extents.x,myObj[i].collider.extents.y);
 				console.log(myObj[i].collider.offset.x,myObj[i].collider.offset.y);
 				}
 			}
