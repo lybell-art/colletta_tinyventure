@@ -147,7 +147,6 @@ var game=function(d)
 					this.sprite.velocity.y=0;
 					this.jumping=false;
 				}
-				console.log(this.jumping,this.sprite.velocity.y);
 			}
 			else
 			{
@@ -214,6 +213,7 @@ var game=function(d)
 					this.jumpCount--;
 					this.jumping=true;
 				}
+				console.log(this.walling, this.jumping, d.jumpKey, this.sprite.velocity);
 			}
 			if(d.leftKey())
 			{
