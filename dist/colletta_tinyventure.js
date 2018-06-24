@@ -56,8 +56,8 @@ var game=function(d)
 		{
 			d.background(255);
 			d.image(d.resourceBox.image.bg[0],0,0);
-			this.colletta.move(this);
 			this.colletta.physic(this);
+			this.colletta.move(this);
 			this.colletta.pose(this);
 			d.camera.position=this.colletta.sprite.position;
 			d.drawSprites();
