@@ -73,7 +73,7 @@ var game=function(d)
 		}
 		this.pause=function()
 		{
-			this.colletta.immoveable=true;
+			this.colletta.sprite.immoveable=true;
 			d.drawSprites();
 			d.camera.off();
 			d.noStroke();
@@ -82,7 +82,7 @@ var game=function(d)
 			if(d.mouseWentUp(d.LEFT))
 			{
 				d.sceneNo=11;
-				this.colletta.immoveable=false;
+				this.colletta.sprite.immoveable=false;
 			}
 		}
 		function PLAYER(g)
