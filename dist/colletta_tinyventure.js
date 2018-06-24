@@ -246,13 +246,12 @@ var game=function(d)
 		{
 			for(var i=0; i<other.length; i++)
 			{
-				console.log("1"+res);
 				if(condition(my, other[i]))
 				{
-					res=my.collide(other[i])||res;
-					console.log("2"+res);
+					var q=my.collide(other[i]);
+					res=q||res;
+					console.log(q,"2"+res);
 				}
-				console.log("3"+res);
 			}
 		}
 		console.log(res);
