@@ -113,10 +113,14 @@ var game=function(d)
 			var colid=this.sprite.collide(g.world.ground);
 			var onewayOverlap=this.sprite.overlap(g.world.onewayPlatform);
 			var onewayColid=conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
-				var p=a.position.copy().add(0,a.position.height/2);
-				var q=b.position.copy().add(0,-a.position.height/2);
-				var r=p.sub(q);
-				return r.heading()>0;
+				if(typeof a==="object"&&typeof b==="object")
+				{
+					var p=a.position.copy().add(0,a.position.height/2);
+					var q=b.position.copy().add(0,-a.position.height/2);
+					var r=p.sub(q);
+					return r.heading()>0;
+				}
+				else return false;
 			});
 			var onGround=this.floorCollider.overlap(g.world.allPlatform);
 			var onWall=this.wallCollider.overlap(g.world.ground);
