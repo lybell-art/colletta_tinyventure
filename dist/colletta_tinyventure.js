@@ -472,6 +472,12 @@ var game=function(d)
 				{
 					d.image(this.img,this.x,this.y,this.width,this.height);
 				}
+				else
+				{
+					d.noFill();
+					d.stroke("#00ff00");
+					d.rect(this.x,this.y,this.width,this.height);
+				}
 			}
 		}
 	}
