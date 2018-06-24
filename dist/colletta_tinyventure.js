@@ -118,7 +118,7 @@ var game=function(d)
 					var p=a.previousPosition.copy().add(0,a.height/2);
 					var q=b.position.copy().add(0,-b.height/2);
 					var r=p5.Vector.sub(p,q);
-					return [Math.abs(r.y)<0.0001,r.heading()<=0];
+					return Math.abs(r.y)<0.0001||r.heading()<=0;
 				}
 				else return false;
 			});
@@ -246,9 +246,11 @@ var game=function(d)
 		{
 			for(var i=0; i<other.length; i++)
 			{
-				var p=condition(my, other[i]);
-				if(p[0]) res=true;
-				else if(p[1]) res=my.collide(other[i])||res;
+				if(condition(my, other[i]))
+				{
+					my.velocity.y+=0.1;
+					res=my.collide(other[i])||res;
+				}
 			}
 		}
 		console.log(res);
