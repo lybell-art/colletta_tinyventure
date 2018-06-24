@@ -63,6 +63,7 @@ var game=function(d)
 			d.camera.position.x=d.constrain(this.colletta.sprite.position.x,960,this.world.width-960);
 			d.camera.position.y=d.constrain(this.colletta.sprite.position.y,540,this.world.height-540);
 			d.camera.zoom/=this.colletta.sprite.scale;
+			console.log(d.camera.zoom,this.colletta.sprite.scale);
 			d.drawSprites();
 		}
 		function PLAYER(g)
