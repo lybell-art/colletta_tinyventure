@@ -73,7 +73,7 @@ var game=function(d)
 		}
 		this.pause=function()
 		{
-			background(0);
+			d.background(255);
 			if(d.mouseWentUp(d.LEFT))
 			{
 				d.sceneNo=11;
