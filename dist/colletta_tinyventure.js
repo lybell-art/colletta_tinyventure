@@ -442,7 +442,6 @@ var game=function(d)
 				d.fill("#f398a5");
 				d.rect(x+12*r,y+12*r,r,r);
 				this.button.draw();
-				console.log(this.button.func);
 			}
 			function BUTTON(_x,_y,_w,_h)
 			{
@@ -461,8 +460,7 @@ var game=function(d)
 			}
 			BUTTON.prototype.onMouse=function()
 			{
-				var mx=d.mouseX, my=d.mouseY, x=this.x, y=this.y, w=this.w, h=this.h;
-				console.log(this.enable,mx>x, mx<x+w, my>y, my<y+h);
+				var mx=d.mouseX, my=d.mouseY, x=this.x, y=this.y, w=this.width, h=this.height;
 				return this.enable && mx>x && mx<x+w && my>y && my<y+h;
 			}
 			BUTTON.prototype.mousePress=function()
