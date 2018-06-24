@@ -24,8 +24,10 @@ var game=function(d)
 		switch(d.sceneNo)
 		{
 			case -1:d.loading.execute(); break;
-			case 0:d.ingame.setup(); break;
-			default:d.ingame.run();
+			case 10:d.ingame.setup(); break;
+			case 11:d.ingame.run(); break;
+			case 12:d.ingame.pause); break;
+//			default:d.ingame.run();
 		}
 	};
 	d.windowResized=function()
@@ -44,11 +46,13 @@ var game=function(d)
 		this.currentWorld="world1";
 		this.colletta=null;
 		this.world=null;
+		this.ui=null;
 		this.setup=function()
 		{
 			this.colletta=new PLAYER(this);
 			this.colletta.setImagineCollider();
 			this.world=new WORLD(this);
+			this.ui=new UI(this);
 			d.sceneNo++;
 		}
 		this.run=function()
@@ -65,6 +69,7 @@ var game=function(d)
 			d.camera.position.y=d.constrain(p.position.y,540,this.world.height-540);
 			d.camera.zoom=d.ratio/p.scale;
 			d.drawSprites();
+			this.ui.draw();
 		}
 		function PLAYER(g)
 		{
@@ -374,6 +379,77 @@ var game=function(d)
 			}
 			if(!qq) player.dropping=false;
 		}
+		function UI(g)
+		{
+			this.minimap=new MINIMAP();
+			this.draw=function()
+			{
+				d.camera.off();
+				this.minimap.draw();
+			}
+			function MINIMAP()
+			{
+				var rawdata=d.resourceBox.map[g.currentWorld].platform;
+				this.data=[];
+				this.width=rawdata.length;
+				this.height=rawdata[0].length;
+				this.pos=g.colletta.sprite.position;
+				this.visible=true;
+				for(var i=0;i<this.width;i++)
+				{
+					this.data[i]=[];
+					for(var j=0;j<this.height;j++)
+					{
+						if(rawdata[i][j]!=0) this.data[i][j]=1;
+						else this.data[i][j]=0;
+					}
+				}
+			}
+			MINIMAP.prototype.draw=function()
+			{
+				var x=40*d.ratio;
+				var y=40*d.ratio;
+				var r=10*d.ratio;
+				var Xpos=Math.floor(this.pos.x/120);
+				var Ypos=Math.floor(this.pos.y/120);
+				d.noStroke();
+				d.fill(0,50);
+				d.rect(x,y,25*r,25*r);
+				d.fill(0,128);
+				for(var i=Xpos-12; i<Xpos+13; i++)
+				{
+					if(this.data[i]===undefined) continue;
+					for(var j=Ypos-12; j<Ypos+13; j++)
+					{
+						if(this.data[i][j]===undefined) continue;
+						if(this.data[i][j]==1) d.rect(x+i*r,y+j*r,r,r);
+					}
+				}
+				d.fill("#f398a5");
+				d.rect(x+12*r,y+12*r,r,r);
+			}
+			function BUTTON(_x,_y)
+			{
+				this.x=_x; this.y=_y;
+				this.width=100; this.height=100;
+				this.enable=true;
+				this.img=null;
+				this.func=null;
+			}
+			BUTTON.prototype.setImg=function(_img)
+			{
+				this.img=_img;
+			}
+			BUTTON.prototype.onMouse=function()
+			{
+				var mx=d.mouseX, my=d.mouseY, x=this.x, y=this.y, w=this.w, h=this.h;
+				return this.enable && mx>x && mx<x+ w && my>y && my<y+h;
+			}
+			BUTTON.prototype.mousePress=function()
+			{
+				if(d.mouseWentUp(LEFT)&&this.onMouse) this.func();
+			}
+		}
 	}
 	d.conditionalCollide=function(my, other, condition)
 	{
@@ -460,7 +536,7 @@ var game=function(d)
 		d.fill(255);
 		d.noStroke();
 		d.rect(0,0,d.map(this.count,0,this.max,0,d.width),50);
-		if(this.count==this.max) d.sceneNo=0;
+		if(this.count==this.max) d.sceneNo=10;
 		console.log(this.count);
 	}
 };
