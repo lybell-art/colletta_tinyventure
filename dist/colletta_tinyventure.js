@@ -255,9 +255,9 @@ var game=function(d)
 			{
 				if(condition(my, other[i]))
 				{
-					my.velocity.y=0.05;
+					my.position.y+=0.1;
 					res=my.collide(other[i])||res;
-					my.velocity.y=0;
+					my.position.y-=0.1;
 				}
 			}
 		}
