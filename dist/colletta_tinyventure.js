@@ -234,7 +234,7 @@ var game=function(d)
 			if(tileNo!=0&&(tileNo<22||tileNo>24)) this.allPlatform.add(a);
 		}
 	}
-	function conditionalCollide(my, other, condition)
+	d.conditionalCollide=function(my, other, condition)
 	{
 		var res=false;
 		if(other instanceof d.Sprite)
@@ -306,9 +306,9 @@ var game=function(d)
 		if(a.length==1) res=d.loadAnimation(a[0]);
 		else if(a.length==2) res=d.loadAnimation(a[0],a[1]);
 		if(typeof callback === 'function') {
-        	callback();
-        }
-        return res;
+        		callback();
+		}
+		return res;
 	}
 	LOADING.prototype.execute=function()
 	{
