@@ -308,7 +308,7 @@ var game=function(d)
 			{
 				this.weighPlatform[i].isWeigh=player.sprite.overlap(this.weighPlatform[i].sprite);
 				if(this.weighPlatform[i].isWeigh) this.weighPlatform[i].weigh++;
-				else this.weighPlatform[i]=0;
+				else this.weighPlatform[i].weigh=0;
 				if(this.weighPlatform[i].weigh>=30) player.dropping=true;
 			}
 		}
