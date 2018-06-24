@@ -393,7 +393,7 @@ var game=function(d)
 			{
 				d.camera.off();
 				this.minimap.button.mousePress();
-				this.minimap.draw();
+				if(this.minimap.visible) this.minimap.draw();
 			}
 			function MINIMAP()
 			{
@@ -418,7 +418,6 @@ var game=function(d)
 				this.button.func=function(){
 					my.visible=!my.visible;
 					myBut.enable=false;
-					console.log(my,myBut);
 				};
 			}
 			MINIMAP.prototype.draw=function()
@@ -443,7 +442,6 @@ var game=function(d)
 				}
 				d.fill("#f398a5");
 				d.rect(x+12*r,y+12*r,r,r);
-				this.button.draw();
 			}
 			function BUTTON(_x,_y,_w,_h)
 			{
@@ -474,12 +472,6 @@ var game=function(d)
 				if(this.img!=null)
 				{
 					d.image(this.img,this.x,this.y,this.width,this.height);
-				}
-				else
-				{
-					d.noFill();
-					d.stroke("#00ff00");
-					d.rect(this.x,this.y,this.width,this.height);
 				}
 			}
 		}
