@@ -251,22 +251,21 @@ var game=function(d)
 		PLAYER.prototype.scaleTween=function()
 		{
 			var realScale;
+			var V=0;
 			var myObj=[this.sprite,this.ceilCollider,this.floorCollider,this.wallCollider];
 			var offsets=[new p5.Vector(0,45),new p5.Vector(0,-40),new p5.Vector(0,130),new p5.Vector(0,45)];
 			if(this.scale)
 			{
-				if(this.curScale<20) this.curScale++, d.frameRate(1);
-				else d.frameRate(60);
+				if(this.curScale<20) this.curScale++, V=1;
 			}
 			else
 			{
-				if(this.curScale>10) this.curScale--, d.frameRate(1);
-				else d.frameRate(60);
+				if(this.curScale>10) this.curScale--, V=-1;
 			}
 			realScale=1/(this.curScale/10);
 			for(var i=0;i<4;i++)
 			{
-				myObj[i].scale=1/((this.curScale+1)/10);
+				myObj[i].scale=1/((this.curScale+V)/10);
 				myObj[i].collider.offset=offsets[i].mult(realScale);
 				if(this.curScale!=10&&this.curScale!=20)
 				{
