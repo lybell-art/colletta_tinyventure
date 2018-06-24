@@ -403,8 +403,7 @@ var game=function(d)
 			this.run=function()
 			{
 				d.camera.off();
-				this.minimap.button.mousePress();
-				this.minimapButton.mousePress();
+				this.minimap.button.mousePress()||this.minimapButton.mousePress();
 				if(this.minimap.visible) this.minimap.draw();
 				if(this.minimapButton.enable) this.minimapButton.draw();
 			}
@@ -476,12 +475,13 @@ var game=function(d)
 			BUTTON.prototype.onMouse=function()
 			{
 				var mx=d.mouseX, my=d.mouseY, x=this.x, y=this.y, w=this.width, h=this.height;
-				console.log(this.enable , mx>x , mx<x+w , my>y , my<y+h);
 				return this.enable && mx>x && mx<x+w && my>y && my<y+h;
 			}
 			BUTTON.prototype.mousePress=function()
 			{
+				var e=this.enable;
 				if(d.mouseWentUp(d.LEFT)&&this.onMouse()) this.func();
+				return this.enable;
 			}
 			BUTTON.prototype.draw=function()
 			{
