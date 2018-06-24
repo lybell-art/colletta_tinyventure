@@ -481,7 +481,7 @@ var game=function(d)
 			{
 				var e=this.enable;
 				if(d.mouseWentUp(d.LEFT)&&this.onMouse()) this.func();
-				return this.enable;
+				return e;
 			}
 			BUTTON.prototype.draw=function()
 			{
