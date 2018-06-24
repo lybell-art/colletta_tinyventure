@@ -26,7 +26,7 @@ var game=function(d)
 			case -1:d.loading.execute(); break;
 			case 10:d.ingame.setup(); break;
 			case 11:d.ingame.run(); break;
-			case 12:d.ingame.pause); break;
+			case 12:d.ingame.pause(); break;
 //			default:d.ingame.run();
 		}
 	};
@@ -70,6 +70,9 @@ var game=function(d)
 			d.camera.zoom=d.ratio/p.scale;
 			d.drawSprites();
 			this.ui.draw();
+		}
+		this.pause=function()
+		{
 		}
 		function PLAYER(g)
 		{
