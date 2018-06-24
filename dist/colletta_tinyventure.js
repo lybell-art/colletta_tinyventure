@@ -232,9 +232,16 @@ var game=function(d)
 	function conditionalCollide(my, other, condition)
 	{
 		var res=false;
-		for(var obj in other)
+		if(other instanceof d.Sprite)
 		{
-			if(condition(my, obj)) res=res||my.collide(other[obj]);
+			res=condition(my, other)&&my.collide(other);
+		}
+		else if(other instanceof Array)
+		{
+			for(var obj in other)
+			{
+				if(condition(my, obj)) res=res||my.collide(other[obj]);
+			}
 		}
 		return res;
 	}
