@@ -175,14 +175,14 @@ var game=function(d)
 			console.log(onGround, this.dropping, this.jumping);
 			if(onGround&&!this.dropping)
 			{
-				if(!onewayOverlap||onewayColid)
-				{
+//				if(!onewayOverlap||onewayColid)
+//				{
 					this.jumping=false;
 					this.walling=false;
 					this.roping=false;
 					this.jumpCount=this.maxJump;
 					this.sprite.velocity.y=0;
-				}
+//				}
 			}
 			else
 			{
