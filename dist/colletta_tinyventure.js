@@ -390,10 +390,8 @@ var game=function(d)
 			{
 				var my=this;
 				this.minimap=new MINIMAP(my);
-				this.minimapButton=new BUTTON(0,0);
+				this.minimapButton=new BUTTON(0,0,216*d.ratio,216*d.ratio);
 				this.minimapButton.setImg(d.resourceBox.image.UI[11]);
-				this.minimapButton.width*=d.ratio;
-				this.minimapButton.height*=d.ratio;
 				this.minimapButton.enable=false;
 				this.minimapButton.func=function()
 				{
