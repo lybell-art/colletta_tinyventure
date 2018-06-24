@@ -119,7 +119,11 @@ var game=function(d)
 					var p=a.position.copy().add(0,a.height/2);
 					var q=b.position.copy().add(0,-b.height/2);
 					var r=p5.Vector.sub(p,q);
-					if(d.frameCount%20==0) console.log(p,q,r,r.heading());
+					if(d.frameCount%20==0)
+					{
+						console.log(p,q,r,r.heading());
+						console.log(r.heading()<0);
+					}
 					return r.heading()<0;
 				}
 				else return false;
@@ -246,7 +250,10 @@ var game=function(d)
 		{
 			for(var i=0; i<other.length; i++)
 			{
-				if(condition(my, other[i])) res=res||my.collide(other[i]);
+				var p=condition(my, other[i]);
+				var q=my.collide(other[i]);
+				if(p) res=res||q;
+				if(d.frameCount%20==0) console.log(p,q,res);
 			}
 		}
 		return res;
