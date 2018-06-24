@@ -134,11 +134,10 @@ var game=function(d)
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
 			if(onRope)
 			{
-				this.jumping=false;
 				this.walling=false;
 				this.roping=true;
 				this.jumpCount=this.maxJump;
-				this.sprite.velocity.y=0;
+				if(!this.jumping||this.sprite.velocity.y>0) this.sprite.velocity.y=0;
 			}
 			else
 			{
