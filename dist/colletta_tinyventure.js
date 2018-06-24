@@ -133,6 +133,7 @@ var game=function(d)
 				onewayColid=d.conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
 					if(typeof a==="object"&&typeof b==="object")
 					{
+						console.log(this.curScale);
 						if(!b.visible) return false;
 						if(this.curScale!=10&&this.curScale!=20) return true;
 						var p=a.previousPosition.copy().add(0,a.height/2);
@@ -144,6 +145,7 @@ var game=function(d)
 				});
 			}
 			else onewayColid=false;
+			console.log(onewayColid);
 			var onRope=this.sprite.overlap(g.world.Vrope);
 			var onGround=this.floorCollider.overlap(g.world.allPlatform);
 			var onWall=this.wallCollider.overlap(g.world.ground);
