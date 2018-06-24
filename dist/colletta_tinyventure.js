@@ -267,7 +267,8 @@ var game=function(d)
 				case 21:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
 					this.wood.add(a); this.onewayPlatform.add(a); break;
 				case 22: case 23:
-				case 24:this.Vrope.add(a); break;
+				case 24:a.setCollider('rectangle',0,0,d.tileSize/2,d.tileSize);
+					this.Vrope.add(a); break;
 				case 26:this.Hrope.add(a); this.onewayPlatform.add(a); break;
 			}
 			if(tileNo!=0&&(tileNo<22||tileNo>24)) this.allPlatform.add(a);
