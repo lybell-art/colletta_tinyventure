@@ -250,6 +250,8 @@ var game=function(d)
 		PLAYER.prototype.scaleTween=function()
 		{
 			var realScale;
+			var myObj=[this.sprite,this.ceilCollider,this.floorCollider,this.wallCollider];
+			var offsets=[new p5.Vector(0,45),new p5.Vector(0,-40),new p5.Vector(0,130),new p5.Vector(0,45)];
 			if(this.scale)
 			{
 				if(this.curScale<20) this.curScale++;
@@ -259,10 +261,12 @@ var game=function(d)
 				if(this.curScale>10) this.curScale--;
 			}
 			realScale=1/(this.curScale/10);
-			this.sprite.scale=realScale;
-			this.ceilCollider.scale=realScale;
-			this.floorCollider.scale=realScale;
-			this.wallCollider.scale=realScale;
+			for(var i=0;i<4;i++)
+			{
+				myObj[i].scale=realScale;
+				myObj[i].collider.offset=offsets[i].mult(realScale);
+			}
+			
 		}
 		function WORLD(g)
 		{
