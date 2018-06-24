@@ -143,7 +143,7 @@ var game=function(d)
 					this.sprite.velocity.y=0;
 					this.jumping=false;
 				}
-				console.log(this.sprite.velocity.y);
+				console.log(this.jumping,this.sprite.velocity.y);
 			}
 			else
 			{
@@ -176,7 +176,7 @@ var game=function(d)
 			}
 			else
 			{
-				if(!this.roping) this.jumping=true;
+				if(!onRope) this.jumping=true;
 				if(this.roping||this.walling)
 				{
 					if(this.sprite.velocity.y>0) this.gravity=0.3;
@@ -205,6 +205,7 @@ var game=function(d)
 				{
 					this.sprite.velocity.y=-27;
 					this.jumpCount--;
+					this.jumping=true;
 				}
 			}
 			if(d.leftKey())
