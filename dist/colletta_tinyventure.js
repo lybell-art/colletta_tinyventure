@@ -182,7 +182,7 @@ var game=function(d)
 					this.sprite.velocity.y=-27;
 					this.jumpCount--;
 				}
-				else(d.jumpKey())
+				else if(!this.walling&&d.jumpKey())
 				{
 					this.sprite.velocity.y=-27;
 					this.jumpCount--;
