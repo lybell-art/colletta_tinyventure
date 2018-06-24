@@ -143,6 +143,7 @@ var game=function(d)
 					this.sprite.velocity.y=0;
 					this.jumping=false;
 				}
+				console.log(this.sprite.velocity.y);
 			}
 			else
 			{
