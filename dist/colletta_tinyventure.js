@@ -20,7 +20,7 @@ var game=function(d)
 	};
 	d.draw=function()
 	{
-//		d.scale(d.ratio);
+		d.camera.zoom(d.ratio);
 		switch(d.sceneNo)
 		{
 			case -1:d.loading.execute(); break;
@@ -255,7 +255,7 @@ var game=function(d)
 			{
 				if(condition(my, other[i]))
 				{
-					my.velocity.y+=0.1;
+					my.velocity.y+=0.01;
 					res=my.collide(other[i])||res;
 				}
 			}
