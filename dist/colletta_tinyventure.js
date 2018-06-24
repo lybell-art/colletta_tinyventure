@@ -111,7 +111,7 @@ var game=function(d)
 		PLAYER.prototype.move=function(g)
 		{
 			var colid=this.sprite.collide(g.world.ground);
-			var onGround=this.chkOnGround(g);
+			var onGround=this.sprite.overlap(g.world.allPlatform);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
 			this.sprite.velocity.y+=(this.walling&&this.sprite.velocity.y>0)?0.3:0.9;
@@ -141,7 +141,7 @@ var game=function(d)
 			{
 				if(!onWall) this.sprite.velocity.y=0;
 			}
-			if(this.sprite.velocity.y>0&&this.sprite.collide(g.world.wood))
+			if(this.sprite.velocity.y>0&&this.sprite.collide(g.world.onewayPlatform))
 			{
 				this.sprite.velocity.y=0;
 				this.walling=false;
@@ -169,13 +169,10 @@ var game=function(d)
 			this.y=this.sprite.y;
 //			console.log(this.sprite.position, this.sprite.velocity);
 		}
-		PLAYER.prototype.chkOnGround=function(g)
-		{
-			this.floorCollider.overlap(g.world.ground);
-			console.log(g.world.ground);
-		}
 		function WORLD(g)
 		{
+			this.allPlatform=new d.Group();
+			this.onewayPlatform=new d.Group();
 			this.ground=new d.Group();
 			this.tree=new d.Group();
 			this.mover=new d.Group();
@@ -204,17 +201,22 @@ var game=function(d)
 				case 1: case 2: case 3: case 4: case 5:
 				case 6: case 7: case 8: case 9:
 				case 25: case 27:
-				case 10:a.setCollider('rectangle',0,0,d.tileSize,d.tileSize); this.ground.add(a); break;
+				case 10:a.setCollider('rectangle',0,0,d.tileSize,d.tileSize);
+					this.ground.add(a); break;
 				case 11: case 12: case 13:
-				case 14:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2); this.tree.add(a); break;
+				case 14:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
+					this.tree.add(a); this.onewayPlatform.add(a); break;
 				case 15: case 16:
-				case 17:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2); this.moving.add(a); break;
+				case 17:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
+					this.mover.add(a); this.onewayPlatform.add(a); break;
 				case 18: case 19: case 20:
-				case 21:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2); this.wood.add(a); break;
+				case 21:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
+					this.wood.add(a); this.onewayPlatform.add(a); break;
 				case 22: case 23:
 				case 24:this.Vrope.add(a); break;
-				case 26:this.Hrope.add(a); break;
+				case 26:this.Hrope.add(a); this.onewayPlatform.add(a); break;
 			}
+			if(tileNo<22||tileNo>24) this.allPlatform.add(a);
 		}
 	}
 	function RESOURCE_BOX()
