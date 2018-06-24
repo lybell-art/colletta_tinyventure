@@ -241,17 +241,15 @@ var game=function(d)
 				this.heading=RIGHT;
 			}
 			else this.sprite.velocity.x=0;
-			if(d.scaleKey())
-			{
-				this.scale=!this.scale;
-				this.scaleTween();
-			}
+			if(d.scaleKey()) this.scale=!this.scale;
 			this.x=this.sprite.position.x;
 			this.y=this.sprite.position.y;
+			this.scaleTween();
 //			console.log(this.sprite.position, this.sprite.velocity);
 		}
 		PLAYER.prototype.scaleTween=function()
 		{
+			var realScale;
 			if(this.scale)
 			{
 				if(this.curScale<20) this.curScale++;
@@ -260,7 +258,11 @@ var game=function(d)
 			{
 				if(this.curScale>10) this.curScale--;
 			}
-			this.sprite.scale=1/(this.curScale/10);
+			realScale=1/(this.curScale/10);
+			this.sprite.scale=realScale;
+			this.ceilCollider.scale=realScale;
+			this.floorCollider.scale=realScale;
+			this.wallCollider.scale=realScale;
 		}
 		function WORLD(g)
 		{
