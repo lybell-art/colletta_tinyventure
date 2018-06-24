@@ -110,7 +110,6 @@ var game=function(d)
 		}
 		PLAYER.prototype.move=function(g)
 		{
-			this.sprite.velocity.y+=(this.walling&&this.sprite.velocity.y>0)?0.3:0.9;
 			var colid=this.sprite.collide(g.world.ground);
 			var onewayOverlap=this.sprite.overlap(g.world.onewayPlatform);
 			var onewayColid=d.conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
@@ -119,14 +118,14 @@ var game=function(d)
 					var p=a.previousPosition.copy().add(0,a.height/2);
 					var q=b.position.copy().add(0,-b.height/2);
 					var r=p5.Vector.sub(p,q);
-					return Math.abs(r.y)<0.0001||r.heading()<=0;
+					return [Math.abs(r.y)<0.0001,r.heading()<=0];
 				}
 				else return false;
 			});
 			var onGround=this.floorCollider.overlap(g.world.allPlatform);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
-			
+			this.sprite.velocity.y+=(this.walling&&this.sprite.velocity.y>0)?0.3:0.9;
 			if(onWall)
 			{
 				if(!onGround)
@@ -247,12 +246,9 @@ var game=function(d)
 		{
 			for(var i=0; i<other.length; i++)
 			{
-				if(condition(my, other[i]))
-				{
-					var q=my.collide(other[i]);
-					res=q||res;
-					console.log(q,"2"+res);
-				}
+				var p=condition(my, other[i]);
+				if(p[0]) res=true;
+				else if(p[1]) res=my.collide(other[i])||res;
 			}
 		}
 		console.log(res);
