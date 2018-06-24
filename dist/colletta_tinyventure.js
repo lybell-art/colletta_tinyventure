@@ -134,9 +134,12 @@ var game=function(d)
 				else return false;
 			});
 			var onRope=this.sprite.overlap(g.world.Vrope);
-			var onGround=this.floorCollider.overlap(g.world.allPlatform);
-			var onWall=this.wallCollider.overlap(g.world.ground);
-			var onCeil=this.ceilCollider.overlap(g.world.ground);
+//			var onGround=this.floorCollider.overlap(g.world.allPlatform);
+//			var onWall=this.wallCollider.overlap(g.world.ground);
+//			var onCeil=this.ceilCollider.overlap(g.world.ground);
+			var onGround=this.sprite.touching.bottom;
+			var onWall=this.sprite.touching.left||this.sprite.touching.right;
+			var onCeil=this.sprite.touching.top;
 			if(onRope)
 			{
 				this.walling=false;
