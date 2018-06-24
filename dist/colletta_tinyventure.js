@@ -164,17 +164,6 @@ var game=function(d)
 				this.sprite.velocity.y=0;
 				this.walling=false;
 			}
-			if(d.leftKey())
-			{
-				this.sprite.velocity.x=-12;
-				this.heading=LEFT;
-			}
-			else if(d.rightKey())
-			{
-				this.sprite.velocity.x=12;
-				this.heading=RIGHT;
-			}
-			else this.sprite.velocity.x=0;
 			if(this.jumpCount>0)
 			{
 				if(this.walling&&d.wallJumpKey(this.heading))
@@ -188,6 +177,17 @@ var game=function(d)
 					this.jumpCount--;
 				}
 			}
+			if(d.leftKey())
+			{
+				this.sprite.velocity.x=-12;
+				this.heading=LEFT;
+			}
+			else if(d.rightKey())
+			{
+				this.sprite.velocity.x=12;
+				this.heading=RIGHT;
+			}
+			else this.sprite.velocity.x=0;
 			this.x=this.sprite.position.x;
 			this.y=this.sprite.position.y;
 //			console.log(this.sprite.position, this.sprite.velocity);
