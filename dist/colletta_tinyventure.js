@@ -255,19 +255,18 @@ var game=function(d)
 			var offsets=[new p5.Vector(0,45),new p5.Vector(0,-40),new p5.Vector(0,130),new p5.Vector(0,45)];
 			if(this.scale)
 			{
-				if(this.curScale<20) this.curScale++, d.frameRate(1);
-				else d.frameRate(60);
+				if(this.curScale<20) this.curScale++;
 			}
 			else
 			{
-				if(this.curScale>10) this.curScale--, d.frameRate(1);
-				else d.frameRate(60);
+				if(this.curScale>10) this.curScale--;
 			}
 			realScale=1/(this.curScale/10);
 			for(var i=0;i<4;i++)
 			{
 				myObj[i].scale=realScale;
 				myObj[i].collider.offset=offsets[i].mult(realScale);
+				console.log(myObj[i].width,myObj[i].height,myObj[i].collider.extents.x,myObj[i].collider.extents.y);
 			}
 			
 		}
