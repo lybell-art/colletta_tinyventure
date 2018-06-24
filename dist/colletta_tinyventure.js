@@ -175,9 +175,14 @@ var game=function(d)
 				this.heading=RIGHT;
 			}
 			else this.sprite.velocity.x=0;
-			if(d.jumpKey()&&this.jumpCount>0)
+			if(this.jumpCount>0)
 			{
-				if(!this.walling||d.wallJumpKey(this.heading))
+				if(this.walling&&d.wallJumpKey(this.heading))
+				{
+					this.sprite.velocity.y=-27;
+					this.jumpCount--;
+				}
+				else(d.jumpKey())
 				{
 					this.sprite.velocity.y=-27;
 					this.jumpCount--;
