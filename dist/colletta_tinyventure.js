@@ -58,6 +58,7 @@ var game=function(d)
 			this.colletta.physic(this);
 			this.colletta.move(this);
 			this.colletta.pose(this);
+			this.world.run(this.colletta);
 			d.camera.position=this.colletta.sprite.position;
 			d.drawSprites();
 		}
@@ -69,6 +70,7 @@ var game=function(d)
 			this.jumping=false;
 			this.walling=false;
 			this.roping=false;
+			this.dropping=false;
 			this.maxJump=1;
 			this.gravity=0.9;
 			this.jumpCount=this.maxJump;
@@ -167,17 +169,21 @@ var game=function(d)
 			}
 			if(onGround)
 			{
-				if(!onewayOverlap||onewayColid)
+				if(!this.dropping)
 				{
-					this.jumping=false;
-					this.walling=false;
-					this.roping=false;
-					this.jumpCount=this.maxJump;
-					this.sprite.velocity.y=0;
+					if(!onewayOverlap||onewayColid)
+					{
+						this.jumping=false;
+						this.walling=false;
+						this.roping=false;
+						this.jumpCount=this.maxJump;
+						this.sprite.velocity.y=0;
+					}
 				}
 			}
 			else
 			{
+				this.dropping=false;
 				if(!onRope) this.jumping=true;
 				if(this.roping||this.walling)
 				{
@@ -274,16 +280,33 @@ var game=function(d)
 				case 18: case 19: case 20:
 				case 21:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
 					a.depth=10;
-					this.wood.add(a); this.onewayPlatform.add(a); break;
+					a.weigh=0; a.isWeigh=false; a.respawnTime=100;
+					this.wood.add(a); this.weighPlatform.add(a); this.onewayPlatform.add(a); break;
 				case 22: case 23:
 				case 24:a.setCollider('rectangle',0,0,d.tileSize/2,d.tileSize);
 					a.depth=10;
 					this.Vrope.add(a); break;
 				case 26:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
 					a.depth=10;
-					this.Hrope.add(a); this.onewayPlatform.add(a); break;
+					a.weigh=0; a.isWeigh=false;
+					this.Hrope.add(a); this.weighPlatform.add(a); this.onewayPlatform.add(a); break;
 			}
 			if(tileNo!=0&&(tileNo<22||tileNo>24)) this.allPlatform.add(a);
+		}
+		WORLD.prototype.run(player)
+		{
+			this.runWeigh(player);
+		}
+		WORLD.prototype.runWeigh(player)
+		{
+			player.sprite.overlap(this.weighPlatform,
+			function(_player,_platform){_platform.isWeigh=true;});
+			for(var i in this.weighPlatform)
+			{
+				if(this.weighPlatform[i].isWeigh) this.weighPlatform[i].weigh++;
+				else this.weighPlatform[i]=0;
+				if(this.weighPlatform[i].weigh>=30) player.dropping=true;
+			}
 		}
 	}
 	d.conditionalCollide=function(my, other, condition)
