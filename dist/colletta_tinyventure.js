@@ -118,6 +118,7 @@ var game=function(d)
 					var p=a.previousPosition.copy().add(0,a.height/2);
 					var q=b.position.copy().add(0,-b.height/2);
 					var r=p5.Vector.sub(p,q);
+					console.log(p,q,r,r.heading());
 					return r.heading()<=0;
 				}
 				else return false;
@@ -143,13 +144,13 @@ var game=function(d)
 			if(onGround)
 			{
 				console.log(onewayColid);
-				if(!onewayOverlap||onewayColid)
-				{
+//				if(!onewayOverlap||onewayColid)
+//				{
 					this.jumping=false;
 					this.walling=false;
 					this.jumpCount=1;
 					this.sprite.velocity.y=0;
-				}
+//				}
 			}
 			else this.jumping=true;
 			if(colid)
