@@ -73,7 +73,7 @@ var game=function(d)
 		}
 		this.pause=function()
 		{
-			this.colletta.sprite.immoveable=true;
+			this.colletta.freeze(true);
 			d.drawSprites();
 			d.camera.off();
 			d.noStroke();
@@ -82,13 +82,15 @@ var game=function(d)
 			if(d.mouseWentUp(d.LEFT))
 			{
 				d.sceneNo=11;
-				this.colletta.sprite.immoveable=false;
+				this.colletta.freeze(false);
 			}
 		}
 		function PLAYER(g)
 		{
 			this.x=d.resourceBox.map[g.currentWorld].playerSpawn[0]*d.tileSize+d.tileSize/2;
 			this.y=d.resourceBox.map[g.currentWorld].playerSpawn[1]*d.tileSize-15;
+			this.vx=0;
+			this.vy=0;
 			this.scale=false;
 			this.curScale=10;
 			this.heading=RIGHT;
@@ -268,6 +270,8 @@ var game=function(d)
 			if(d.scaleKey()) this.scale=!this.scale;
 			this.x=this.sprite.position.x;
 			this.y=this.sprite.position.y;
+			this.vx=this.sprite.velocity.x;
+			this.vy=this.sprite.velocity.y;
 			this.scaleTween();
 //			console.log(this.sprite.position, this.sprite.velocity);
 		}
@@ -291,6 +295,19 @@ var game=function(d)
 				myObj[i].collider.offset=offsets[i].mult(realScale);
 			}
 			
+		}
+		PLAYER.prototype.freeze=function(tog)
+		{
+			if(tog)
+			{
+				this.vx=this.sprite.velocity.x;
+				this.vy=this.sprite.velocity.y;
+				this.sprite.velocity=new p5.Vector(0,0);
+			}
+			else
+			{
+				this.sprite.velocity=new p5.Vector(this.vx,this.vy);
+			}
 		}
 		function WORLD(g)
 		{
