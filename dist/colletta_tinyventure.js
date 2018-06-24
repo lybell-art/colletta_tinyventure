@@ -314,12 +314,34 @@ var game=function(d)
 			var pp=false, qq=false;
 			for(var i in this.weighPlatform)
 			{
-				pp=player.floorCollider.overlap(this.weighPlatform[i].sprite);
+				var isWood=(this.weighPlatform[i].respawnTime!==undefined);
+				if(!isWood||this.weighPlatform[i].sprite.visible)
+				{
+					pp=player.floorCollider.overlap(this.weighPlatform[i].sprite);
+				}
+				else pp=false;
 				qq=qq||pp;
 				this.weighPlatform[i].isWeigh=pp;
 				if(this.weighPlatform[i].isWeigh) this.weighPlatform[i].weigh++;
 				else this.weighPlatform[i].weigh=0;
-				if(this.weighPlatform[i].weigh>=30) player.dropping=true;
+				if(this.weighPlatform[i].weigh>=30)
+				{
+					player.dropping=true;
+					this.weighPlatform[i].weigh=0;
+					if(isWood)
+					{
+						this.weighPlatform[i].respawnTime=0;
+						this.weighPlatform[i].sprite.visible=false;
+					}
+				}
+				if(isWood&&!this.weighPlatform[i].sprite.visible)
+				{
+					this.weighPlatform[i].respawnTime++;
+					if(this.weighPlatform[i].respawnTime>=100)
+					{
+						this.weighPlatform[i].sprite.visible=true;
+					}
+				}
 			}
 			if(!qq) player.dropping=false;
 		}
