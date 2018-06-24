@@ -53,6 +53,7 @@ var game=function(d)
 			this.colletta.setImagineCollider();
 			this.world=new WORLD(this);
 			this.ui=new UI(this);
+			this.ui.setting();
 			d.sceneNo++;
 		}
 		this.run=function()
@@ -383,17 +384,22 @@ var game=function(d)
 		}
 		function UI(g)
 		{
-			var my=this;
-			this.minimap=new MINIMAP(my);
-			this.minimapButton=new BUTTON(0,0);
-			this.minimapButton.setImg(d.resourceBox.image.UI[11]);
-			this.minimapButton.width*=d.ratio;
-			this.minimapButton.height*=d.ratio;
-			this.minimapButton.func=function()
+			this.minimap=null;
+			this.minimapButton=null;
+			this.setting=function()
 			{
-				my.minimap.visible=true;
-				my.minimap.button.enable=true;
-				my.minimapButton.enable=false;
+				var my=this;
+				this.minimap=new MINIMAP(my);
+				this.minimapButton=new BUTTON(0,0);
+				this.minimapButton.setImg(d.resourceBox.image.UI[11]);
+				this.minimapButton.width*=d.ratio;
+				this.minimapButton.height*=d.ratio;
+				this.minimapButton.func=function()
+				{
+					my.minimap.visible=true;
+					my.minimap.button.enable=true;
+					my.minimapButton.enable=false;
+				}
 			}
 			this.run=function()
 			{
