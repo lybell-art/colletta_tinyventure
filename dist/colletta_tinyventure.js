@@ -60,6 +60,7 @@ var game=function(d)
 			this.colletta.move(this);
 			this.colletta.pose(this);
 			d.camera.position=this.colletta.sprite.position;
+			d.camera.zoom/=this.colletta.sprite.scale;
 			d.drawSprites();
 		}
 		function PLAYER(g)
