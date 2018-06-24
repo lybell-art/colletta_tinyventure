@@ -297,7 +297,6 @@ var game=function(d)
 		}
 		PLAYER.prototype.freeze=function(tog)
 		{
-			console.log(this.vx,this.vy);
 			if(tog)
 			{
 				this.vx=this.sprite.velocity.x;
