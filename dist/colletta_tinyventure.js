@@ -412,7 +412,7 @@ var game=function(d)
 						else this.data[i][j]=0;
 					}
 				}
-				this.button=new BUTTON(40,40,250,250);
+				this.button=new BUTTON(40*d.ratio,40*d.ratio,250*d.ratio,250*d.ratio);
 				this.button.func=function(){
 					this.visible=!this.visible;
 					this.button.enable=false;
@@ -470,7 +470,7 @@ var game=function(d)
 			{
 				if(this.img!=null)
 				{
-					d.image(this.img,this.x*d.ratio,this.y*d.ratio,this.width*d.ratio,this.height*d.ratio);
+					d.image(this.img,this.x,this.y,this.width,this.height);
 				}
 			}
 		}
