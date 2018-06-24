@@ -50,7 +50,6 @@ var game=function(d)
 			this.colletta=new PLAYER(this);
 			this.colletta.setImagineCollider();
 			this.world=new WORLD(this);
-			this.colletta.sprite.depth=1000;
 			d.sceneNo++;
 		}
 		this.run=function()
@@ -83,6 +82,7 @@ var game=function(d)
 			}
 			this.sprite.setCollider("rectangle",0,45,d.tileSize,d.tileSize*1.5);
 			this.sprite.debug=true;
+			this.sprite.depth=20;
 			//ceil/floor/wall checker
 			this.ceilCollider=d.createSprite(this.x,this.y,1,1);
 			this.floorCollider=d.createSprite(this.x,this.y,1,1);
@@ -263,20 +263,27 @@ var game=function(d)
 				case 6: case 7: case 8: case 9:
 				case 25: case 27:
 				case 10:a.setCollider('rectangle',0,0,d.tileSize,d.tileSize);
+					a.depth=21;
 					this.ground.add(a); break;
 				case 11: case 12: case 13:
 				case 14:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
+					a.depth=10;
 					this.tree.add(a); this.onewayPlatform.add(a); break;
 				case 15: case 16:
 				case 17:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
+					a.depth=10;
 					this.mover.add(a); this.onewayPlatform.add(a); break;
 				case 18: case 19: case 20:
 				case 21:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
+					a.depth=10;
 					this.wood.add(a); this.onewayPlatform.add(a); break;
 				case 22: case 23:
 				case 24:a.setCollider('rectangle',0,0,d.tileSize/2,d.tileSize);
+					a.depth=10;
 					this.Vrope.add(a); break;
-				case 26:this.Hrope.add(a); this.onewayPlatform.add(a); break;
+				case 26:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
+					a.depth=10;
+					this.Hrope.add(a); this.onewayPlatform.add(a); break;
 			}
 			if(tileNo!=0&&(tileNo<22||tileNo>24)) this.allPlatform.add(a);
 		}
