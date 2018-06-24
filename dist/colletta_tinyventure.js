@@ -111,6 +111,7 @@ var game=function(d)
 		PLAYER.prototype.move=function(g)
 		{
 			var colid=this.sprite.collide(g.world.ground);
+			var onewayColid=this.sprite.overlap(g.world.onewayPlatform);
 			var onGround=this.floorCollider.overlap(g.world.allPlatform);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
@@ -131,10 +132,13 @@ var game=function(d)
 			else this.walling=false;
 			if(onGround)
 			{
-				this.jumping=false;
-				this.walling=false;
-				this.jumpCount=1;
-				this.sprite.velocity.y=0;
+				if(!onewayColid||this.sprite.velocity.y>0)
+				{
+					this.jumping=false;
+					this.walling=false;
+					this.jumpCount=1;
+					this.sprite.velocity.y=0;
+				}
 			}
 			else this.jumping=true;
 			if(colid)
