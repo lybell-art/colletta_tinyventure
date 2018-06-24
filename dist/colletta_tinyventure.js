@@ -191,7 +191,8 @@ var game=function(d)
 			}
 			else
 			{
-				if(!onRope) this.jumping=true;
+				if(isTwinning&&this.sprite.velocity.x==0&&this.sprite.velocity.y==0) this.jumping=false;
+				else if(!onRope) this.jumping=true;
 				if(this.roping||this.walling)
 				{
 					if(this.sprite.velocity.y>0) this.gravity=0.3;
@@ -251,27 +252,21 @@ var game=function(d)
 		PLAYER.prototype.scaleTween=function()
 		{
 			var realScale;
-			var V=0;
 			var myObj=[this.sprite,this.ceilCollider,this.floorCollider,this.wallCollider];
 			var offsets=[new p5.Vector(0,45),new p5.Vector(0,-40),new p5.Vector(0,130),new p5.Vector(0,45)];
 			if(this.scale)
 			{
-				if(this.curScale<20) this.curScale++, V=1;
+				if(this.curScale<20) this.curScale++;
 			}
 			else
 			{
-				if(this.curScale>10) this.curScale--, V=-1;
+				if(this.curScale>10) this.curScale--;
 			}
 			realScale=1/(this.curScale/10);
 			for(var i=0;i<4;i++)
 			{
 				myObj[i].scale=realScale;
-				myObj[i].collider.offset=offsets[i].mult(1/((this.curScale-V)/10));
-				if(this.curScale!=10&&this.curScale!=20)
-				{
-				console.log(myObj[i].collider.extents.x,myObj[i].collider.extents.y);
-				console.log(myObj[i].collider.offset.x,myObj[i].collider.offset.y);
-				}
+				myObj[i].collider.offset=offsets[i].mult(realScale);
 			}
 			
 		}
