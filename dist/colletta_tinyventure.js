@@ -414,9 +414,9 @@ var game=function(d)
 				}
 				this.button=new BUTTON(40*d.ratio,40*d.ratio,250*d.ratio,250*d.ratio);
 				this.button.func=function(){
-					this.visible=!this.visible;
-					this.button.enable=false;
-					console.log("1234");
+//					this.visible=!this.visible;
+//					this.button.enable=false;
+					console.log(this);
 				}.bind();
 			}
 			MINIMAP.prototype.draw=function()
