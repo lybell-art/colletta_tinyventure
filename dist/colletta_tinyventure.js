@@ -48,6 +48,7 @@ var game=function(d)
 		this.setup=function()
 		{
 			this.colletta=new PLAYER(this);
+			this.colletta.setImagineCollider();
 			this.world=new WORLD(this);
 			d.sceneNo++;
 		}
@@ -56,6 +57,7 @@ var game=function(d)
 			d.background(255);
 			d.image(d.resourceBox.image.bg[0],0,0);
 			this.colletta.move(this);
+			this.colletta.physic(this);
 			this.colletta.pose(this);
 			d.camera.position=this.colletta.sprite.position;
 			d.drawSprites();
@@ -80,19 +82,21 @@ var game=function(d)
 			}
 			this.sprite.setCollider("rectangle",0,45,d.tileSize,d.tileSize*1.5);
 			this.sprite.debug=true;
+			this.sprite.depth=100;
 			//ceil/floor/wall checker
 			this.ceilCollider=d.createSprite(this.x,this.y,1,1);
 			this.floorCollider=d.createSprite(this.x,this.y,1,1);
 			this.wallCollider=d.createSprite(this.x,this.y,1,1);
-			this.ceilCollider.position=this.sprite.position;
-			this.floorCollider.position=this.sprite.position;
-			this.wallCollider.position=this.sprite.position;
-//			this.ceilCollider.visible=false;
-//			this.floorCollider.visible=false;
-//			this.wallCollider.visible=false;
-			this.ceilCollider.debug=true;
-			this.floorCollider.debug=true;
-			this.wallCollider.debug=true;
+		}
+		PLAYER.prototype.setImagineCollider=function()
+		{
+			var v_colid=[this.ceilCollider,this.floorCollider,this.wallCollider];
+			for(var i=0;i<3;i++)
+			{
+				v_colid[i].position=this.sprite.position;
+//				v_colid[i].visible=false;
+				v_colid[i].debug=true;
+			}
 			this.ceilCollider.setCollider("rectangle",0,-40,100,10);
 			this.floorCollider.setCollider("rectangle",0,130,100,10);
 			this.wallCollider.setCollider("rectangle",0,45,120,160);
@@ -115,7 +119,7 @@ var game=function(d)
 				else this.sprite.animation.changeFrame(0);
 			}
 		}
-		PLAYER.prototype.move=function(g)
+		PLAYER.prototype.physic=function(g)
 		{
 			var colid=this.sprite.collide(g.world.ground);
 			var onewayOverlap=this.sprite.overlap(g.world.onewayPlatform);
@@ -194,6 +198,9 @@ var game=function(d)
 				this.sprite.velocity.y=0;
 				this.walling=false;
 			}
+		}
+		PLAYER.prototype.move=function(g)
+		{
 			if(this.jumpCount>0)
 			{
 				if(this.walling&&d.wallJumpKey(this.heading))
