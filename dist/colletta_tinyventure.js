@@ -53,8 +53,8 @@ var game=function(d)
 			d.image(d.resourceBox.image.bg[0],0,0);
 			this.colletta.move(this);
 			this.colletta.pose(this);
-			d.camera.position.x=this.colletta.x;
-			d.camera.position.y=this.colletta.y;
+			d.camera.position.x=this.colletta.x+960;
+			d.camera.position.y=this.colletta.y+540;
 			d.drawSprites();
 		}
 		function PLAYER(g)
@@ -118,7 +118,7 @@ var game=function(d)
 					var p=a.previousPosition.copy().add(0,a.height/2);
 					var q=b.position.copy().add(0,-b.height/2);
 					var r=p5.Vector.sub(p,q);
-					console.log(p,q,r,r.heading());
+					console.log(p,q,r,r.heading(),r.y,Math.abs(r.y),Math.abs(r.y)<0.0001);
 					return Math.abs(r.y)<0.0001||r.heading()<=0;
 				}
 				else return false;
