@@ -394,6 +394,7 @@ var game=function(d)
 				this.minimapButton.setImg(d.resourceBox.image.UI[11]);
 				this.minimapButton.width*=d.ratio;
 				this.minimapButton.height*=d.ratio;
+				this.minimapButton.enable=false;
 				this.minimapButton.func=function()
 				{
 					my.minimap.visible=true;
@@ -407,6 +408,7 @@ var game=function(d)
 				this.minimap.button.mousePress();
 				this.minimapButton.mousePress();
 				if(this.minimap.visible) this.minimap.draw();
+				if(this.minimapButton.enable) this.minimapButton.draw();
 			}
 			function MINIMAP(h)
 			{
