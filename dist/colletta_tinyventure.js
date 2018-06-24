@@ -69,6 +69,7 @@ var game=function(d)
 			this.walling=false;
 			this.roping=false;
 			this.maxJump=1;
+			this.gravity=0.9;
 			this.jumpCount=this.maxJump;
 			this.sprite=d.createSprite(this.x,this.y,d.tileSize,d.tileSize*1.5);
 			var animeBox=d.resourceBox.image.colletta;
@@ -137,7 +138,11 @@ var game=function(d)
 				this.walling=false;
 				this.roping=true;
 				this.jumpCount=this.maxJump;
-				if(!this.jumping||this.sprite.velocity.y>0) this.sprite.velocity.y=0;
+				if(!this.jumping||this.sprite.velocity.y>0)
+				{
+					this.sprite.velocity.y=0;
+					this.jumping=false;
+				}
 			}
 			else
 			{
@@ -171,7 +176,13 @@ var game=function(d)
 			else
 			{
 				if(!this.roping) this.jumping=true;
-				this.sprite.velocity.y+=(this.roping||(this.walling&&this.sprite.velocity.y>0))?0.3:0.9;
+				if(this.roping||this.walling)
+				{
+					if(this.sprite.velocity.y>0) this.gravity=0.3;
+					else this.gravity=0.9;
+				}
+				else this.gravity=0.9;
+				this.sprite.velocity.y+=this.gravity;
 			}
 			if(colid)
 			{
