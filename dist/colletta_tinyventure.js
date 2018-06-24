@@ -112,8 +112,12 @@ var game=function(d)
 		{
 			var colid=this.sprite.collide(g.world.ground);
 			var onewayOverlap=this.sprite.overlap(g.world.onewayPlatform);
-			var onewayWall=this.wallCollider.overlap(g.world.onewayPlatform);
-			var onewayColid=this.sprite.velocity.y>0&&!onewayWall&&this.sprite.collide(g.world.onewayPlatform);
+			var onewayColid=conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
+				var p=a.position.copy().add(0,a.position.height/2);
+				var q=b.position.copy().add(0,-a.position.height/2);
+				var r=p.sub(q);
+				return r.heading()>0;
+			});
 			var onGround=this.floorCollider.overlap(g.world.allPlatform);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
@@ -134,7 +138,7 @@ var game=function(d)
 			else this.walling=false;
 			if(onGround)
 			{
-				if(!onewayOverlap||this.sprite.velocity.y>0||!onewayWall)
+				if(!onewayOverlap||this.sprite.velocity.y>0)
 				{
 					this.jumping=false;
 					this.walling=false;
@@ -224,6 +228,15 @@ var game=function(d)
 			}
 			if(tileNo!=0&&(tileNo<22||tileNo>24)) this.allPlatform.add(a);
 		}
+	}
+	function conditionalCollide(my, other, condition)
+	{
+		var res=false;
+		for(var obj in other)
+		{
+			if(condition(my, obj)) res=res||my.collide(other[obj]);
+		}
+		return res;
 	}
 	function RESOURCE_BOX()
 	{
