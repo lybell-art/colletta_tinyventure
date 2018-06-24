@@ -73,11 +73,6 @@ var game=function(d)
 		}
 		this.pause=function()
 		{
-			d.drawSprites();
-			d.camera.off();
-			d.noStroke();
-			d.fill(0,20);
-			d.rect(0,0,window.innerWidth,window.innerHeight);
 			if(d.mouseWentUp(d.LEFT))
 			{
 				d.sceneNo=11;
@@ -433,6 +428,10 @@ var game=function(d)
 				{
 					d.sceneNo=12;
 					g.colletta.freeze(true);
+					d.noStroke();
+					d.fill(0,40);
+					d.rect(0,0,window.innerWidth,window.innerHeight);
+					d.image(d.resourceBox.image.UI[10],window.innerWidth/2-150,window.innerHeight/2-150,300,300);
 				}
 			}
 			this.run=function()
