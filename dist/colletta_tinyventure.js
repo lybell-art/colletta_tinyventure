@@ -73,7 +73,6 @@ var game=function(d)
 		}
 		this.pause=function()
 		{
-			this.colletta.freeze(true);
 			d.drawSprites();
 			d.camera.off();
 			d.noStroke();
@@ -434,6 +433,7 @@ var game=function(d)
 				this.pauseButton.func=function()
 				{
 					d.sceneNo=12;
+					g.colletta.freeze(true);
 				}
 			}
 			this.run=function()
