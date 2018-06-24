@@ -60,9 +60,10 @@ var game=function(d)
 			this.colletta.physic(this);
 			this.colletta.move(this);
 			this.colletta.pose(this);
-			d.camera.position.x=d.constrain(this.colletta.sprite.position.x,960,this.world.width-960);
-			d.camera.position.y=d.constrain(this.colletta.sprite.position.y,540,this.world.height-540);
-			d.camera.zoom=d.ratio/this.colletta.sprite.scale;
+			var p=this.colletta.sprite;
+			d.camera.position.x=d.constrain(p.position.x,960*p.scale,this.world.width-960*p.scale);
+			d.camera.position.y=d.constrain(p.position.y,540*p.scale,this.world.height-540*p.scale);
+			d.camera.zoom=d.ratio/p.scale;
 //			d.camera.zoom=d.mouseX;
 			d.drawSprites();
 		}
