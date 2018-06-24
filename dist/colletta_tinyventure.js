@@ -110,6 +110,7 @@ var game=function(d)
 		}
 		PLAYER.prototype.move=function(g)
 		{
+			this.sprite.velocity.y+=(this.walling&&this.sprite.velocity.y>0)?0.3:0.9;
 			var colid=this.sprite.collide(g.world.ground);
 			var onewayOverlap=this.sprite.overlap(g.world.onewayPlatform);
 			var onewayColid=d.conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
@@ -125,7 +126,7 @@ var game=function(d)
 			var onGround=this.floorCollider.overlap(g.world.allPlatform);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
-			this.sprite.velocity.y+=(this.walling&&this.sprite.velocity.y>0)?0.3:0.9;
+			
 			if(onWall)
 			{
 				if(!onGround)
@@ -143,13 +144,13 @@ var game=function(d)
 			if(onGround)
 			{
 				console.log(onewayColid);
-//				if(!onewayOverlap||onewayColid)
-//				{
+				if(!onewayOverlap||onewayColid)
+				{
 					this.jumping=false;
 					this.walling=false;
 					this.jumpCount=1;
 					this.sprite.velocity.y=0;
-//				}
+				}
 			}
 			else this.jumping=true;
 			if(colid)
