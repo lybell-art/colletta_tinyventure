@@ -456,6 +456,7 @@ var game=function(d)
 				}
 				d.fill("#f398a5");
 				d.rect(x+12*r,y+12*r,r,r);
+				this.button.draw();
 			}
 			function BUTTON(_x,_y,_w,_h)
 			{
@@ -475,6 +476,7 @@ var game=function(d)
 			BUTTON.prototype.onMouse=function()
 			{
 				var mx=d.mouseX, my=d.mouseY, x=this.x, y=this.y, w=this.width, h=this.height;
+				console.log(this.enable , mx>x , mx<x+w , my>y , my<y+h);
 				return this.enable && mx>x && mx<x+w && my>y && my<y+h;
 			}
 			BUTTON.prototype.mousePress=function()
@@ -487,6 +489,9 @@ var game=function(d)
 				{
 					d.image(this.img,this.x,this.y,this.width,this.height);
 				}
+				d.noFill();
+				d.stroke("#00ffff");
+				d.rect(this.x,this.y,this.width,this.height);
 			}
 		}
 	}
