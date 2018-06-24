@@ -20,7 +20,7 @@ var game=function(d)
 	};
 	d.draw=function()
 	{
-		d.scale(d.ratio);
+//		d.scale(d.ratio);
 		switch(d.sceneNo)
 		{
 			case -1:d.loading.execute(); break;
