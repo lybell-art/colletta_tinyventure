@@ -124,16 +124,21 @@ var game=function(d)
 		{
 			var colid=this.sprite.collide(g.world.ground);
 			var onewayOverlap=this.sprite.overlap(g.world.onewayPlatform);
-			var onewayColid=d.conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
-				if(typeof a==="object"&&typeof b==="object")
-				{
-					var p=a.previousPosition.copy().add(0,a.height/2);
-					var q=b.position.copy().add(0,-b.height/2);
-					var r=p5.Vector.sub(p,q);
-					return Math.abs(r.y)<0.0001||r.heading()<=0;
-				}
-				else return false;
-			});
+			var onewayColid;
+			if(!this.dropping)
+			{
+				onewayColid=d.conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
+					if(typeof a==="object"&&typeof b==="object")
+					{
+						var p=a.previousPosition.copy().add(0,a.height/2);
+						var q=b.position.copy().add(0,-b.height/2);
+						var r=p5.Vector.sub(p,q);
+						return Math.abs(r.y)<0.0001||r.heading()<=0;
+					}
+					else return false;
+				});
+			}
+			else onewayColid=false;
 			var onRope=this.sprite.overlap(g.world.Vrope);
 			var onGround=this.floorCollider.overlap(g.world.allPlatform);
 			var onWall=this.wallCollider.overlap(g.world.ground);
@@ -183,7 +188,6 @@ var game=function(d)
 			}
 			else
 			{
-				this.dropping=false;
 				if(!onRope) this.jumping=true;
 				if(this.roping||this.walling)
 				{
@@ -195,7 +199,11 @@ var game=function(d)
 			}
 			if(colid)
 			{
-				if(!onWall) this.sprite.velocity.y=0;
+				if(!onWall)
+				{
+					this.sprite.velocity.y=0;
+					this.dropping=false;
+				}
 			}
 			if(onewayColid)
 			{
@@ -303,14 +311,17 @@ var game=function(d)
 		}
 		WORLD.prototype.runWeigh=function(player)
 		{
-			console.log(player, this.weighPlatform);
+			var pp=false, qq=false;
 			for(var i in this.weighPlatform)
 			{
-				this.weighPlatform[i].isWeigh=player.sprite.overlap(this.weighPlatform[i].sprite);
+				pp=player.sprite.overlap(this.weighPlatform[i].sprite);
+				qq=qq||pp;
+				this.weighPlatform[i].isWeigh=pp;
 				if(this.weighPlatform[i].isWeigh) this.weighPlatform[i].weigh++;
 				else this.weighPlatform[i].weigh=0;
 				if(this.weighPlatform[i].weigh>=30) player.dropping=true;
 			}
+			if(!qq) player.dropping=false;
 		}
 	}
 	d.conditionalCollide=function(my, other, condition)
