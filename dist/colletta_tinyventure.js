@@ -53,13 +53,15 @@ var game=function(d)
 		}
 		this.run=function()
 		{
-			d.background(255);
+			d.camera.off();
 			d.image(d.resourceBox.image.bg[0],0,0);
+			d.camera.on();
 			this.world.run(this.colletta);
 			this.colletta.physic(this);
 			this.colletta.move(this);
 			this.colletta.pose(this);
-			d.camera.position=this.colletta.sprite.position;
+			d.camera.position.x=d.constrain(this.colletta.sprite.position.x,960,this.world.width-960);
+			d.camera.position.y=d.constrain(this.colletta.sprite.position.y,540,this.world.height-540);
 			d.camera.zoom/=this.colletta.sprite.scale;
 			d.drawSprites();
 		}
@@ -283,6 +285,8 @@ var game=function(d)
 			this.Hrope=new d.Group();
 			var mapWid=d.resourceBox.map[g.currentWorld].platform.length;
 			var mapHei=d.resourceBox.map[g.currentWorld].platform[0].length;
+			this.width=mapWid*120;
+			this.height=mapHei*120;
 			for(var i=0;i<mapWid;i++)
 			{
 				for(var j=0;j<mapHei;j++)
