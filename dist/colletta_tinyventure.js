@@ -20,7 +20,7 @@ var game=function(d)
 	};
 	d.draw=function()
 	{
-		d.camera.zoom=d.ratio;
+//		d.camera.zoom=d.ratio;
 		switch(d.sceneNo)
 		{
 			case -1:d.loading.execute(); break;
@@ -62,8 +62,8 @@ var game=function(d)
 			this.colletta.pose(this);
 			d.camera.position.x=d.constrain(this.colletta.sprite.position.x,960,this.world.width-960);
 			d.camera.position.y=d.constrain(this.colletta.sprite.position.y,540,this.world.height-540);
-//			d.camera.zoom=d.ratio/this.colletta.sprite.scale;
-			d.camera.zoom=d.mouseX;
+			d.camera.zoom=d.ratio/this.colletta.sprite.scale;
+//			d.camera.zoom=d.mouseX;
 			d.drawSprites();
 		}
 		function PLAYER(g)
