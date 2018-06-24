@@ -175,7 +175,6 @@ var game=function(d)
 				}
 				else this.walling=false;
 			}
-			console.log(onGround, this.dropping, this.jumping);
 			if(onGround&&!this.dropping)
 			{
 				if(colid||onewayColid)
@@ -245,6 +244,7 @@ var game=function(d)
 			this.x=this.sprite.position.x;
 			this.y=this.sprite.position.y;
 			this.scaleTween();
+			console.log(this.sprite.collider,this.floorCollider.collider);
 //			console.log(this.sprite.position, this.sprite.velocity);
 		}
 		PLAYER.prototype.scaleTween=function()
