@@ -35,7 +35,7 @@ var game=function(d)
 	d.leftKey=function(){return d.keyDown(d.LEFT_ARROW)};
 	d.rightKey=function(){return d.keyDown(d.RIGHT_ARROW);}
 	d.jumpKey=function(){return d.keyWentDown(d.UP_ARROW);}
-	d.wallJumpKey=function(dir){return d.keyDown(d.UP_ARROW)&&d.keyDown(dir==LEFT?d.LEFT_ARROW:d.RIGHT_ARROW)};
+	d.wallJumpKey=function(dir){return d.keyDown(d.UP_ARROW)&&d.keyDown(dir==LEFT?d.LEFT_ARROW:d.RIGHT_ARROW);}
 	d.scaleKey=function(){return d.keyWentDown('z');}
 	function INGAME()
 	{
