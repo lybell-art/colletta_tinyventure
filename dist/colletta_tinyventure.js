@@ -165,7 +165,7 @@ var game=function(d)
 				{
 					if(!onGround)
 					{
-						if(!this.walling) this.jumpCount++;
+						if(!this.walling&&this.scale) this.jumpCount++;
 						this.walling=true;
 					}
 					else
@@ -343,7 +343,7 @@ var game=function(d)
 				pp=player.floorCollider.overlap(this.weighPlatform[i].sprite);
 				qq=qq||pp;
 				this.weighPlatform[i].isWeigh=pp;
-				if(this.weighPlatform[i].isWeigh) this.weighPlatform[i].weigh++;
+				if(this.weighPlatform[i].isWeigh&&!player.scale) this.weighPlatform[i].weigh++;
 				else this.weighPlatform[i].weigh=0;
 				if(this.weighPlatform[i].weigh>=30)
 				{
