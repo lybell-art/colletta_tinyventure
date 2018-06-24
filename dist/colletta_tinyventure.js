@@ -197,7 +197,6 @@ var game=function(d)
 				else this.gravity=0.9;
 				this.sprite.velocity.y+=this.gravity;
 			}
-			console.log(onGround, this.dropping, this.jumping);
 			if(colid)
 			{
 				if(!onWall)
@@ -244,7 +243,6 @@ var game=function(d)
 			this.x=this.sprite.position.x;
 			this.y=this.sprite.position.y;
 			this.scaleTween();
-			console.log(this.sprite.collider,this.floorCollider.collider);
 //			console.log(this.sprite.position, this.sprite.velocity);
 		}
 		PLAYER.prototype.scaleTween=function()
