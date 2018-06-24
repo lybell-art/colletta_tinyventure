@@ -112,6 +112,7 @@ var game=function(d)
 		{
 			var colid=this.sprite.collide(g.world.ground);
 			var onewayColid=this.sprite.velocity.y>0&&this.sprite.collide(g.world.onewayPlatform);
+			var onewayOverlab=this.sprite.overlap(g.world.onewayPlatform);
 			var onGround=this.floorCollider.overlap(g.world.allPlatform);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
@@ -132,7 +133,7 @@ var game=function(d)
 			else this.walling=false;
 			if(onGround)
 			{
-				if(!onewayColid||this.sprite.velocity.y>0)
+				if(!onewayOverlap||this.sprite.velocity.y>0)
 				{
 					this.jumping=false;
 					this.walling=false;
