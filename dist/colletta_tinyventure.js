@@ -133,9 +133,9 @@ var game=function(d)
 				onewayColid=d.conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
 					if(typeof a==="object"&&typeof b==="object")
 					{
-						console.log(this.curScale);
+						console.log(g.curScale);
 						if(!b.visible) return false;
-						if(this.curScale!=10&&this.curScale!=20) return true;
+						if(g.curScale!=10&&g.curScale!=20) return true;
 						var p=a.previousPosition.copy().add(0,a.height/2);
 						var q=b.position.copy().add(0,-b.height/2);
 						var r=p5.Vector.sub(p,q);
