@@ -73,6 +73,7 @@ var game=function(d)
 		}
 		this.pause=function()
 		{
+			d.drawSprites();
 			d.camera.off();
 			d.noStroke();
 			d.fill(0,20);
