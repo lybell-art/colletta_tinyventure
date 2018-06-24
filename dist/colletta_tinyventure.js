@@ -115,10 +115,11 @@ var game=function(d)
 			var onewayColid=d.conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
 				if(typeof a==="object"&&typeof b==="object")
 				{
+					if(d.frameCount%20==0) console.log(a.position, b.position);
 					var p=a.position.copy().add(0,a.position.height/2);
-					var q=b.position.copy().add(0,-a.position.height/2);
+					var q=b.position.copy().add(0,-b.position.height/2);
 					var r=p5.Vector.sub(p,q);
-					if(d.frameCount%20==0)console.log(p,q,r,r.heading());
+					if(d.frameCount%20==0) console.log(p,q,r,r.heading());
 					return r.heading()<0;
 				}
 				else return false;
@@ -245,7 +246,6 @@ var game=function(d)
 		{
 			for(var i=0; i<other.length; i++)
 			{
-				console.log(i);
 				if(condition(my, other[i])) res=res||my.collide(other[i]);
 			}
 		}
