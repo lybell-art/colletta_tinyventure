@@ -53,8 +53,8 @@ var game=function(d)
 		}
 		this.run=function()
 		{
-			d.camera.position.x=windowWidth/2;
-			d.camera.position.y=windowHeight/2;
+			d.camera.position.x=window.innerWidth/2;
+			d.camera.position.y=window.innerHeight/2;
 			d.camera.zoom=1;
 			d.image(d.resourceBox.image.bg[0]);
 			this.world.run(this.colletta);
