@@ -237,7 +237,6 @@ var game=function(d)
 	d.conditionalCollide=function(my, other, condition)
 	{
 		var res=false;
-		console.log(my, other, condition, other instanceof Array)
 		if(other instanceof d.Sprite)
 		{
 			res=condition(my, other)&&my.collide(other);
@@ -246,6 +245,7 @@ var game=function(d)
 		{
 			for(var obj in other)
 			{
+				console.log(obj, condition(my,obj));
 				if(condition(my, obj)) res=res||my.collide(other[obj]);
 			}
 		}
