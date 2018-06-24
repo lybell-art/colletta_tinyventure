@@ -238,7 +238,7 @@ var game=function(d)
 		{
 			this.allPlatform=new d.Group();
 			this.onewayPlatform=new d.Group();
-			this.weighPlatform=new d.Group();
+			this.weighPlatform=[];
 			this.ground=new d.Group();
 			this.tree=new d.Group();
 			this.mover=new d.Group();
@@ -281,8 +281,9 @@ var game=function(d)
 				case 18: case 19: case 20:
 				case 21:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
 					a.depth=10;
-					a.weigh=0; a.isWeigh=false; a.respawnTime=100;
-					this.wood.add(a); this.weighPlatform.add(a); this.onewayPlatform.add(a); break;
+					this.wood.add(a);
+					this.weighPlatform.add({sprite:a,weigh:0,isWeigh:false,respawnTime:100});
+					this.onewayPlatform.add(a); break;
 				case 22: case 23:
 				case 24:a.setCollider('rectangle',0,0,d.tileSize/2,d.tileSize);
 					a.depth=10;
@@ -290,7 +291,9 @@ var game=function(d)
 				case 26:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
 					a.depth=10;
 					a.weigh=0; a.isWeigh=false;
-					this.Hrope.add(a); this.weighPlatform.add(a); this.onewayPlatform.add(a); break;
+					this.Hrope.add(a);
+					this.weighPlatform.add({sprite:a,weigh:0,isWeigh:false});
+					this.onewayPlatform.add(a); break;
 			}
 			if(tileNo!=0&&(tileNo<22||tileNo>24)) this.allPlatform.add(a);
 		}
@@ -300,11 +303,9 @@ var game=function(d)
 		}
 		WORLD.prototype.runWeigh=function(player)
 		{
-			console.log(this.weighPlatform, player);
-			player.sprite.overlap(this.weighPlatform,
-			function(_player,_platform){_platform.isWeigh=true;});
 			for(var i in this.weighPlatform)
 			{
+				this.weighPlatform[i].isWeigh=player.sprite.overlap(this.weighPlatform[i].sprite);
 				if(this.weighPlatform[i].isWeigh) this.weighPlatform[i].weigh++;
 				else this.weighPlatform[i]=0;
 				if(this.weighPlatform[i].weigh>=30) player.dropping=true;
