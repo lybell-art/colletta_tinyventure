@@ -53,14 +53,17 @@ var game=function(d)
 		}
 		this.run=function()
 		{
-			d.image(d.resourceBox.image.bg[0],0,0);
+			d.camera.position.x=windowWidth/2;
+			d.camera.position.y=windowHeight/2;
+			d.camera.zoom=1;
+			d.image(d.resourceBox.image.bg[0]);
 			this.world.run(this.colletta);
 			this.colletta.physic(this);
 			this.colletta.move(this);
 			this.colletta.pose(this);
 			d.camera.position.x=d.constrain(this.colletta.sprite.position.x,960,this.world.width-960);
 			d.camera.position.y=d.constrain(this.colletta.sprite.position.y,540,this.world.height-540);
-			d.camera.zoom=d.camera.zoom/this.colletta.sprite.scale;
+			d.camera.zoom=d.ratio/this.colletta.sprite.scale;
 			d.drawSprites();
 		}
 		function PLAYER(g)
