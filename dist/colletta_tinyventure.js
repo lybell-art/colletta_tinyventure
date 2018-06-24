@@ -119,7 +119,7 @@ var game=function(d)
 					var q=b.position.copy().add(0,-b.height/2);
 					var r=p5.Vector.sub(p,q);
 					console.log(p,q,r,r.heading());
-					return r.heading()<=0;
+					return Math.abs(r.y)<0.0001||r.heading()<=0;
 				}
 				else return false;
 			});
@@ -181,8 +181,8 @@ var game=function(d)
 					this.jumpCount--;
 				}
 			}
-			this.x=this.sprite.x;
-			this.y=this.sprite.y;
+			this.x=this.sprite.position.x;
+			this.y=this.sprite.position.y;
 //			console.log(this.sprite.position, this.sprite.velocity);
 		}
 		function WORLD(g)
