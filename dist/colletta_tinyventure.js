@@ -252,7 +252,7 @@ var game=function(d)
 					q=my.collide(other[i]);
 					res=q||res;
 				}
-//				console.log(p,q,res);
+				console.log(i,p,q);
 			}
 		}
 		console.log(res);
