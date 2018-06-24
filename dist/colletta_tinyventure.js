@@ -245,7 +245,7 @@ var game=function(d)
 		{
 			for(var i=0; i<other.length; i++)
 			{
-				console.log(condition(my,other[i]));
+				console.log(i);
 				if(condition(my, other[i])) res=res||my.collide(other[i]);
 			}
 		}
