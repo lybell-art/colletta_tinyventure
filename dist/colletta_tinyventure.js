@@ -111,8 +111,9 @@ var game=function(d)
 		PLAYER.prototype.move=function(g)
 		{
 			var colid=this.sprite.collide(g.world.ground);
-			var onewayColid=this.sprite.velocity.y>0&&this.sprite.collide(g.world.onewayPlatform);
 			var onewayOverlap=this.sprite.overlap(g.world.onewayPlatform);
+			var onewayWall=this.wallCollider.overlap(g.world.onewayPlatform);
+			var onewayColid=this.sprite.velocity.y>0&&!onewayWall&&this.sprite.collide(g.world.onewayPlatform);
 			var onGround=this.floorCollider.overlap(g.world.allPlatform);
 			var onWall=this.wallCollider.overlap(g.world.ground);
 			var onCeil=this.ceilCollider.overlap(g.world.ground);
