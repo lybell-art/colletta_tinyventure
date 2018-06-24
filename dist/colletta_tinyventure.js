@@ -315,11 +315,7 @@ var game=function(d)
 			for(var i in this.weighPlatform)
 			{
 				var isWood=(this.weighPlatform[i].respawnTime!==undefined);
-				if(!isWood||this.weighPlatform[i].sprite.visible)
-				{
-					pp=player.floorCollider.overlap(this.weighPlatform[i].sprite);
-				}
-				else pp=false;
+				pp=player.floorCollider.overlap(this.weighPlatform[i].sprite);
 				qq=qq||pp;
 				this.weighPlatform[i].isWeigh=pp;
 				if(this.weighPlatform[i].isWeigh) this.weighPlatform[i].weigh++;
