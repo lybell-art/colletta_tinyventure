@@ -53,10 +53,7 @@ var game=function(d)
 		}
 		this.run=function()
 		{
-			d.camera.off();
-//			d.background(d.resourceBox.image.bg[0]);
 			d.image(d.resourceBox.image.bg[0],0,0);
-			d.camera.on();
 			this.world.run(this.colletta);
 			this.colletta.physic(this);
 			this.colletta.move(this);
