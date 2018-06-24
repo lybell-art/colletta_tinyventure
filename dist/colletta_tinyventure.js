@@ -117,8 +117,8 @@ var game=function(d)
 				{
 					var p=a.position.copy().add(0,a.position.height/2);
 					var q=b.position.copy().add(0,-a.position.height/2);
-					var r=p.sub(q);
-					console.log(p,q,r,r.heading());
+					var r=d.p5.Vector.sub(p,q);
+					if(d.frameCount%20==0)console.log(p,q,r,r.heading());
 					return r.heading()>0;
 				}
 				else return false;
