@@ -442,7 +442,7 @@ var game=function(d)
 				d.fill("#f398a5");
 				d.rect(x+12*r,y+12*r,r,r);
 				this.button.draw();
-				console.log(this.button);
+				console.log(this.button.func);
 			}
 			function BUTTON(_x,_y,_w,_h)
 			{
