@@ -143,7 +143,7 @@ var game=function(d)
 			if(onGround)
 			{
 				console.log(onewayColid);
-				if(!onewayColid)
+				if(!onewayOverlap||onewayColid)
 				{
 					this.jumping=false;
 					this.walling=false;
