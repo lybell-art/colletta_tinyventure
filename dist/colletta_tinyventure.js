@@ -303,6 +303,7 @@ var game=function(d)
 		}
 		WORLD.prototype.runWeigh=function(player)
 		{
+			console.log(player, this.weighPlatform);
 			for(var i in this.weighPlatform)
 			{
 				this.weighPlatform[i].isWeigh=player.sprite.overlap(this.weighPlatform[i].sprite);
