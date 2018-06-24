@@ -255,13 +255,14 @@ var game=function(d)
 			var offsets=[new p5.Vector(0,45),new p5.Vector(0,-40),new p5.Vector(0,130),new p5.Vector(0,45)];
 			if(this.scale)
 			{
-				if(this.curScale<20) this.curScale++;
+				if(this.curScale<20) this.curScale++, d.frameRate(1);
+				else d.frameRate(60);
 			}
 			else
 			{
-				if(this.curScale>10) this.curScale--;
+				if(this.curScale>10) this.curScale--, d.frameRate(1);
+				else d.frameRate(60);
 			}
-			this.curScale=14;
 			realScale=1/(this.curScale/10);
 			for(var i=0;i<4;i++)
 			{
