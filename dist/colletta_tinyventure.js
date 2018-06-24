@@ -112,7 +112,7 @@ var game=function(d)
 		{
 			var colid=this.sprite.collide(g.world.ground);
 			var onewayOverlap=this.sprite.overlap(g.world.onewayPlatform);
-			var onewayColid=conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
+			var onewayColid=d.conditionalCollide(this.sprite, g.world.onewayPlatform, function(a,b){
 				if(typeof a==="object"&&typeof b==="object")
 				{
 					var p=a.position.copy().add(0,a.position.height/2);
