@@ -238,6 +238,7 @@ var game=function(d)
 		{
 			this.allPlatform=new d.Group();
 			this.onewayPlatform=new d.Group();
+			this.weighPlatform=new d.Group();
 			this.ground=new d.Group();
 			this.tree=new d.Group();
 			this.mover=new d.Group();
