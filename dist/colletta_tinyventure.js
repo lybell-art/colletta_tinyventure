@@ -118,7 +118,7 @@ var game=function(d)
 					var p=a.previousPosition.copy().add(0,a.height/2);
 					var q=b.position.copy().add(0,-b.height/2);
 					var r=p5.Vector.sub(p,q);
-					return r.heading()<0;
+					return r.heading()<=0;
 				}
 				else return false;
 			});
@@ -142,7 +142,7 @@ var game=function(d)
 			else this.walling=false;
 			if(onGround)
 			{
-				if(!onewayOverlap||this.sprite.velocity.y>0)
+				if(!onewayColid)
 				{
 					this.jumping=false;
 					this.walling=false;
