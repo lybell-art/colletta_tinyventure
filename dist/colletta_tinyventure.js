@@ -416,7 +416,7 @@ var game=function(d)
 				this.button.func=function(){
 					this.visible=!this.visible;
 					this.button.enable=false;
-					console.log(this);
+					console.log("1234");
 				}.bind();
 			}
 			MINIMAP.prototype.draw=function()
@@ -466,7 +466,8 @@ var game=function(d)
 			}
 			BUTTON.prototype.mousePress=function()
 			{
-				if(d.mouseWentUp(LEFT)&&this.onMouse) this.func();
+				console.log(d.mouseWentUp(LEFT), this.onMouse());
+				if(d.mouseWentUp(LEFT)&&this.onMouse()) this.func();
 			}
 			BUTTON.prototype.draw=function()
 			{
