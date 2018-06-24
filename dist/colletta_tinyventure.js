@@ -261,6 +261,7 @@ var game=function(d)
 			{
 				if(this.curScale>10) this.curScale--;
 			}
+			this.curScale=14;
 			realScale=1/(this.curScale/10);
 			for(var i=0;i<4;i++)
 			{
