@@ -250,7 +250,7 @@ var game=function(d)
 				if(condition(my, other[i]))
 				{
 					res=my.collide(other[i])||res;
-					console.llog("2"+res);
+					console.log("2"+res);
 				}
 				console.log("3"+res);
 			}
