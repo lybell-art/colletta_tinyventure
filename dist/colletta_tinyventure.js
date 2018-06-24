@@ -172,6 +172,20 @@ var game=function(d)
 				}
 				else this.walling=false;
 			}
+			if(colid)
+			{
+				if(!onWall)
+				{
+					this.sprite.velocity.y=0;
+					this.dropping=false;
+				}
+			}
+			if(onewayColid)
+			{
+				this.sprite.velocity.y=0;
+				this.walling=false;
+				this.dropping=false;
+			}
 			if(onGround&&!this.dropping)
 			{
 				if(!onewayOverlap||onewayColid)
@@ -193,19 +207,6 @@ var game=function(d)
 				}
 				else this.gravity=0.9;
 				this.sprite.velocity.y+=this.gravity;
-			}
-			if(colid)
-			{
-				if(!onWall)
-				{
-					this.sprite.velocity.y=0;
-					this.dropping=false;
-				}
-			}
-			if(onewayColid)
-			{
-				this.sprite.velocity.y=0;
-				this.walling=false;
 			}
 		}
 		PLAYER.prototype.move=function(g)
