@@ -293,11 +293,11 @@ var game=function(d)
 			}
 			if(tileNo!=0&&(tileNo<22||tileNo>24)) this.allPlatform.add(a);
 		}
-		WORLD.prototype.run(player)
+		WORLD.prototype.run=function(player)
 		{
 			this.runWeigh(player);
 		}
-		WORLD.prototype.runWeigh(player)
+		WORLD.prototype.runWeigh=function(player)
 		{
 			player.sprite.overlap(this.weighPlatform,
 			function(_player,_platform){_platform.isWeigh=true;});
