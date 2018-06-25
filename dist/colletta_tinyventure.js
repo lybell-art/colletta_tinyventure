@@ -397,6 +397,7 @@ var game=function(d)
 				}
 				if(isWood&&!this.weighPlatform[i].enable)
 				{
+					this.weighPlatform[i].sprite.visible=false;
 					this.weighPlatform[i].respawnTime++;
 					if(this.weighPlatform[i].respawnTime>=100)
 					{
