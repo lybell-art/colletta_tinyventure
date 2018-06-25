@@ -59,7 +59,7 @@ var game=function(d)
 		this.run=function()
 		{
 			d.camera.off();
-			d.image(d.resourceBox.image.bg[0],0,0);
+			d.image(d.resourceBox.image.bg[0],0,0,window.innerWidth,window.innerHeight);
 			d.camera.on();
 			this.world.run(this.colletta);
 			this.colletta.physic(this);
@@ -411,7 +411,7 @@ var game=function(d)
 			var sh=600/d.camera.zoom
 			var sx=d.camera.position.x;
 			var sy=d.camera.position.y;
-			console.log(sw,sh,sx,sy);
+			console.log(sw,sh,sx,sy,d.ratio,d.camera.zoom,window.innerWidth,window.innerHeight);
 			for(var i=0;i<this.allPlatform.length;i++)
 			{
 				var obj=this.allPlatform[i];
@@ -498,10 +498,10 @@ var game=function(d)
 				d.fill(0,50);
 				d.rect(x,y,25*r,25*r);
 				d.fill(0,128);
-				for(var i=0; i<26; i++)
+				for(var i=0; i<25; i++)
 				{
 					if(this.data[Xpos-12+i]===undefined) continue;
-					for(var j=0; j<26; j++)
+					for(var j=0; j<25; j++)
 					{
 						if(this.data[Xpos-12+i][Ypos-12+j]===undefined) continue;
 						if(this.data[Xpos-12+i][Ypos-12+j]==1) d.rect(x+i*r,y+j*r,r,r);
