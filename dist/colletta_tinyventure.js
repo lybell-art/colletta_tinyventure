@@ -34,13 +34,13 @@ var game=function(d)
 	{
 		d.resizeCanvas(window.innerWidth,window.innerHeight);
 	}
-	d.leftKey=function(){return d.multiKeyDown("press",[d.LEFT_ARROW,d.A]);}
-	d.rightKey=function(){return d.multiKeyDown("press",[d.RIGHT_ARROW,d.D]);}
-	d.jumpKey=function(){return d.multiKeyDown("once",[d.UP_ARROW,d.W,d.SPACE]);}
+	d.leftKey=function(){return d.multiKeyDown("press",[d.LEFT_ARROW,'a']);}
+	d.rightKey=function(){return d.multiKeyDown("press",[d.RIGHT_ARROW,'d']);}
+	d.jumpKey=function(){return d.multiKeyDown("once",[d.UP_ARROW,'w',' ']);}
 	d.wallJumpKey=function(dir){
-		var up=d.multiKeyDown("press",[d.UP_ARROW,d.W,d.SPACE]);
-		var left=d.multiKeyDown("press",[d.LEFT_ARROW,d.A]);
-		var right=d.multiKeyDown("press",[d.RIGHT_ARROW,d.D]);
+		var up=d.multiKeyDown("press",[d.UP_ARROW,'w',' ']);
+		var left=d.multiKeyDown("press",[d.LEFT_ARROW,'a']);
+		var right=d.multiKeyDown("press",[d.RIGHT_ARROW,'d']);
 		return up&&(dir==LEFT?right:left);
 	}
 	d.scaleKey=function(){return d.keyWentDown('z');}
