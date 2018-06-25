@@ -370,6 +370,7 @@ var game=function(d)
 		}
 		WORLD.prototype.run=function(player)
 		{
+			this.viz(player);
 			this.runWeigh(player);
 		}
 		WORLD.prototype.runWeigh=function(player)
@@ -403,6 +404,23 @@ var game=function(d)
 				}
 			}
 			if(!qq) player.dropping=false;
+		}
+		WORLD.prototype.viz=function()
+		{
+			var sw=1020/d.camera.zoom
+			var sh=600/d.camera.zoom
+			var sx=d.camera.position.x;
+			var sy=d.camera.position.y;
+			console.log(sw,sh,sx,sy);
+			for(var i=0;i<this.allPlatform.length;i++)
+			{
+				var obj=this.allPlatform[i];
+				if(obj.position.x>sx-sw&&obj.position.x<sx+sw&&obj.position.y>sy-sh&&obj.position.y<sy+sh)
+				{
+					obj.visible=true;
+				}
+				else obj.visible=false;
+			}
 		}
 		function UI(g)
 		{
