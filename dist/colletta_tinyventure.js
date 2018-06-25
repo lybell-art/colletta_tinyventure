@@ -34,13 +34,26 @@ var game=function(d)
 	{
 		d.resizeCanvas(window.innerWidth,window.innerHeight);
 	}
-	d.leftKey=function(){return d.keyDown(d.LEFT_ARROW)};
-	d.rightKey=function(){return d.keyDown(d.RIGHT_ARROW);}
-	d.jumpKey=function(){return d.keyWentDown(d.UP_ARROW);}
+	d.leftKey=function(){return d.multikeyDown("press",[d.LEFT_ARROW,d.A]);}
+	d.rightKey=function(){return d.multiKeyDown("press",[d.RIGHT_ARROW,d.D]);}
+	d.jumpKey=function(){return d.multiKeyDown("went",[d.UP_ARROW,d.W,d.SPACE]);}
 	d.wallJumpKey=function(dir){
-		return d.keyDown(d.UP_ARROW)&&d.keyDown(dir==LEFT?d.RIGHT_ARROW:d.LEFT_ARROW);
+		var up=d.multiKeyDown("press",[d.UP_ARROW,d.W,d.SPACE]);
+		var left=d.multikeyDown("press",[d.LEFT_ARROW,d.A]);
+		var right=d.multiKeyDown("press",[d.RIGHT_ARROW,d.D]);
+		return up&&(dir==LEFT?right:left);
 	}
 	d.scaleKey=function(){return d.keyWentDown('z');}
+	d.multiKeyDown=function(mode, keys)
+	{
+		var res=false;
+		for(var i=0;i<keys.length;i++)
+		{
+			if(mode=="press") res=res||d.keyDown(keys[i]);
+			else if(mode=="once") res=res||d.keyWentDown(keys[i]);
+		}
+		return res;
+	}
 	function INGAME()
 	{
 		this.currentWorld="world1";
