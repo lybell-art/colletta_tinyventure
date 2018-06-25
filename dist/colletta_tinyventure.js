@@ -353,7 +353,7 @@ var game=function(d)
 				case 21:a.setCollider('rectangle',0,-d.tileSize/4,d.tileSize,d.tileSize/2);
 					a.depth=10;
 					this.wood.add(a);
-					this.weighPlatform.push({sprite:a,weigh:0,isWeigh:false,respawnTime:100});
+					this.weighPlatform.push({sprite:a,weigh:0,isWeigh:false,respawnTime:100,enable:true});
 					this.onewayPlatform.add(a); break;
 				case 22: case 23:
 				case 24:a.setCollider('rectangle',0,0,d.tileSize/2,d.tileSize);
@@ -391,14 +391,16 @@ var game=function(d)
 					if(isWood)
 					{
 						this.weighPlatform[i].respawnTime=0;
+						this.weighPlatform[i].enable=false;
 						this.weighPlatform[i].sprite.visible=false;
 					}
 				}
-				if(isWood&&this.weighPlatform[i].respawnTine<=100)
+				if(isWood&&!this.weighPlatform[i].enable)
 				{
 					this.weighPlatform[i].respawnTime++;
 					if(this.weighPlatform[i].respawnTime>=100)
 					{
+						this.weighPlatform[i].enable=true;
 						this.weighPlatform[i].sprite.visible=true;
 					}
 				}
