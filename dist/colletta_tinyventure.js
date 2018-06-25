@@ -394,7 +394,7 @@ var game=function(d)
 						this.weighPlatform[i].sprite.visible=false;
 					}
 				}
-				if(isWood&&!this.weighPlatform[i].sprite.visible)
+				if(isWood&&!this.weighPlatform[i].respawnTine<=100)
 				{
 					this.weighPlatform[i].respawnTime++;
 					if(this.weighPlatform[i].respawnTime>=100)
@@ -407,8 +407,9 @@ var game=function(d)
 		}
 		WORLD.prototype.viz=function()
 		{
-			var sw=1020/d.camera.zoom
-			var sh=600/d.camera.zoom
+			var resol=window.innerWidth/window.innerHeight;
+			var sw=1080/d.camera.zoom*resol;
+			var sh=660/d.camera.zoom;
 			var sx=d.camera.position.x;
 			var sy=d.camera.position.y;
 			console.log(sw,sh,sx,sy,d.ratio,d.camera.zoom,window.innerWidth,window.innerHeight);
