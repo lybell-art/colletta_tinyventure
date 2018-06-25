@@ -582,7 +582,7 @@ var game=function(d)
 	LOADING.prototype.loadData=function()
 	{
 		var imgBox=d.resourceBox.image;
-		d.resourceBox.map=d.loadJSON("map/mapData.json",function(){this.count++;}.bind(this));
+		d.resourceBox.map=d.loadJSON("map/demo.json",function(){this.count++;}.bind(this));
 		imgBox.bg[0]=d.loadImage(d.urlData.background[0],function(){this.count++;}.bind(this));
 		imgBox.colletta.idle[0]=this.loadAnimData([d.urlData.colletta.idle[0]],function(){this.count++;}.bind(this));
 		imgBox.colletta.idle[1]=this.loadAnimData([d.urlData.colletta.idle[1]],function(){this.count++;}.bind(this));
