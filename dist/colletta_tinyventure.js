@@ -36,16 +36,17 @@ var game=function(d)
 	}
 	d.leftKey=function(){return d.multiKeyDown("press",[d.LEFT_ARROW,d.A]);}
 	d.rightKey=function(){return d.multiKeyDown("press",[d.RIGHT_ARROW,d.D]);}
-	d.jumpKey=function(){return d.multiKeyDown("went",[d.UP_ARROW,d.W,d.SPACE]);}
+	d.jumpKey=function(){return d.multiKeyDown("once",[d.UP_ARROW,d.W,d.SPACE]);}
 	d.wallJumpKey=function(dir){
 		var up=d.multiKeyDown("press",[d.UP_ARROW,d.W,d.SPACE]);
-		var left=d.multikeyDown("press",[d.LEFT_ARROW,d.A]);
+		var left=d.multiKeyDown("press",[d.LEFT_ARROW,d.A]);
 		var right=d.multiKeyDown("press",[d.RIGHT_ARROW,d.D]);
 		return up&&(dir==LEFT?right:left);
 	}
 	d.scaleKey=function(){return d.keyWentDown('z');}
 	d.multiKeyDown=function(mode, keys)
 	{
+		console.log(keys);
 		var res=false;
 		for(var i=0;i<keys.length;i++)
 		{
