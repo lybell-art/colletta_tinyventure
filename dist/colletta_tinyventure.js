@@ -34,7 +34,7 @@ var game=function(d)
 	{
 		d.resizeCanvas(window.innerWidth,window.innerHeight);
 	}
-	d.leftKey=function(){return d.multikeyDown("press",[d.LEFT_ARROW,d.A]);}
+	d.leftKey=function(){return d.multiKeyDown("press",[d.LEFT_ARROW,d.A]);}
 	d.rightKey=function(){return d.multiKeyDown("press",[d.RIGHT_ARROW,d.D]);}
 	d.jumpKey=function(){return d.multiKeyDown("went",[d.UP_ARROW,d.W,d.SPACE]);}
 	d.wallJumpKey=function(dir){
