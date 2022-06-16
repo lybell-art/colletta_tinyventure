@@ -46,7 +46,6 @@ var game=function(d)
 	d.scaleKey=function(){return d.keyWentDown('z');}
 	d.multiKeyDown=function(mode, keys)
 	{
-		console.log(keys);
 		var res=false;
 		for(var i=0;i<keys.length;i++)
 		{
@@ -281,7 +280,6 @@ var game=function(d)
 			this.vx=this.sprite.velocity.x;
 			this.vy=this.sprite.velocity.y;
 			this.scaleTween();
-//			console.log(this.sprite.position, this.sprite.velocity);
 		}
 		PLAYER.prototype.scaleTween=function()
 		{
@@ -429,7 +427,6 @@ var game=function(d)
 			var sh=720/d.camera.zoom;
 			var sx=d.camera.position.x;
 			var sy=d.camera.position.y;
-			console.log(sw,sh,sx,sy,d.ratio,d.camera.zoom,window.innerWidth,window.innerHeight);
 			for(var i=0;i<this.allPlatform.length;i++)
 			{
 				var obj=this.allPlatform[i];
